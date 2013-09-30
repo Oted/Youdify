@@ -21,8 +21,8 @@
 		$.getJSON(url, function(data) {
 			$.each(data.feed.entry, function(i, item) {
 				var playlist = {};
-				playlist.title = item.title.$t;
-				playlist.id = item.yt$playlistId.$t;
+				playlist.pTitle = item.title.$t;
+				playlist.pId = item.yt$playlistId.$t;
 
 				result.push(playlist);
 			});
@@ -52,6 +52,7 @@
 				entry.playlist = playlist;
 				entry.id = item.media$group.yt$videoid.$t;
 				entry.title = item.title.$t;
+				
 				if (item.media$group && item.media$group.media$thumbnail){
 					entry.thumb = item.media$group.media$thumbnail[0].url;
 				}

@@ -8,6 +8,8 @@ var playlistSchema = new mongoose.Schema({
 });
 
 var Playlist = mongoose.model("Playlists", playlistSchema);
+	
+
 	exports.checkIfExist = function(name, callback){
 		console.log("Checking if playlist " + name + " exists..");
 		Playlist.findOne({"name" : name}, function(error, doc){
@@ -20,13 +22,13 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 				callback(false);
 			}	
 		});
-	}
+	};
 
 	exports.getMyPlaylists = function(client, callback){
 		Playlist.find({"creator": client}, function(err, docs){
 			console.log(docs);		
 		});	
-	}
+	};
 
 	exports.createNewPlaylist = function(name, client, callback){
 		this.checkIfExist(name,function(found){
@@ -50,9 +52,11 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 				});
 			}
 		});
-	}
+	};
 	
-	exports.push = function(name, client, video){
+	exports.push = function(name, client, video){	
+		//Playlist.find()
+			
 		console.log("Pushing " + video);
 		Playlist.findOneAndUpdate({"name": name},
 			{$push: {"videos": video}},
@@ -65,4 +69,4 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 
 	exports.get = function(name, client, videos){
 
-	}
+	};

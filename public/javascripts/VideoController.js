@@ -178,7 +178,7 @@
 			constraint = constraint.replace("#","");
 			if(constraint.length!==0){
 				this.results.forEach(function(video){
-					if (video.playlist.title.toLowerCase().indexOf(constraint) == -1){
+					if (video.playlist.pTitle.toLowerCase().indexOf(constraint) == -1){
 						video.element.hide();
 					}else if (backspace){
 						video.element.show();

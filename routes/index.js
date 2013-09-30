@@ -31,7 +31,7 @@ exports.playlists = function(req, res){
 	else{
 		var q = req.params[0];
 		dbHandler.checkIfExist(q, function(found){
-			res.send(req.params[0]);
+			res.render("playlist");
 		});
 	}
 };
