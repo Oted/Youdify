@@ -1,0 +1,117 @@
+html{
+	height: 100%;
+}
+
+body{
+	padding: 3px;
+	height : 100%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	background: #262626;
+}
+
+h3{
+	font-family: "arial", "Helvetica", sans-serif;
+	font-size: 18px;
+	padding: 2px;
+}
+
+#wrapper{
+	min-height : 100%;
+	height : auto;
+	height : 100%;
+}
+
+#search-fields{
+	padding: 2px;
+	width:100%;
+}
+
+#player-actions{
+	padding: 2px;
+	border-style:ridge;
+	/*border-style:groove;*/
+	display: inline-block;
+	position: fixed;
+	bottom: 0;
+	width : 960px;
+	background: #ededed;
+}
+
+.search-field{
+  	border-radius: 2px;
+	background: #F3F3F3;
+	font-family: "Arial", "Helvetica", sans-serif;
+	font-size: 14px;
+	border: none;
+	outline: none;
+	padding: 5px;
+}
+
+.search-results{
+	width: 50%;
+}
+
+#player-container{
+	margin: auto;
+}
+
+.video{
+	display: inline;
+}
+
+.next-prev{
+	height: 40px;
+	width: 40px;
+}
+
+.controllers{
+	width: 30px;
+	height: 30px;
+}
+
+.title{
+	cursor: pointer;
+	display: inline-block;
+	width: 70%; 
+}
+
+.add{
+	top : 0px;
+	float : right;
+}
+
+#prev{
+	float: left;
+}
+
+#next{
+	float: right;
+}
+
+#previous{
+	float: left;
+}
+
+#search{
+	display: block;
+}
+
+#attach-playlist{
+	display: block;
+	float: right;
+}
+
+#create-playlist{
+	float: right;	
+}
+
+#attached-playlist{
+	float: right;
+}
+
+.playlist-handlers{
+	font-family: "arial", "Helvetica", sans-serif;
+	display: block;
+}

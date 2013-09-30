@@ -1,0 +1,39 @@
+<!DOCTYPE HTMl>
+<html>
+	<head>
+		<link rel="stylesheet" href="stylesheets/styles.css"/>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="search-fields">
+				<button id="create-playlist" class="playlist-handlers">Create new playlist</button>
+				<button id="attach-playlist" class="playlist-handlers">Attach existing playlist</button>
+				<button id="attached-playlist" class="playlist-handlers"></button>
+				<input class="search-field" placeholder="Search" id="search"/>
+				<input class="search-field" placeholder="Constraints" id="constraints"/>
+			</div>
+			<div id="search-results"></div>
+		</div>
+		<div id="player-actions">
+			<div id="previous"></div>
+				<div id="player-container" align="center">
+					<div id="player"></div>	
+					<img class="next-prev" id="prev" src="images/prev.png"></img>
+					<img class="controllers" id="play" src="images/play.png"></img>
+					<img class="controllers" id="shuffle" src="images/shuffle.png"></img>
+					<img class="controllers" id="repeat" src="images/repeat.png"></img>
+					<img class="next-prev" id="next" src="images/next.png"></img>
+					<div class="message" id="message-board"</div>
+					<img id="pause"></img>
+				</div>
+			<div id="queue"></div>
+		</div>
+	<script src="vendor/javascripts/jQuery-2.0.3.js"></script>
+	<script src="javascripts/index.js"></script>
+	<script src="javascripts/YoutubePlayer.js"></script>
+	<script src="javascripts/VideoController.js"></script>
+	<script src="javascripts/SearchMachine.js"></script>
+	<script src="javascripts/PlaylistHandler.js"></script>
+	<script src="javascripts/MessageBoard.js"></script>
+	</body>
+</html>
