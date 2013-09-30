@@ -8,21 +8,21 @@
 		var content = doc.getElementById("content");
 
 		socket.on("message", function(data){
-			if (data.messages){
+			if (data.message){
 				messages.push(data.message);
 				var html = "";
 				messages.forEach(function(message){
 					html += message + "<br />";		
 				});
-				constent.innerHTML = html;
+				content.innerHTML = html;
 			}
 			else {
 				console.log("Data contains no maeeage :(");
 			}	
 		});
 	
-		sendButton.onClick = function(){
-			var text = field.innerText || field.innerHTML;
+		sendButton.onclick = function(){
+			var text = field.value;
 			socket.emit("send", {message: text});
 		};
 	}

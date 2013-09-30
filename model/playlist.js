@@ -15,11 +15,14 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 		Playlist.findOne({"name" : name}, function(error, doc){
 			if (doc){
 				console.log(name + " was found");
-				callback(true);
+				callback({
+						"doc" : doc,
+						"found" : true
+				});
 			}
 			else{
 				console.log(name + " was not found");
-				callback(false);
+				callback({"found": false});
 			}	
 		});
 	};
@@ -31,8 +34,8 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 	};
 
 	exports.createNewPlaylist = function(name, client, callback){
-		this.checkIfExist(name,function(found){
-			if (!found){
+		this.checkIfExist(name,function(data){
+			if (!data.found){
 				var newPlaylist = new Playlist({
 					"name"   : name,
 					"creator": client,
