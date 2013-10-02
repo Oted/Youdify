@@ -106,6 +106,8 @@
 		var videosTemp = videos;
 		if (this.playlistName){
 		for (var i = 0; i < videosTemp.length; i++){
+				console.log(videosTemp[i].element);
+				$(videosTemp[i].element).find(".add-to-playlist").hide();
 				videosTemp[i].element = {};
 				$.ajax({
 					url: this.serverUrl + "?q=" + this.playlistName + "&video=" + JSON.stringify(videosTemp[i]) + "&f=push" + "&callback=?",

@@ -19,9 +19,11 @@
 		});	
 		
 		socket.on("push",function(data){
-			$("#videos").text(JSON.parse(data.video).title);
-			console.log(data);		
+			var video = JSON.parse(data.video);
+			var btn = doc.createElement("Button");
+			btn.textContent = video.title; 
+			console.log(data);
+			doc.body.appendChild(btn);	
 		});
-
-	}
+	};
 })(window, document, jQuery);	
