@@ -36,7 +36,7 @@
 	//this callback will fire for each video found, its called from VideoControllers keypress
 	SearchMachine.prototype.getVideosFromPlaylists = function(playlists, callback){
 		$.each(playlists, function(i, playlist) {
-		var url = 'http://gdata.youtube.com/feeds/api/playlists/' + playlist.id + '?v=2&alt=json&callback=?';
+		var url = 'http://gdata.youtube.com/feeds/api/playlists/' + playlist.pId + '?v=2&alt=json&callback=?';
 			getVideos(url, playlist, callback);
 		});
 	};

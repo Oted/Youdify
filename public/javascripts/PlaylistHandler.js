@@ -1,15 +1,18 @@
 (function(win, doc, $, undefined){
 	"use strict";
 	var BMAP = win.BMAP || {};
-	var serverUrl = "http://localhost:3000/playlists/";
 	var playlistName = undefined;
-	var playlistUrl;
 
 	//constructor for PlaylistHandler
 	var PlaylistHandler = function(){
+		this.host  = $("#host-div").val();
+		this.port  = $("#port-div").val();
+
 		this.createEl 	= $("#create-playlist").on("click", this.createNewPlaylist.bind(this));
 		this.attachEl 	= $("#attach-playlist").on("click", this.attachPlaylist.bind(this));
 		this.playlistEl = $("#attached-playlist").on("click", this.getToPLaylist.bind(this)).hide();
+		this.serverUrl = "http://" + this.host + ":" + this.port + "/playlists/";
+		this.playlistUrl;
 	};
 
 	//creates a new playlist if it does not exists
@@ -17,9 +20,9 @@
 		var that = this;
 		var name = win.prompt("Enter playlist name","");
 		if (name!==null && name!==undefined || name!==""){
-			checkIfExist(name,function(found){
+			this.checkIfExist(name,function(found){
 				if (!found){
-					createNewDocument(name,function(created){
+					that.createNewDocument(name,function(created){
 						if (created){
 							BMAP.MessageBoard.putTemporary("Playlist " + name + " has been created");
 							that.attach(name);
@@ -37,28 +40,30 @@
 	};
 	
 	//call server to see if a playlist exists
-	var checkIfExist = function(name, callback){
+	PlaylistHandler.prototype.checkIfExist = function(name, callback){
 		$.ajax({
-			url: serverUrl + "?q=" + name + "&f=checkIfExist" + "&callback=?",
+			url: this.serverUrl + "?q=" + name + "&f=checkIfExist" + "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
 			},
 			success: function(data){
+				console.log("Success!")
 				callback(data.found);
 			}
 		});
 	};
 
 	//calls server and creates a new document
-	var createNewDocument = function(name, callback){
+	PlaylistHandler.prototype.createNewDocument = function(name, callback){
 		$.ajax({
-			url: serverUrl + "?q=" + name + "&f=createNewPlaylist" + "&callback=?",
+			url: this.serverUrl + "?q=" + name + "&f=createNewPlaylist" + "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
 			},
 			success: function(data){
+				console.log("Success!")
 				callback(data.created);
 			}
 		});
@@ -70,7 +75,7 @@
 		this.attachEl.hide();
 		this.playlistEl.show().text("Open attached playlist");
 		this.playlistName = name;
-		this.playlistUrl = serverUrl + name.replace(" ", "+");
+		this.playlistUrl = this.serverUrl + name.replace(" ", "+");
 		$(".add-to-playlist").show();		
 		BMAP.MessageBoard.putTemporary("The view is now attached to " + name);
 	};
@@ -85,7 +90,7 @@
 		var that = this;
 		var name = win.prompt("Enter playlist name","here");
 		
-		checkIfExist(name,function(found){
+		this.checkIfExist(name,function(found){
 			if (found){
 				that.attach(name);
 			}
@@ -103,12 +108,13 @@
 		for (var i = 0; i < videosTemp.length; i++){
 				videosTemp[i].element = {};
 				$.ajax({
-					url: serverUrl + "?q=" + this.playlistName + "&video=" + JSON.stringify(videosTemp[i]) + "&f=push" + "&callback=?",
+					url: this.serverUrl + "?q=" + this.playlistName + "&video=" + JSON.stringify(videosTemp[i]) + "&f=push" + "&callback=?",
 					dataType:"jsonp",
 					beforeSend: function(){
 						console.log("Pushing " + videosTemp[i].title);
 					},
 					success: function(id){
+						console.log("Success!")
 						console.log(id + " pushed to " + that.playlistName);
 					}
 				});

@@ -1,16 +1,16 @@
 <!DOCTYPE HTMl>
 <html>
 	<head>
-		<script src="/javascripts/playlist.js"></script>	
+		<script src="/vendor/javascripts/jQuery-2.0.3.js"></script>
+		<script src="/javascripts/PlaylistController.js"></script>	
 		<script src="/socket.io/socket.io.js"></script>	
 	</head>
 	<body>
-	<h2><%= name %></h2>
-	<h2><%= client %></h2>
-	<h1><%= playlist %></h1>
-	<div id="content"><% name %></div>
-		<input type="input" id="input"></input>	
-		<input type="button" id="send"></input>	
+		<input type="hidden" id="name-div" value="<%=name%>"/>
+		<input type="hidden" id="client-div" value="<%=client%>"/>
+		<input type="hidden" id="host-div" value="<%=host%>"/>
+		<input type="hidden" id="port-div" value="<%=port%>"/>
+		<div id="videos"></div>
 	</body>
 </html>
 			

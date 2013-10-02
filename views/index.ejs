@@ -2,8 +2,17 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="stylesheets/styles.css"/>
+		<script src="vendor/javascripts/jQuery-2.0.3.js"></script>
+		<script src="javascripts/index.js"></script>
+		<script src="javascripts/YoutubePlayer.js"></script>
+		<script src="javascripts/VideoController.js"></script>
+		<script src="javascripts/SearchMachine.js"></script>
+		<script src="javascripts/PlaylistHandler.js"></script>
+		<script src="javascripts/MessageBoard.js"></script>
 	</head>
 	<body>
+		<input type="hidden" id="host-div" value="<%=host %>"/>
+		<input type="hidden" id="port-div" value="<%=port %>"/>
 		<div id="wrapper">
 			<div id="search-fields">
 				<button id="create-playlist" class="playlist-handlers">Create new playlist</button>
@@ -28,12 +37,6 @@
 				</div>
 			<div id="queue"></div>
 		</div>
-	<script src="vendor/javascripts/jQuery-2.0.3.js"></script>
-	<script src="javascripts/index.js"></script>
-	<script src="javascripts/YoutubePlayer.js"></script>
-	<script src="javascripts/VideoController.js"></script>
-	<script src="javascripts/SearchMachine.js"></script>
-	<script src="javascripts/PlaylistHandler.js"></script>
-	<script src="javascripts/MessageBoard.js"></script>
+	
 	</body>
 </html>

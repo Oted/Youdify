@@ -14,7 +14,7 @@
 		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this))
 		this.searchEl       = $("#search").on("keypress", this.searchKeypress.bind(this));
     	this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
-
+		
 		this.shuffle = false;
 		this.repeat  = false;
 		this.results = [];
@@ -53,6 +53,7 @@
 	};
 	
 	VideoController.prototype.drawThumbs = function(queue, previous){
+		
 		//code for animation thumbs goes here
 	};
 

@@ -1,41 +1,51 @@
 var dbHandler = require("../model/playlist.js");
 
+//render index view for basic requests
 exports.index = function(req, res){
 	console.log("Rendering index for " + req.ip);
-	res.render("index");
+	res.render("index",{host: host, port: port});
 };
 
+//handles api request for playlists
 exports.playlists = function(req, res){
-	var c = req.ip;
-	console.log("Request received!");
+	var client = req.ip;
+
 	if (req.query.callback && req.query.f && req.query.q && req.query.q!==""){
-		var f = req.query.f;
-		var q = req.query.q;
+		var funct = req.query.f;
+		var query = req.query.q;
 
 		//request demanded to check if playlist exists
-		if (f === "checkIfExist"){
-			dbHandler.checkIfExist(q, function(data){
+		if (funct === "checkIfExist"){
+			dbHandler.checkIfExist(query, function(data){
 				res.jsonp({"found" : data.found});
 			});
 		}
-		else if (f === "createNewPlaylist"){
-			dbHandler.createNewPlaylist(q, c, function(created){
+
+		//request demanded to create new playlist
+		else if (funct === "createNewPlaylist"){
+			dbHandler.createNewPlaylist(query, client, function(created){
 				res.jsonp({"created" : created});
 			});
 		}
-		else if (f ==="push"){
-			var id = req.query.video;
-			dbHandler.push(q, c, id);
+
+		//request demanded to push entety into playlist
+		else if (funct ==="push"){
+			var video = req.query.video;
+			dbHandler.push(query, client, video, function(){
+				socket.pushOne(video, query);
+			});
 		}
 	}
 	else{
+		//otherwise the request is a request to render a playlist view
 		var q = req.params[0];
 		dbHandler.checkIfExist(q, function(data){
 			if (data.found){
 				res.render("playlist",{
 						name : q,
-						client : c,
-						playlist : data.doc
+						client : client,
+						host: host,
+						port: port
 				});
 			}
 			else {
