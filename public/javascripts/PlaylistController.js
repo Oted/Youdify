@@ -10,6 +10,7 @@
 		var c = $("#client-div").val();
 		var h = $("#host-div").val();
 		var p = $("#port-div").val();
+		
 		var socket = io.connect("http://" + h + ":" + p + "/" + name);
 		
 		socket.on("register", function(data){
@@ -22,8 +23,9 @@
 			var video = JSON.parse(data.video);
 			var btn = doc.createElement("Button");
 			btn.textContent = video.title; 
-			console.log(data);
 			doc.body.appendChild(btn);	
 		});
 	};
+
+
 })(window, document, jQuery);	

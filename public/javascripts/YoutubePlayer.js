@@ -65,7 +65,7 @@
 				BMAP.MessageBoard.put("Playing video " + this.current.title);
 				break;
 			case 2:
-				BMAP.MessageBoard.put("Video paused");
+				BMAP.MessageBoard.put("Video stopped");
 				break;
 			case 3:
 				console.log("Video is buffering");
@@ -99,7 +99,7 @@
 	
 	//stop video
 	YoutubePlayer.prototype.stop = function(){
-		//stop goes here.
+		this.player.stopVideo();
 	};
 
 	//called to play next song
@@ -118,6 +118,7 @@
 		}
 	};
 
+	//plays previous element in previous
 	YoutubePlayer.prototype.playPrev = function(){
 		var prevVideo = undefined;
 		
@@ -128,17 +129,20 @@
 		};
 	};
 
+	//add videos to queue
 	YoutubePlayer.prototype.queueVideo = function(video){
 		this.queue.push(video);
 		BMAP.MessageBoard.putTemporary(video.title + " queued");
 		BMAP.VideoController.drawThumbs(this.queue,this.previous);
 	};
 	
+	//sets current to parameter video
 	YoutubePlayer.prototype.setCurrent = function(video){
 		this.previous.push(this.current);
 		this.current = video;
 	};
 
+	//returns current
 	YoutubePlayer.prototype.getCurrent = function(){
 		return this.current;
 	};

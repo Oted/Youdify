@@ -10,13 +10,15 @@
 		
 		this.forwardEl 		= $("#next").on("click", this.forward.bind(this));
 		this.previousEl		= $("#prev").on("click", this.previous.bind(this));
-		this.shuffleEl		= $("#shuffle").on("click", this.toggleShuffle.bind(this))
-		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this))
+		this.shuffleEl		= $("#shuffle").on("click", this.toggleShuffle.bind(this));
+		this.autoplayEl		= $("#autoplay").on("click", this.toggleAutoplay.bind(this));
+		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this));
 		this.searchEl       = $("#search").on("keypress", this.searchKeypress.bind(this));
     	this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
 		
 		this.shuffle = false;
 		this.repeat  = false;
+		this.autoplay = false;
 		this.results = [];
 	};
 
@@ -25,14 +27,16 @@
 		//code for animations go here
 	};
 
+	//previous pressed
 	VideoController.prototype.previous = function(){
 		BMAP.YoutubePlayer.playPrev();
 		//code for animantion goes here
 	};
 	
+	//toggle shuffle
 	VideoController.prototype.toggleShuffle = function(){
 		this.shuffle = !this.shuffle;
-		if (shuffle){
+		if (this.shuffle){
 			BMAP.MessageBoard.putTemporary("Shuffle is now on");
 		}
 		else {
@@ -40,10 +44,23 @@
 		}
 		//code for animations here
 	};
-	
+
+	//toggle autoplay (keep playing when list/queue is empty)
+	VideoController.prototype.toggleAutoplay = function(){
+		this.autoplay = !this.autoplay;
+		if (this.autoplay){
+			BMAP.MessageBoard.putTemporary("Autoplay is now on");
+		}
+		else {
+			BMAP.MessageBoard.putTemporary("Autoplay is now off");
+		}
+		//code for animations here
+	};
+
+	//toggle repeat one
 	VideoController.prototype.toggleRepeat = function(){
 		this.repeat = !this.repeat;
-		if (repeat){
+		if (this.repeat){
 			BMAP.MessageBoard.putTemporary("Repeat one is now on");
 		}
 		else {
@@ -57,7 +74,7 @@
 		//code for animation thumbs goes here
 	};
 
-	//Triggers when enter is pressed in searchEl
+	//triggers when enter is pressed in searchEl
 	VideoController.prototype.searchKeypress = function(event){
 		if (event.which == 13) {
 			this.clear();
@@ -117,12 +134,13 @@
 		this.resultEl.append(element);
 	};
 
-	
+	//clears result and all the video-elements
 	VideoController.prototype.clear = function(){
 		$(this.resultEl).empty();
 		this.results = [];
 	};
 	
+	//triggers when constraints keyup
 	VideoController.prototype.constrKeypress = function(event){
 		var that = this; 
 		var key = event.which;
@@ -197,32 +215,38 @@
 	//called when que is empty to get new video to play
 	VideoController.prototype.onEmptyQueue = function(callback){
 		var video;
-		if (this.shuffle){
-			var r = Math.floor(Math.random()*this.results.length);
-			video = this.results[r];
-		}
-		else{
-			var index = this.results.indexOf(BMAP.YoutubePlayer.getCurrent());
-			index ++;
-			if (index >= this.results.length){	   
-				index = 0;
+		if (this.autoplay){
+			if (this.shuffle){
+				var r = Math.floor(Math.random()*this.results.length);
+				video = this.results[r];
 			}
-			while (!$(this.results[index].element).is(":visible")){
-				index++;
+			else{
+				var index = this.results.indexOf(BMAP.YoutubePlayer.getCurrent());
+				index ++;
 				if (index >= this.results.length){	   
 					index = 0;
 				}
-			}
-			video = this.results[index];
-		};
+				while (!$(this.results[index].element).is(":visible")){
+					index++;
+					if (index >= this.results.length){	   
+						index = 0;
+					}
+				}
+				video = this.results[index];
+			};
 
-		//if the video element is hidden we want to generate a new one else we are done
-		if($(video.element).is(':visible')) {
-			callback(video);
+			//if the video element is hidden we want to generate a new one else we are done
+			if($(video.element).is(':visible')) {
+				callback(video);
+			}
+			else{
+				this.onEmptyyQueue(callback);
+			}
 		}
 		else{
-			this.onEmptyyQueue(callback);
-		}
+			MessageBoard.putTemporary("Autoplay disabled, video stop");
+			YoutubePlayer.stop();
+		};
 	};
 
 	BMAP.VideoController = VideoController;
