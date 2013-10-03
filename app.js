@@ -1,5 +1,5 @@
 port = 3000;
-host = "172.16.1.186";
+host = "localhost";
 dbName = "test";
 
 var express = require("express"),

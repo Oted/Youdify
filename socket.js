@@ -10,7 +10,7 @@ exports.init = function(io){
 		socket.on("ok", function(data){
 			console.log("client " + data.client + " is now registered to playlist " + data.name); 		
 			socket.join(data.name+"");
-			that.pushAll(data.name, data.client);
+			that.pushAll(socket,data.name, data.client);
 		});
 	});
 };
@@ -21,11 +21,11 @@ exports.pushOne = function(video, name){
 }
 
 //push all videos in a playlist to a client (used when a new client connect)
-exports.pushAll = function(name){
+exports.pushAll = function(socket, name, client){
 	dbHandler.get(name,function(videos){
 		videos.forEach(function(video){	
 			//that.socket.emit("push",{video: v});	
-			that.io.sockets.in(name+"").emit("push", {video: video});
+			socket.emit("push", {video: video});
 		});
 	});
 };
