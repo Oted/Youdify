@@ -10,7 +10,7 @@ exports.init = function(io){
 		socket.on("ok", function(data){
 			console.log("client " + data.client + " is now registered to playlist " + data.name); 		
 			socket.join(data.name+"");
-			that.pushAll(socket,data.name, data.client);
+			that.pushAll(socket, data.name, data.client);
 		});
 	});
 };
