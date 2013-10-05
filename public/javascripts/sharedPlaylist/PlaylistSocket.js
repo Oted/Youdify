@@ -16,11 +16,18 @@
 		});	
 				
 		socket.on("push",function(data){
-			var video = JSON.parse(data.video);
-			BMAP.VideoController.generateResultDiv(video);
+			var video = JSON.parse(replaceChars(data.video));
+			
+			//if the client already has the video in the list, it shouldnt be pushed again
+			if (!BMAP.VideoController.checkIfExist(video.id)){
+				BMAP.VideoController.generateResultDiv(video);
+			};
 		});
 	};
 
+	var replaceChars = function(video){
+		return video.replace("//a","&").replace("//p","%");
+	};
 
 	BMAP.PlaylistSocket = PlaylistSocket;
 	win.BMAP = BMAP;

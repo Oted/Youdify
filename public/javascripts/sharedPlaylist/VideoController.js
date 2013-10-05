@@ -76,6 +76,8 @@
 	VideoController.prototype.generateResultDiv = function(video){
 		this.results.push(video);
 		var element = $(this.templateEl).clone();
+		
+		console.log(this.results);
 
 		element.attr("id", "");
         element.find(".title")
@@ -128,6 +130,18 @@
 			BMAP.MessageBoard.putTemporary("Autoplay disabled, video stop");
 			YoutubePlayer.stop();
 		};
+	};
+
+	VideoController.prototype.checkIfExist = function(videoId){
+		var found = false;
+		console.log(videoId);
+		for (var i = 0; i < this.results.length; i++){
+			console.log(this.results[i].id);
+			if (videoId === this.results[i].id){
+				found = true;
+			};
+		}
+		return found;
 	};
 
 	BMAP.VideoController = VideoController;
