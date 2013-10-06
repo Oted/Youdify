@@ -22,6 +22,7 @@ exports.pushOne = function(video, name){
 
 //push all videos in a playlist to a client (used when a new client connect)
 exports.pushAll = function(socket, name, client){
+	console.log("in push all");
 	dbHandler.get(name,function(videos){
 		videos.forEach(function(video){	
 			//that.socket.emit("push",{video: v});	

@@ -25,6 +25,18 @@
 		.html("+Q")
 		.appendTo(element);
 
+		var duration = doc.createElement("h3");
+		$(duration).addClass("add duration")
+		.appendTo(element);
+
+		var views = doc.createElement("h3");
+		$(views).addClass("add views")
+		.appendTo(element);
+
+		var cat  = doc.createElement("h3");
+		$(cat).addClass("add cat")
+		.appendTo(element);
+
 		return element;
 	};
 

@@ -17,7 +17,9 @@
 				
 		socket.on("push",function(data){
 			var video = JSON.parse(replaceChars(data.video));
-			BMAP.VideoController.generateResultDiv(video);
+			if (!BMAP.VideoController.checkIfExist(video)){
+				BMAP.VideoController.generateResultDiv(video);
+			}
 		});
 	};
 

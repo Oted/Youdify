@@ -100,7 +100,13 @@
 		.on("click", function(){
 			BMAP.YoutubePlayer.play(video);	
 		});
-    	
+    
+		
+        element.find(".duration").html(video.duration);
+        element.find(".views").html(video.views);
+        element.find(".category").html(video.category);
+
+
 		//add action for +Q
 		element.find(".add-to-queue").on("click", function(){
 			BMAP.YoutubePlayer.queueVideo(video);
@@ -151,12 +157,11 @@
 	};
 
 	//check if a specific videoId exisat in results array
-	VideoController.prototype.checkIfExist = function(videoId){
+	VideoController.prototype.checkIfExist = function(video){
 		var found = false;
-		console.log(videoId);
 		for (var i = 0; i < this.results.length; i++){
 			console.log(this.results[i].id);
-			if (videoId === this.results[i].id){
+			if (video.id === this.results[i].id){
 				found = true;
 			};
 		}
