@@ -99,7 +99,13 @@
 	
 	//stop video
 	YoutubePlayer.prototype.stop = function(){
-		this.player.stopVideo();
+		this.player.stopvideo();
+	};
+
+	//true if the player isnt playing
+	YoutubePlayer.prototype.isStopped = function(){
+		var st = this.player.getPlayerState();
+		return (st===2 || st===0 || st===-1);
 	};
 
 	//called to play next song

@@ -11,11 +11,13 @@
 		this.forwardEl 		= $("#next").on("click", this.forward.bind(this));
 		this.previousEl		= $("#prev").on("click", this.previous.bind(this));
 		this.shuffleEl		= $("#shuffle").on("click", this.toggleShuffle.bind(this));
-		this.autoplayEl		= $("#autoplay").on("click", this.toggleAutoplay.bind(this));
+		this.addNewToQueEl	= $("#addNewToQue").on("click", this.toggleAddNewToQue.bind(this));
+		this.addNewToQueEl	= $("#autoplay").on("click", this.toggleAutoplay.bind(this));
 		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this));
 		
 		this.shuffle = false;
 		this.repeat  = false;
+		this.addNewToQue = false;
 		this.autoplay = false;
 		this.results = [];
 	};
@@ -43,10 +45,22 @@
 		//code for animations here
 	};
 
+	//toggle addNewToQue (add pushed songs to queue)
+	VideoController.prototype.toggleAddNewToQue = function(){
+		this.addNewToQue = !this.addNewToQue;
+		if (this.addNewToQue){
+			BMAP.MessageBoard.putTemporary("Add new to queue is now on");
+		}
+		else {
+			BMAP.MessageBoard.putTemporary("Add new to queue is now off");
+		}
+		//code for animations here
+	};
+	
 	//toggle autoplay (keep playing when list/queue is empty)
 	VideoController.prototype.toggleAutoplay = function(){
 		this.autoplay = !this.autoplay;
-		if (this.autoplay){
+		if (this.addNewToQue){
 			BMAP.MessageBoard.putTemporary("Autoplay is now on");
 		}
 		else {
@@ -54,6 +68,7 @@
 		}
 		//code for animations here
 	};
+
 
 	//toggle repeat one
 	VideoController.prototype.toggleRepeat = function(){
@@ -93,11 +108,18 @@
 
 		video.element = element;
 		this.resultEl.append(element);
+		
+		if (this.addNewToQue){
+			BMAP.YoutubePlayer.queueVideo(video);	
+			if (BMAP.YoutubePlayer.isStopped()){
+				BMAP.YoutubePlayer.next();
+			}
+		}
 	};
 
-	//called when que is empty to get new video to play
+	//called when queue is empty to get new video to play
 	VideoController.prototype.onEmptyQueue = function(callback){
-		var video;
+	var video;
 		if (this.autoplay){
 			if (this.shuffle){
 				var r = Math.floor(Math.random()*this.results.length);
@@ -126,12 +148,9 @@
 				this.onEmptyyQueue(callback);
 			}
 		}
-		else{
-			BMAP.MessageBoard.putTemporary("Autoplay disabled, video stop");
-			YoutubePlayer.stop();
-		};
 	};
 
+	//check if a specific videoId exisat in results array
 	VideoController.prototype.checkIfExist = function(videoId){
 		var found = false;
 		console.log(videoId);
