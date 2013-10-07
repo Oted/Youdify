@@ -1,0 +1,32 @@
+### /home/jnes/.gitignore-boilerplates/Compass.gitignore
+
+.sass-cache
+
+
+### /home/jnes/.gitignore-boilerplates/Node.gitignore
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+### node_modules we use local node_modules
+
+### /home/jnes/.gitignore-boilerplates/Global/vim.gitignore
+
+*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+
