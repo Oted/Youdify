@@ -27,6 +27,10 @@
 		},3000);	
 	};
 
+	MessageBoard.prototype.putWarning = function(message){
+		alert(message);
+	};
+
 	MessageBoard.prototype.get = function(){
 		return message;
 	};

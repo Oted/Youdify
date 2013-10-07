@@ -77,7 +77,8 @@
 	YoutubePlayer.prototype.onPlayerError = function(error){
 		var code = error.data
 		if (code == 101 || code == 150 || code == 100 || code == 0){
-			console.log("Error : " + code);	
+			BMAP.VideoController.removeVideo(this.current);
+			this.next();
 		}				
 	};
 
