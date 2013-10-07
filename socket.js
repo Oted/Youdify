@@ -3,8 +3,8 @@ var that = this;
 
 //init
 exports.init = function(io){
+	that.io = io;
 	io.sockets.on("connection", function (socket) {
-		that.io = io;
 		socket.emit("register", {message:"Hello and welcome"});	
 		
 		socket.on("ok", function(data){
@@ -22,7 +22,6 @@ exports.pushOne = function(video, name){
 
 //push all videos in a playlist to a client (used when a new client connect)
 exports.pushAll = function(socket, name, client){
-	console.log("in push all");
 	dbHandler.get(name,function(videos){
 		videos.forEach(function(video){	
 			//that.socket.emit("push",{video: v});	

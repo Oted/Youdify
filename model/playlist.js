@@ -63,19 +63,47 @@ exports.createNewPlaylist = function(name, client, callback){
 	
 //push a video to a given playlist
 exports.push = function(name, client, video, callback){	
-	//Playlist.find()
-			
-	console.log("Pushing " + video);
-	Playlist.findOneAndUpdate({"name": name},
-		{$push: {"videos": video}},
-		{safe: true, upsert: true},
-		function(err, model) {
-			if (model){
-				callback();
-			}
+	var videoObj = JSON.parse(video);
+	this.checkForVideo(name, videoObj, function(found){
+		if (!found){
+			console.log("Pushing " + video);
+			Playlist.findOneAndUpdate({"name": name},
+				{$push: {"videos": video}},
+				{safe: true, upsert: true},
+				function(err, model) {
+					if (model){
+						callback();
+					}
+				}
+			);
 		}
-	);
+		else{
+			console.log("Video " + videoObj.title + " already exist in the playlist");
+		}
+	});
 };
+
+//chekck if a video exist in a playlist
+exports.checkForVideo = function(name, video, callback){
+	console.log("in check for video : " + video.id);
+	this.checkIfExist(name,function(data){
+		if (data.found){
+			var videos = data.doc.videos;
+			var found = false;
+			for (var i = 0; i < videos.length; i++){
+				var vid = JSON.parse(videos[i]);
+				console.log(vid.id);
+				if (vid.id === video.id){
+					found = true;
+				}
+			}
+			callback(found);
+		}
+		else{
+			callback(false);
+		}	
+	});	
+}
 
 //gets a playlist with a given name (uses check if exists)
 exports.get = function(name, callback){

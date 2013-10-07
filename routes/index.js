@@ -1,4 +1,5 @@
 var dbHandler = require("../model/playlist.js");
+var socket = require("../socket.js");
 
 //render index view for basic requests
 exports.index = function(req, res){

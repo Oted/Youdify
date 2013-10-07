@@ -1,4 +1,4 @@
-port = 3000;
+port = 3001;
 host = "192.168.0.101";
 dbName = "test";
 
@@ -7,8 +7,8 @@ var express = require("express"),
 	routes = require("./routes/index");
 	mongoose = require("mongoose"),
 	db = mongoose.connection,
-	io = require("socket.io").listen(app.listen(3000)),
-	socket = require("./socket.js");
+	io = require("socket.io").listen(app.listen(port)),
+	socket = require("./socket.js").init(io);
 
 
 //connects to database
@@ -27,7 +27,6 @@ db.once('open', function callback () {
 	app.get("/", routes.index);
 	app.get("/index.html", routes.index);
 	app.get("/playlists/*", routes.playlists);
-	socket.init(io);
 });
 
 //on exit, close database
