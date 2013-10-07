@@ -42,7 +42,9 @@
 	//call server to see if a playlist exists
 	PlaylistHandler.prototype.checkIfExist = function(name, callback){
 		$.ajax({
-			url: this.serverUrl + "?q=" + name + "&f=checkIfExist" + "&callback=?",
+			url: this.serverUrl 
+				+ "?q=" + name + "&f=checkIfExist" 
+				+ "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
@@ -57,7 +59,9 @@
 	//calls server and creates a new document
 	PlaylistHandler.prototype.createNewDocument = function(name, callback){
 		$.ajax({
-			url: this.serverUrl + "?q=" + name + "&f=createNewPlaylist" + "&callback=?",
+			url: this.serverUrl 
+				+ "?q=" + name + "&f=createNewPlaylist" 
+				+ "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
@@ -106,11 +110,16 @@
 		var videosTemp = videos;
 		if (this.playlistName){
 		for (var i = 0; i < videosTemp.length; i++){
-				console.log(videosTemp[i].element);
 				$(videosTemp[i].element).find(".add-to-playlist").hide();
 				videosTemp[i].element = {};
+				
+				var str = JSON.stringify(videosTemp[i]);
 				$.ajax({
-					url: this.serverUrl + "?q=" + this.playlistName + "&video=" + JSON.stringify(videosTemp[i]) + "&f=push" + "&callback=?",
+					url: this.serverUrl 
+						+ "?q=" + this.playlistName 
+						+ "&video=" + replaceChars(str)
+						+ "&f=push" + "&callback=?",
+
 					dataType:"jsonp",
 					beforeSend: function(){
 						console.log("Pushing " + videosTemp[i].title);
@@ -122,6 +131,10 @@
 				});
 			};
 		};
+	};
+
+	var replaceChars = function(video){
+		return video.replace("&","//a").replace("%","//p");
 	};
 
 	PlaylistHandler.prototype.isAttached = function(){

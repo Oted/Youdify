@@ -1,4 +1,6 @@
 html{
+	padding-bottom:200px;
+	margin-bottom:200px;
 	height: 100%;
 }
 
@@ -12,9 +14,8 @@ body{
 }
 
 h3{
-	font-family: "arial", "Helvetica", sans-serif;
-	font-size: 18px;
-	padding: 2px;
+	color: #F3F3F3; 
+	font-size: 14px;
 }
 
 #wrapper{
@@ -30,13 +31,11 @@ h3{
 
 #player-actions{
 	padding: 2px;
-	border-style:ridge;
-	/*border-style:groove;*/
 	display: inline-block;
 	position: fixed;
 	bottom: 0;
 	width : 960px;
-	background: #ededed;
+	background: #F3F3F3;
 }
 
 .search-field{
@@ -49,8 +48,8 @@ h3{
 	padding: 5px;
 }
 
-.search-results{
-	width: 50%;
+#search-results{
+	padding-bottom:260px; 
 }
 
 #player-container{
@@ -58,7 +57,10 @@ h3{
 }
 
 .video{
-	display: inline;
+	background: #5E5E5E;
+	margin: 1px;
+	border:2px solid;
+	border-radius: 12px;
 }
 
 .next-prev{
@@ -67,14 +69,16 @@ h3{
 }
 
 .title{
+	margin-left:20px;
 	cursor: pointer;
 	display: inline-block;
-	width: 70%; 
 }
 
 .add{
-	top : 0px;
-	float : right;
+	top:10px;
+	position: relative;
+	float: right;
+	margin-right: 15px;
 }
 
 #prev{

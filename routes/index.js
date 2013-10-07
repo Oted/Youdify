@@ -1,4 +1,5 @@
 var dbHandler = require("../model/playlist.js");
+var socket = require("../socket.js");
 
 //render index view for basic requests
 exports.index = function(req, res){
@@ -9,8 +10,9 @@ exports.index = function(req, res){
 //handles api request for playlists
 exports.playlists = function(req, res){
 	var client = req.ip;
-
-	if (req.query.callback && req.query.f && req.query.q && req.query.q!==""){
+	
+	//if the url contains callback, function and query the reguest is an api-call
+	if (req.query.callback && req.query.f && req.query.q && req.query.q!=="" && req.query.q !==null && req.query.q!=="null"){
 		var funct = req.query.f;
 		var query = req.query.q;
 

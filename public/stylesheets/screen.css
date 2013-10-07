@@ -1,0 +1,328 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/** ======================================== **/
+/**             Base Style                   **/
+/** ======================================== **/
+/* line 16, ../../sass/screen.scss */
+body {
+  background: #262626;
+}
+
+/* line 20, ../../sass/screen.scss */
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  margin: 25px auto;
+}
+
+/* line 25, ../../sass/screen.scss */
+.span-1 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 60px;
+}
+
+/* line 29, ../../sass/screen.scss */
+.span-2 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 140px;
+}
+
+/* line 33, ../../sass/screen.scss */
+.span-4 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+/* line 37, ../../sass/screen.scss */
+.span-6 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 460px;
+}
+
+/* line 41, ../../sass/screen.scss */
+.row {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+/* line 45, ../../sass/screen.scss */
+.empty {
+  height: 1px;
+}
+
+/* line 49, ../../sass/screen.scss */
+.empty-25 {
+  height: 25px;
+}
+
+/* line 53, ../../sass/screen.scss */
+.alpha {
+  margin-left: 0;
+}
+
+/* line 57, ../../sass/screen.scss */
+.omega {
+  margin-right: 0;
+}
+
+/* line 61, ../../sass/screen.scss */
+.hidden {
+  display: none;
+}
+
+/** ======================================== **/
+/**         Component Style                  **/
+/** ======================================== **/
+/* line 68, ../../sass/screen.scss */
+.main-section {
+  margin-top: 30px;
+}
+
+/* line 72, ../../sass/screen.scss */
+.search-field {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  background: #F3F3F3;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* line 86, ../../sass/screen.scss */
+.video-container {
+  background: #f3f3f3;
+  height: 200px;
+}
+
+/* line 91, ../../sass/screen.scss */
+.play-controls {
+  margin-top: 10px;
+}
+
+/* line 95, ../../sass/screen.scss */
+.control {
+  -webkit-transition: all ease-in;
+  -webkit-transition-delay: 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  background: #115980;
+  height: 60px;
+  cursor: pointer;
+}
+/* line 100, ../../sass/screen.scss */
+.control:hover {
+  background: #1d98da;
+}
+
+/* line 107, ../../sass/screen.scss */
+.search-results {
+  overflow-y: scroll;
+  height: 410px;
+}
+
+/* line 112, ../../sass/screen.scss */
+.search-result {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-transition: background linear;
+  -webkit-transition-delay: 0.1s;
+  -moz-transition: background linear 0.1s;
+  -o-transition: background linear 0.1s;
+  transition: background linear 0.1s;
+  background: #f3f3f3;
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+/* line 124, ../../sass/screen.scss */
+.search-result .thumbnail {
+  height: 50px;
+  background: silver;
+}
+/* line 129, ../../sass/screen.scss */
+.search-result .title {
+  color: #115980;
+  font-family: "Arial Black", "Helvetica Bold", sans-serif;
+}
+/* line 134, ../../sass/screen.scss */
+.search-result:hover {
+  background: #9ed5f2;
+}
+
+/** Icons **/
+@font-face {
+  font-family: 'blue-tube';
+  src: url("../font/blue-tube.eot?32118566");
+  src: url("../font/blue-tube.eot?32118566#iefix") format("embedded-opentype"), url("../font/blue-tube.woff?32118566") format("woff"), url("../font/blue-tube.ttf?32118566") format("truetype"), url("../font/blue-tube.svg?32118566#blue-tube") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'blue-tube';
+    src: url('../font/blue-tube.svg?32118566#blue-tube') format('svg');
+  }
+}
+*/
+/* line 163, ../../sass/screen.scss */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "blue-tube";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 46px;
+  margin-right: 6px;
+  text-align: center;
+  font-variant: normal;
+  font-size: 40px;
+  font-smooth: always;
+  text-transform: none;
+  line-height: 60px;
+  margin-left: 8px;
+  color: #f3f3f3;
+}
+
+/* line 187, ../../sass/screen.scss */
+.icon-pause:before {
+  content: '\e802';
+}
+
+/* line 188, ../../sass/screen.scss */
+.icon-fast-fw:before {
+  content: '\e803';
+}
+
+/* line 189, ../../sass/screen.scss */
+.icon-fast-bw:before {
+  content: '\e804';
+}
+
+/* line 190, ../../sass/screen.scss */
+.icon-stop:before {
+  content: '\e801';
+}
+
+/* line 191, ../../sass/screen.scss */
+.icon-play:before {
+  content: '\e800';
+}
+
+/* line 193, ../../sass/screen.scss */
+.icon-arrows-cw:before {
+  content: '\e805';
+  color: #262626;
+}
+/* line 198, ../../sass/screen.scss */
+.icon-arrows-cw.on-state:before {
+  color: #f3f3f3;
+}
+
+/* line 203, ../../sass/screen.scss */
+.icon-shuffle:before {
+  content: '\e806';
+  color: #262626;
+}
+/* line 208, ../../sass/screen.scss */
+.icon-shuffle.on-state:before {
+  color: #f3f3f3;
+}
