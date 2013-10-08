@@ -1,0 +1,66 @@
+.search-field {
+  @include border-radius(2px);
+  background: #F3F3F3;
+  font-family: $font-family-light;
+  font-size: 18px;
+  height: 40px;
+}
+// a few webkit-only hacks to make a neat scrollbar..
+::-webkit-scrollbar {
+  width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+} 
+
+#search-results {
+  overflow-y: auto;
+  height: 387px;
+  .video{
+    padding: 10px 5px;
+    @include clearfix;
+    background: #5E5E5E;
+    @include border-radius(12px);
+    margin-bottom: 7px;
+    .add {
+      float: left;
+    }
+    .title {
+      line-height: 25px;
+      padding-left: 85px;
+    }
+  }
+}
+
+.search-result {
+  @include transition(background linear 0.1s);
+
+  background: $white-color;
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+
+  & .thumbnail {
+    height: 50px;
+    background: darken($white-color, 20%);
+  }
+
+  & .title {
+    color: $blue-color;
+    font-family: $font-family-heavy;
+  }
+
+  &:hover {
+    background: lighten($blue-color, 50%);
+  }
+}
+

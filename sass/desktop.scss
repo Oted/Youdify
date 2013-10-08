@@ -1,0 +1,12 @@
+@import "960/grid";
+
+$ninesixty-class-separator: '-';
+$ninesixty-columns: 12;
+$ninesixty-grid-width: 960px;
+$ninesixty-gutter-width: 20px;
+
+#main-wrapper {
+  .grid-container {
+    @include grid-system($ninesixty-columns);
+  }
+}

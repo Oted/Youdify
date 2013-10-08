@@ -1,7 +1,8 @@
 <!DOCTYPE HTMl>
 <html>
 	<head>
-		<link rel="stylesheet" href="stylesheets/styles.css"/>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
+    <link href="/stylesheets/desktop.css" rel="stylesheet" type="text/css" />
 		<script src="vendor/javascripts/jQuery-2.0.3.js"></script>
 		<script src="javascripts/localPlaylist/index.js"></script>
 		<script src="javascripts/localPlaylist/YoutubePlayer.js"></script>
@@ -13,31 +14,64 @@
 	<body>
 		<input type="hidden" id="host-div" value="<%=host %>"/>
 		<input type="hidden" id="port-div" value="<%=port %>"/>
-		<div id="wrapper">
-			<div id="search-fields">
-				<button id="create-playlist" class="playlist-handlers">Create new playlist</button>
-				<button id="attach-playlist" class="playlist-handlers">Attach existing playlist</button>
-				<button id="attached-playlist" class="playlist-handlers"></button>
-				<input class="search-field" placeholder="Search" id="search"/>
-				<input class="search-field" placeholder="Constraints" id="constraints"/>
-			</div>
-			<div id="search-results"></div>
+		<div id="main-wrapper">
+      <header id="main-header" class="grid-container">
+        <div class="grid-4 alpha">
+          <h2 class="text-center">
+            Internet
+          </h2>
+        </div>
+        <div class="grid-4">
+          <h1 class="text-center">
+            BMAP
+          </h1>
+        </div>
+        <div class="grid-4 omega">
+          <h2 class="text-center">Sex</h2>
+        </div>
+      </header>
+      <div class="grid-container">
+        <div class="grid-4">
+          <div class="playlist-ctrls sidebar-component">
+            <a class="icon-button fontawesome-file grid-2 alpha playlist-handlers" id="create-playlist"></a>
+            <a class="icon-button fontawesome-paper-clip grid-2 omega playlist-handlers" id="attach-playlist"></a>
+            <a class="icon-button block playlist-handlers" id="attached-playlist" ></a>
+          </div>
+          <div class="search-area sidebar-component">
+            <input class="grid-2 alpha search-field" placeholder="Search" id="search"/>
+            <input class="grid-2 omega search-field" placeholder="Constraints" id="constraints"/>
+          </div>
+          <!--<div id="previous"></div>-->
+          <!--<div id="queue"></div>-->
+          <div id="player-container" class="sidebar-component">
+            <div id="player"></div>  
+            <div id="player-actions">
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-fast-backward playback-ctrl" id="prev" href="#"> </a>
+              </div>
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-play playback-ctrl" id="play" href="#"></a>
+              </div>
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-random playback-ctrl" id="shuffle" href="#"></a>
+              </div>
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-repeat playback-ctrl" id="repeat" href="#"></a>
+              </div>
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-play-circle playback-ctrl" id="autoplay" href="#"></a>
+              </div>
+              <div class="playback-ctrl-wrap">
+                <a class="icon-button fontawesome-fast-forward playback-ctrl" id="next" href="#"> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-8">
+          <div id="search-results"></div>
+        </div>
+      </div>
+      <div class="message text-center" id="message-board"></div>
 		</div>
-		<div id="player-actions">
-			<div id="previous"></div>
-				<div id="player-container" align="center">
-					<div id="player"></div>	
-					<img class="next-prev" id="prev" src="images/prev.png"></img>
-					<button class="controllers" id="play">play</button>
-					<button class="controllers" id="shuffle">shuffle</button>
-					<button class="controllers" id="repeat">repeat one</button>
-					<button class="autoplay" id="autoplay">autoplay</button>
-					<img class="next-prev" id="next" src="images/next.png"></img>
-					<div class="message" id="message-board"</div>
-					<img id="pause"></img>
-				</div>
-			<div id="queue"></div>
-		</div>
-	
 	</body>
 </html>

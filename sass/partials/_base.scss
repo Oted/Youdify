@@ -1,0 +1,70 @@
+$blue-color: #115980;
+$black-color: #262626;
+$white-color: #F3F3F3;
+
+$font-family-light: "Arial", "Helvetica", sans-serif;
+$font-family-heavy: "Arial Black", "Helvetica Bold", sans-serif;
+
+
+/** ======================================== **/
+/**             Base Style                   **/
+/** ======================================== **/
+
+body {
+  background: $black-color;
+  font-family: $font-family-light;
+  color: $white-color;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 50px;
+}
+.hidden {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.block {
+  display: block;
+}
+a {
+  text-decoration: none;
+  color: $black-color;
+
+  &:hover {
+      color: lighten($black-color, 10%);
+      text-decoration: none;
+  }
+}
+.icon-button {
+    text-align: center;
+    @include transition(all ease-in 0.2s);
+    @include border-radius(2px);
+    background: $blue-color;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    &:hover {
+      background: lighten($blue-color, 20%);
+    }
+    cursor: pointer;
+}
+
+.sidebar-component {
+  @include clearfix;
+  margin-bottom: 20px;
+}
+
+input {
+  border: 0;
+}

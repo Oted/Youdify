@@ -1,0 +1,21 @@
+#main-wrapper {
+  @include clearfix;
+  margin-bottom: 100px;
+}
+#main-header {
+  @include clearfix;
+  padding: 50px 0;
+  margin-bottom: 20px;
+  background: #202020;
+}
+
+#message-board {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: rgba(255,255,255,0.8);
+  color: $black-color; 
+}
+
