@@ -1,77 +1,49 @@
-<!DOCTYPE HTMl>
-<html>
-	<head>
-    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
-    <link href="/stylesheets/desktop.css" rel="stylesheet" type="text/css" />
-		<script src="vendor/javascripts/jQuery-2.0.3.js"></script>
-		<script src="javascripts/localPlaylist/index.js"></script>
-		<script src="javascripts/localPlaylist/YoutubePlayer.js"></script>
-		<script src="javascripts/localPlaylist/VideoController.js"></script>
-		<script src="javascripts/localPlaylist/SearchMachine.js"></script>
-		<script src="javascripts/localPlaylist/PlaylistHandler.js"></script>
-		<script src="javascripts/localPlaylist/MessageBoard.js"></script>
-	</head>
+<%- include partials/header.ejs %>
 	<body>
 		<input type="hidden" id="host-div" value="<%=host %>"/>
 		<input type="hidden" id="port-div" value="<%=port %>"/>
 		<div id="main-wrapper">
-      <header id="main-header" class="grid-container">
-        <div class="grid-4 alpha">
-          <h2 class="text-center">
-            Internet
-          </h2>
-        </div>
-        <div class="grid-4">
-          <h1 class="text-center">
-            BMAP
-          </h1>
-        </div>
-        <div class="grid-4 omega">
-          <h2 class="text-center">Sex</h2>
-        </div>
-      </header>
-      <div class="grid-container">
-        <div class="grid-4">
-          <div class="playlist-ctrls sidebar-component">
-            <a class="icon-button fontawesome-file grid-2 alpha playlist-handlers" id="create-playlist"></a>
-            <a class="icon-button fontawesome-paper-clip grid-2 omega playlist-handlers" id="attach-playlist"></a>
-            <a class="icon-button block playlist-handlers" id="attached-playlist" ></a>
+      <div id="inner-wrapper">
+        <header id="main-header" class="grid-container">
+          <div class="grid-4">
+            <h2 class="text-center">
+              Internet
+            </h2>
           </div>
-          <div class="search-area sidebar-component">
-            <input class="grid-2 alpha search-field" placeholder="Search" id="search"/>
-            <input class="grid-2 omega search-field" placeholder="Filter" id="constraints"/>
+          <div class="grid-4">
+            <h1 class="text-center">
+              BMAP
+            </h1>
           </div>
-          <!--<div id="previous"></div>-->
-          <!--<div id="queue"></div>-->
-          <div id="player-container" class="sidebar-component">
-            <div id="player"></div>  
-            <div id="player-actions">
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-fast-backward playback-ctrl" id="prev" href="#"> </a>
-              </div>
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-play playback-ctrl" id="play" href="#"></a>
-              </div>
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-random playback-ctrl" id="shuffle" href="#"></a>
-              </div>
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-repeat playback-ctrl" id="repeat" href="#"></a>
-              </div>
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-play-circle playback-ctrl" id="autoplay" href="#"></a>
-              </div>
-              <div class="playback-ctrl-wrap">
-                <a class="icon-button fontawesome-fast-forward playback-ctrl" id="next" href="#"> </a>
-              </div>
+          <div class="grid-4">
+            <h2 class="text-center">
+              Sex
+            </h2>
+          </div>
+        </header>
+        <div class="grid-container" id="main-content">
+          <div class="grid-4" id="main-sidebar">
+            <div class="playlist-ctrls sidebar-component">
+              <a class="icon-button fontawesome-file grid-2 alpha playlist-handlers" id="create-playlist"></a>
+              <a class="icon-button fontawesome-paper-clip grid-2 omega playlist-handlers" id="attach-playlist"></a>
+              <a class="icon-button block playlist-handlers" id="attached-playlist" ></a>
             </div>
+            <div class="search-area sidebar-component">
+              <input class="grid-2 alpha search-field" placeholder="Search" id="search"/>
+              <input class="grid-2 omega search-field" placeholder="Constraints" id="constraints"/>
+            </div>
+            <div id="player-container" class="sidebar-component">
+              <%- include partials/player.ejs %>
+            </div>
+            <!--<div id="previous"></div>-->
+            <!--<div id="queue"></div>-->
           </div>
-        </div>
-        <div class="grid-8">
-          <div id="search-results"></div>
+          <div class="grid-8">
+            <div id="search-results"></div>
+          </div>
         </div>
       </div>
-      <div class="message text-center" id="message-board"></div>
 		</div>
+    <div class="message text-center" id="message-board"></div>
 	</body>
 </html>

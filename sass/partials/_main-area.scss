@@ -1,10 +1,3 @@
-.search-field {
-  @include border-radius(2px);
-  background: #F3F3F3;
-  font-family: $font-family-light;
-  font-size: 18px;
-  height: 40px;
-}
 // a few webkit-only hacks to make a neat scrollbar..
 ::-webkit-scrollbar {
   width: 12px;

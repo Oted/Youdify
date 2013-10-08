@@ -37,6 +37,7 @@ h2 {
 .block {
   display: block;
 }
+
 a {
   text-decoration: none;
   color: $black-color;
@@ -46,23 +47,19 @@ a {
       text-decoration: none;
   }
 }
-.icon-button {
-    text-align: center;
-    @include transition(all ease-in 0.2s);
-    @include border-radius(2px);
-    background: $blue-color;
-    height: 50px;
-    line-height: 50px;
-    font-size: 25px;
-    &:hover {
-      background: lighten($blue-color, 20%);
-    }
-    cursor: pointer;
-}
 
-.sidebar-component {
-  @include clearfix;
-  margin-bottom: 20px;
+.icon-button {
+  text-align: center;
+  @include transition(all ease-in 0.2s);
+  @include border-radius(2px);
+  background: $blue-color;
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+  &:hover {
+    background: lighten($blue-color, 20%);
+  }
+  cursor: pointer;
 }
 
 input {
