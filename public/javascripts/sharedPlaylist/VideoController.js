@@ -8,18 +8,38 @@
 		this.qContainerEl 	= $("#queue");
 		this.pContainerEl 	= $("#previous");
 		
-		this.forwardEl 		= $("#next").on("click", this.forward.bind(this));
-		this.previousEl		= $("#prev").on("click", this.previous.bind(this));
-		this.shuffleEl		= $("#shuffle").on("click", this.toggleShuffle.bind(this));
-		this.addNewToQueEl	= $("#addNewToQue").on("click", this.toggleAddNewToQue.bind(this));
-		this.addNewToQueEl	= $("#autoplay").on("click", this.toggleAutoplay.bind(this));
-		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this));
-		
+		this.addNewToQueEl	= $("#addNewToQue").on("click", this.toggleAddNewToQue.bind(this)).attr("title",
+			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
+		);
+		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
+			"Play or pause video"	
+		);
+		this.forwardEl 		= $("#next").on("click", this.forward.bind(this)).attr("title",
+			"Play the next video"
+		);
+		this.previousEl		= $("#prev").on("click", this.previous.bind(this)).attr("title",
+			"Play previous video"
+		);
+		this.shuffleEl		= $("#shuffle").on("click", this.toggleShuffle.bind(this)).attr("title",
+			"Toggle shuffle"		
+		);
+		this.autoplayEl		= $("#autoplay").on("click", this.toggleAutoplay.bind(this)).attr("title",
+			"Toggle autoplay, if autoplay is enabled player will keep playing when queue is empty"		
+		);
+		this.repeatEl		= $("#repeat").on("click", this.toggleRepeat.bind(this)).attr("title",
+			"Toggle repeat one"				
+		);
+
 		this.shuffle = false;
 		this.repeat  = false;
 		this.addNewToQue = false;
 		this.autoplay = false;
 		this.results = [];
+	};	
+	
+	VideoController.prototype.play = function(){
+		BMAP.YoutubePlayer.play();
+		//code for animations go here
 	};
 
 	VideoController.prototype.forward = function(){
