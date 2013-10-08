@@ -4,9 +4,21 @@
 
 	var VideoController = function(template){
 		this.templateEl     = template;
+		
+		$("#create-playlist").attr("title",
+			"Creates a new playlist and attach it to this view, videos can then be pushed into the new playlist"		
+		);
+		
+		$("#attach-playlist").attr("title",
+			"Attach an existing playlist to this view given the name, videos can then be pushed into the attached playlist"		
+		);
+		
+		$("#attached-playlist").attr("title",
+			"Opens the attached playlist in a new tab, all videos pushed from this view will appear in the shared playlist"		
+		);
+
+
 		this.resultEl       = $("#search-results");
-		this.qContainerEl 	= $("#queue");
-		this.pContainerEl 	= $("#previous");
 	
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
