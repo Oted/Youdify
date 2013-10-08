@@ -168,6 +168,17 @@
 		return found;
 	};
 
+	//remove the given video from the div and array
+	VideoController.prototype.removeVideo = function(video){
+		for(var i = this.results.length; i--;) {
+			if (this.results[i].id === video.id) {
+				BMAP.MessageBoard.putWarning("The video " + video.title + " could not be played and will be automaticly removed");	
+				$(this.results[i].element).remove();
+				this.results.splice(i, 1);	
+			}
+		}
+	};
+
 	BMAP.VideoController = VideoController;
 	win.BMAP = BMAP;
 })(window, document, jQuery);
