@@ -38,6 +38,7 @@
 	};	
 	
 	VideoController.prototype.play = function(){
+		$(this.playEl).toggleClass("active");
 		BMAP.YoutubePlayer.play();
 		//code for animations go here
 	};
@@ -55,6 +56,7 @@
 	
 	//toggle shuffle
 	VideoController.prototype.toggleShuffle = function(){
+		$(this.shuffleEl).toggleClass("active");
 		this.shuffle = !this.shuffle;
 		if (this.shuffle){
 			BMAP.MessageBoard.putTemporary("Shuffle is now on");
@@ -67,6 +69,7 @@
 
 	//toggle addNewToQue (add pushed songs to queue)
 	VideoController.prototype.toggleAddNewToQue = function(){
+		$(this.addNewToQueEl).toggleClass("active");
 		this.addNewToQue = !this.addNewToQue;
 		if (this.addNewToQue){
 			BMAP.MessageBoard.putTemporary("Add new to queue is now on");
@@ -79,6 +82,7 @@
 	
 	//toggle autoplay (keep playing when list/queue is empty)
 	VideoController.prototype.toggleAutoplay = function(){
+		$(this.autoplayEl).toggleClass("active");
 		this.autoplay = !this.autoplay;
 		if (this.addNewToQue){
 			BMAP.MessageBoard.putTemporary("Autoplay is now on");
@@ -92,6 +96,7 @@
 
 	//toggle repeat one
 	VideoController.prototype.toggleRepeat = function(){
+		$(this.repeatEl).toggleClass("active");
 		this.repeat = !this.repeat;
 		if (this.repeat){
 			BMAP.MessageBoard.putTemporary("Repeat one is now on");
