@@ -80,24 +80,46 @@
 			this.clear();
 			var that = this;
 			var query = this.searchEl.val();
-
-			BMAP.MessageBoard.putTemporary("Searching for playlists with " + query);
-			BMAP.SearchMachine.loadPlaylists(query,function(playlists){
-				BMAP.SearchMachine.getVideosFromPlaylists(playlists, function(video){
-					for (var i=0; i < that.results.length; i++){
-						var found = false;
-						if (that.results[i].id === video.id){
-							found=true;
-							break;
+			
+			//if radiobutton is on playlist, the search searches for playlists
+			if (false){
+				BMAP.MessageBoard.putTemporary("Searching for playlists with " + query);
+				BMAP.SearchMachine.loadPlaylists(query,function(playlists){
+					BMAP.SearchMachine.getVideosFromPlaylists(playlists, function(video){
+						for (var i=0; i < that.results.length; i++){
+							var found = false;
+							if (that.results[i].id === video.id){
+								found=true;
+								break;
+							}
 						}
-					}
 					
-					if (!found && video.title!=="Private video"){
-						that.results.push(video);
-						that.generateResultDiv(video);
-					}
-				});	
-			});	
+						if (!found && video.title!=="Private video"){
+							that.results.push(video);
+							that.generateResultDiv(video);
+						}
+					});	
+				});
+			}
+
+			//if radiobutton is on videos we do a normal search
+			else{
+				BMAP.SearchMachine.loadVideos(query,function(video){
+					for (var i=0; i < that.results.length; i++){
+							var found = false;
+							if (that.results[i].id === video.id){
+								found=true;
+								break;
+							}
+						}
+					
+						if (!found && video.title!=="Private video"){
+							that.results.push(video);
+							that.generateResultDiv(video);
+						}
+		
+				});
+			}
 		};
 	};
 	
