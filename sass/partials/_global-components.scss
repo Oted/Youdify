@@ -1,12 +1,14 @@
 #main-wrapper {
-  @include clearfix;
-  margin-bottom: 100px;
+  margin-bottom: 56px;
+  #inner-wrapper {
+    @include clearfix;
+    background: #202020;
+  }
 }
 #main-header {
   @include clearfix;
   padding: 50px 0;
   margin-bottom: 20px;
-  background: #202020;
 }
 
 #message-board {

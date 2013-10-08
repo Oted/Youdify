@@ -1,0 +1,31 @@
+#main-sidebar {
+  .sidebar-component {
+    @include clearfix;
+    margin-bottom: 20px;
+  }
+
+  .search-field {
+    @include border-radius(2px);
+    background: #F3F3F3;
+    font-family: $font-family-light;
+    font-size: 18px;
+    height: 40px;
+  }
+
+  #player-container {
+    iframe {
+      width: 100%;
+      margin-bottom: 3px;
+    }
+  }
+
+  .playback-ctrl-wrap {
+    width: 100/6 * 1%;
+    display: block;
+    float: left;
+    .playback-ctrl {
+      display: block;
+      margin: 0 2px;
+    }
+  }
+}

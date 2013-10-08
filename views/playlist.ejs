@@ -1,39 +1,24 @@
-<!DOCTYPE HTMl>
-<html>
-	<head>
-		<link rel="stylesheet" href="/stylesheets/styles.css"/>
-		<script src="/vendor/javascripts/jQuery-2.0.3.js"></script>
-		<script src="/socket.io/socket.io.js"></script>	
-		<script src="/javascripts/sharedPlaylist/index.js"></script>	
-		<script src="/javascripts/sharedPlaylist/PlaylistSocket.js"></script>	
-		<script src="/javascripts/sharedPlaylist/VideoController.js"></script>	
-		<script src="/javascripts/sharedPlaylist/YoutubePlayer.js"></script>	
-		<script src="/javascripts/sharedPlaylist/MessageBoard.js"></script>	
-	</head>
+<%- include partials/header.ejs %>
 	<body>
 		<input type="hidden" id="name-div" value="<%=name%>"/>
 		<input type="hidden" id="client-div" value="<%=client%>"/>
 		<input type="hidden" id="host-div" value="<%=host%>"/>
 		<input type="hidden" id="port-div" value="<%=port%>"/>
-
-		<div id="search-results"></div>
-
-		<div id="player-actions">
-			<div id="previous"></div>
-				<div id="player-container" align="center">
-					<div id="player"></div>	
-					<img class="next-prev" id="prev" src="/images/prev.png"></img>
-					<button class="controllers" id="play">play</button>
-					<button class="controllers" id="shuffle">shuffle</button>
-					<button class="controllers" id="repeat">repeat one</button>
-					<button class="controllers" id="autoplay">autoplay</button>
-					<button class="controllers" id="addNewToQue">add new to queue</button>
-					<img class="next-prev" id="next" src="/images/next.png"></img>
-					<div class="message" id="message-board"</div>
-					<img id="pause"></img>
-				</div>
-			<div id="queue"></div>
-		</div>
+    <div id="main-wrapper">
+      <div id="inner-wrapper">
+        <div id="main-content" class="grid-container">
+          <div id="main-sidebar" class="grid-4">
+            <div id="player-container" class="sidebar-component">
+              <%- include partials/player.ejs %>
+            </div>
+          </div>
+          <div class="grid-8">
+            <div id="search-results"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="message text-center" id="message-board"></div>
 	</body>
 </html>
 			
