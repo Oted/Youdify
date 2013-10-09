@@ -143,8 +143,15 @@ a:hover {
 .icon-button:hover {
   background: #1d98da;
 }
+/* line 62, ../../sass/partials/_base.scss */
+.icon-button.active {
+  background: #1d98da;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) inset;
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) inset;
+}
 
-/* line 65, ../../sass/partials/_base.scss */
+/* line 70, ../../sass/partials/_base.scss */
 input {
   border: 0;
 }

@@ -59,6 +59,11 @@ a {
   &:hover {
     background: lighten($blue-color, 20%);
   }
+  &.active {
+    background: lighten($blue-color, 20%);
+    @include box-shadow(0 2px 4px rgba(0,0,0,0.8) inset);
+  }
+
   cursor: pointer;
 }
 
