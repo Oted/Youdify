@@ -18,8 +18,7 @@
 		);
 
 
-		this.resultEl       = $("#search-results");
-	
+		this.resultEl       = $("#search-results");	
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
 		);
