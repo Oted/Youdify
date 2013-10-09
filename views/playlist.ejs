@@ -1,4 +1,9 @@
 <%- include partials/header.ejs %>
+<script src="/socket.io/socket.io.js"></script>	
+<script src="/javascripts/sharedPlaylist/index.js"></script>
+<script src="/javascripts/sharedPlaylist/SharedFeatures.js"></script>
+<script src="/javascripts/sharedPlaylist/PlaylistSocket.js"></script>
+	
 	<body>
 		<input type="hidden" id="name-div" value="<%=name%>"/>
 		<input type="hidden" id="client-div" value="<%=client%>"/>
@@ -9,7 +14,7 @@
         <div id="main-content" class="grid-container">
           <div id="main-sidebar" class="grid-4">
             <div id="player-container" class="sidebar-component">
-              <%- include partials/player.ejs %>
+				<%- include partials/player.ejs %>
             </div>
           </div>
           <div class="grid-8">

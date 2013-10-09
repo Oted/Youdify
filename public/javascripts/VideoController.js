@@ -8,9 +8,6 @@
 		this.qContainerEl 	= $("#queue");
 		this.pContainerEl 	= $("#previous");
 		
-		this.addNewToQueEl	= $("#addNewToQue").on("click", this.toggleAddNewToQue.bind(this)).attr("title",
-			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
-		);
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
 		);
@@ -32,7 +29,6 @@
 
 		this.shuffle = false;
 		this.repeat  = false;
-		this.addNewToQue = false;
 		this.autoplay = false;
 		this.results = [];
 	};	
@@ -41,17 +37,20 @@
 		$(this.playEl).toggleClass("active");
 		BMAP.YoutubePlayer.play();
 		//code for animations go here
+		return false;
 	};
 
 	VideoController.prototype.forward = function(){
 		BMAP.YoutubePlayer.next();
 		//code for animations go here
+		return false;
 	};
 
 	//previous pressed
 	VideoController.prototype.previous = function(){
 		BMAP.YoutubePlayer.playPrev();
 		//code for animantion goes here
+		return false;
 	};
 	
 	//toggle shuffle
@@ -65,21 +64,9 @@
 			BMAP.MessageBoard.putTemporary("Shuffle is now off");
 		}
 		//code for animations here
+		return false;
 	};
 
-	//toggle addNewToQue (add pushed songs to queue)
-	VideoController.prototype.toggleAddNewToQue = function(){
-		$(this.addNewToQueEl).toggleClass("active");
-		this.addNewToQue = !this.addNewToQue;
-		if (this.addNewToQue){
-			BMAP.MessageBoard.putTemporary("Add new to queue is now on");
-		}
-		else {
-			BMAP.MessageBoard.putTemporary("Add new to queue is now off");
-		}
-		//code for animations here
-	};
-	
 	//toggle autoplay (keep playing when list/queue is empty)
 	VideoController.prototype.toggleAutoplay = function(){
 		$(this.autoplayEl).toggleClass("active");
@@ -91,6 +78,7 @@
 			BMAP.MessageBoard.putTemporary("Autoplay is now off");
 		}
 		//code for animations here
+		return false;
 	};
 
 
@@ -105,6 +93,7 @@
 			BMAP.MessageBoard.putTemporary("Repeat one is now off");
 		}
 		//code for animations goes here
+		return false;
 	};
 	
 	VideoController.prototype.drawThumbs = function(queue, previous){
@@ -117,25 +106,33 @@
 		this.results.push(video);
 		var element = $(this.templateEl).clone();
 		
-		console.log(this.results);
-
 		element.attr("id", "");
         element.find(".title")
 		.html(video.title)
 		.on("click", function(){
 			BMAP.YoutubePlayer.play(video);	
 		});
-    
 		
         element.find(".duration").html(video.duration);
         element.find(".views").html(video.views);
         element.find(".category").html(video.category);
 
-
 		//add action for +Q
 		element.find(".add-to-queue").on("click", function(){
 			BMAP.YoutubePlayer.queueVideo(video);
 		});
+
+		
+		//add action for +P
+        element.find(".add-to-playlist").on("click", function(){
+			var videos = [];
+			videos.push(video);
+			BMAP.PlaylistHandler.push(videos);
+		});
+
+		if (!BMAP.PlaylistHandler || !BMAP.PlaylistHandler.isAttached()){
+			element.find(".add-to-playlist").hide();
+		};
 
 		video.element = element;
 		this.resultEl.append(element);
@@ -181,7 +178,7 @@
 		}
 	};
 
-	//check if a specific videoId exisat in results array
+	//check if a specific videoId exist in results array
 	VideoController.prototype.checkIfExist = function(video){
 		var found = false;
 		for (var i = 0; i < this.results.length; i++){
@@ -193,6 +190,12 @@
 		return found;
 	};
 
+	//clears result and all the video-elements
+	VideoController.prototype.clear = function(){
+		$(this.resultEl).empty();
+		this.results = [];
+	};
+	
 	//remove the given video from the div and array
 	VideoController.prototype.removeVideo = function(video){
 		for(var i = this.results.length; i--;) {
@@ -202,6 +205,15 @@
 				this.results.splice(i, 1);	
 			}
 		}
+	};
+
+	VideoController.prototype.getResults = function(){
+		return this.results;
+	};
+
+	//true if element is hidden
+	VideoController.prototype.isHidden = function(video){
+		 return ($(video.element).css("display") == 'none');
 	};
 
 	BMAP.VideoController = VideoController;

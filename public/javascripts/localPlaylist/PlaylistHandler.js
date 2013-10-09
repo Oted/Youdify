@@ -42,10 +42,10 @@
 	//call server to see if a playlist exists
 	PlaylistHandler.prototype.checkIfExist = function(name, callback){
 		$.ajax({
-			url: this.serverurl 
-				+ "?q=" + name + "&f=checkifexist" 
+			url: this.serverUrl 
+				+ "?q=" + name + "&f=checkIfExist" 
 				+ "&callback=?",
-			datatype:"jsonp",
+			dataType:"jsonp",
 			beforesend: function(){
 				console.log("sending...");
 			},

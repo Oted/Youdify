@@ -12,7 +12,8 @@ exports.playlists = function(req, res){
 	var client = req.ip;
 	
 	//if the url contains callback, function and query the reguest is an api-call
-	if (req.query.callback && req.query.f && req.query.q && req.query.q!=="" && req.query.q !==null && req.query.q!=="null"){
+	if (req.query.callback && req.query.f && req.query.q && req.query.q!=="" && req.query.q!==null && req.query.q!=="null"){
+				
 		var funct = req.query.f;
 		var query = req.query.q;
 

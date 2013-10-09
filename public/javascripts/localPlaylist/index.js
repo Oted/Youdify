@@ -5,9 +5,10 @@
 	//the first to run when document is ready
     $(function(){
 		var templateEl = generateTemplate();
-			
+
 		BMAP.YoutubePlayer = new BMAP.YoutubePlayer(280,200);
 		BMAP.VideoController = new BMAP.VideoController(templateEl);
+		BMAP.LocalFeatures = new BMAP.LocalFeatures();
 		BMAP.SearchMachine = new BMAP.SearchMachine();
 		BMAP.PlaylistHandler = new BMAP.PlaylistHandler();
 		BMAP.MessageBoard = new BMAP.MessageBoard();
