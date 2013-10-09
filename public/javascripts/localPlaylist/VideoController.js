@@ -40,7 +40,7 @@
 		);
 
 		this.searchEl       = $("#search").on("keypress", this.searchKeypress.bind(this));
-    	this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
+    this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
 		
 		this.shuffle = false;
 		this.repeat  = false;
@@ -52,17 +52,20 @@
 		$(this.playEl).toggleClass("active");
 		BMAP.YoutubePlayer.play();
 		//code for animations go here
+    return false;
 	};
 
 	VideoController.prototype.forward = function(){
 		BMAP.YoutubePlayer.next();
 		//code for animations go here
+    return false; // skips default behaviour
 	};
 
 	//previous pressed
 	VideoController.prototype.previous = function(){
 		BMAP.YoutubePlayer.playPrev();
 		//code for animantion goes here
+    return false; // skips default behaviour
 	};
 	
 	//toggle shuffle
@@ -76,6 +79,7 @@
 			BMAP.MessageBoard.putTemporary("Shuffle is now off");
 		}
 		//code for animations here
+    return false; // skips default behaviour
 	};
 
 	//toggle autoplay (keep playing when list/queue is empty)
@@ -88,6 +92,7 @@
 		else {
 			BMAP.MessageBoard.putTemporary("Autoplay is now off");
 		}
+    return false; // skips default behaviour
 		//code for animations here
 	};
 
@@ -102,6 +107,7 @@
 			BMAP.MessageBoard.putTemporary("Repeat one is now off");
 		}
 		//code for animations goes here
+    return false; // skips default behaviour
 	};
 	
 	VideoController.prototype.drawThumbs = function(queue, previous){
@@ -268,17 +274,17 @@
 			else{
 				var index = this.results.indexOf(BMAP.YoutubePlayer.getCurrent());
 				index ++;
-				if (index >= this.results.length){	   
+				if (index >= this.results.length){
 					index = 0;
 				}
 				while (!$(this.results[index].element).is(":visible")){
 					index++;
-					if (index >= this.results.length){	   
+					if (index >= this.results.length){
 						index = 0;
 					}
 				}
 				video = this.results[index];
-			};
+			}
 
 			//if the video element is hidden we want to generate a new one else we are done
 			if($(video.element).is(':visible')) {
@@ -291,7 +297,7 @@
 		else{
 			BMAP.MessageBoard.putTemporary("Autoplay disabled, video stop");
 			BMAP.YoutubePlayer.stop();
-		};
+		}
 	};
 
 	//remove the given video from the div and array
