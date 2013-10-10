@@ -27,6 +27,11 @@ db.once('open', function callback () {
 	app.get("/", routes.index);
 	app.get("/index.html", routes.index);
 	app.get("/playlists/*", routes.playlists);
+	
+	//Api calls
+	app.get("/checkifexist/*", routes.checkIfExist);
+	app.get("/createnewplaylist/*", routes.createNewPlaylist);
+	app.get("/push/*", routes.push);
 });
 
 //on exit, close database

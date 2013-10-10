@@ -11,7 +11,7 @@
 		this.createEl 	= $("#create-playlist").on("click", this.createNewPlaylist.bind(this));
 		this.attachEl 	= $("#attach-playlist").on("click", this.attachPlaylist.bind(this));
 		this.playlistEl = $("#attached-playlist").on("click", this.getToPLaylist.bind(this)).hide();
-		this.serverUrl = "http://" + this.host + ":" + this.port + "/playlists/";
+		this.serverUrl = "http://" + this.host + ":" + this.port;
 		this.playlistUrl;
 	};
 
@@ -42,15 +42,13 @@
 	//call server to see if a playlist exists
 	PlaylistHandler.prototype.checkIfExist = function(name, callback){
 		$.ajax({
-			url: this.serverUrl 
-				+ "?q=" + name + "&f=checkIfExist" 
-				+ "&callback=?",
+			url: this.serverUrl + "/checkifexist/?name=" + name + "&callback=?",
 			dataType:"jsonp",
 			beforesend: function(){
-				console.log("sending...");
+				console.log("Sending...");
 			},
 			success: function(data){
-				console.log("success!")
+				console.log("Found Playlist : " + data.found);
 				callback(data.found);
 			}
 		});
@@ -59,9 +57,7 @@
 	//calls server and creates a new document
 	PlaylistHandler.prototype.createNewDocument = function(name, callback){
 		$.ajax({
-			url: this.serverUrl 
-				+ "?q=" + name + "&f=createNewPlaylist" 
-				+ "&callback=?",
+			url: this.serverUrl + "/createnewplaylist/?name=" + name + "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
@@ -79,7 +75,7 @@
 		this.attachEl.hide();
 		this.playlistEl.show().text("Open attached playlist");
 		this.playlistName = name;
-		this.playlistUrl = this.serverUrl + name.replace(" ", "+");
+		this.playlistUrl = this.serverUrl + "/playlists/" + name.replace(" ", "+");
 		$(".add-to-playlist").show();		
 		BMAP.MessageBoard.putTemporary("The view is now attached to " + name);
 	};
@@ -115,11 +111,7 @@
 				
 				var str = JSON.stringify(videosTemp[i]);
 				$.ajax({
-					url: this.serverUrl 
-						+ "?q=" + this.playlistName 
-						+ "&video=" + replaceChars(str)
-						+ "&f=push" + "&callback=?",
-
+					url: this.serverUrl + "/push/" + this.playlistName + "?video=" + replaceChars(str) + "&callback=?",
 					dataType:"jsonp",
 					beforeSend: function(){
 						console.log("Pushing " + videosTemp[i].title);

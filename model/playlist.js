@@ -49,7 +49,7 @@ exports.createNewPlaylist = function(name, client, callback){
 				
 			newPlaylist.save(function(error){
 				if (error){
-					console.log("Error while creating ne playlist\n" + error);
+					console.log("Error while creating playlist\n" + error);
 					callback(false);
 				}
 				else{
