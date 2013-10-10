@@ -17,13 +17,13 @@
 		var element = doc.createElement("div");
 		$(element).addClass("video");
 	
-		var title = doc.createElement("h3");
-		$(title).addClass("title")
-		.appendTo(element);
-
 		var queue = doc.createElement("button");	
 		$(queue).addClass("add add-to-queue")
 		.html("+Q")
+		.appendTo(element);
+
+		var title = doc.createElement("h3");
+		$(title).addClass("title")
 		.appendTo(element);
 
 		var duration = doc.createElement("h3");

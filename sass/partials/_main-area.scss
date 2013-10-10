@@ -20,12 +20,12 @@
     background: #5E5E5E;
     @include border-radius(12px);
     margin-bottom: 7px;
-    .add {
+    * {
       float: left;
+      line-height: 25px;
     }
     .title {
-      line-height: 25px;
-      padding-left: 85px;
+      padding-left: 15px;
     }
   }
 }

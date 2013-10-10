@@ -270,13 +270,13 @@ input {
   margin-bottom: 7px;
 }
 /* line 23, ../../sass/partials/_main-area.scss */
-#search-results .video .add {
+#search-results .video * {
   float: left;
-}
-/* line 26, ../../sass/partials/_main-area.scss */
-#search-results .video .title {
   line-height: 25px;
-  padding-left: 85px;
+}
+/* line 27, ../../sass/partials/_main-area.scss */
+#search-results .video .title {
+  padding-left: 15px;
 }
 
 /* line 33, ../../sass/partials/_main-area.scss */
