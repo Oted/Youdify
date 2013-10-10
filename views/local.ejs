@@ -9,23 +9,25 @@
 		<input type="hidden" id="port-div" value="<%=port %>"/>
 		<div id="main-wrapper">
       <div id="inner-wrapper">
-        <header id="main-header" class="grid-container">
-          <div class="grid-4">
-            <h2 class="text-center">
-              Internet
-            </h2>
-          </div>
-          <div class="grid-4">
-            <h1 class="text-center">
-              BMAP
-            </h1>
-          </div>
-          <div class="grid-4">
-            <h2 class="text-center">
-              Sex
-            </h2>
-          </div>
-        </header>
+        <div class="fixed-top">
+          <header id="main-header" class="grid-container">
+            <div class="grid-4">
+              <h2 class="text-center">
+                Internet
+              </h2>
+            </div>
+            <div class="grid-4">
+              <h1 class="text-center">
+                BMAP
+              </h1>
+            </div>
+            <div class="grid-4">
+              <h2 class="text-center">
+                Sex
+              </h2>
+            </div>
+          </header>
+        </div>
         <div class="grid-container" id="main-content">
           <div class="grid-4" id="main-sidebar">
             <div class="playlist-ctrls sidebar-component">
@@ -43,7 +45,7 @@
             <!--<div id="previous"></div>-->
             <!--<div id="queue"></div>-->
           </div>
-          <div class="grid-8">
+          <div class="grid-8 push-4">
             <div id="search-results"></div>
           </div>
         </div>

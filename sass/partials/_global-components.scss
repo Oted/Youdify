@@ -2,8 +2,15 @@
   margin-bottom: 56px;
   #inner-wrapper {
     @include clearfix;
-    background: #202020;
   }
+}
+.fixed-top {
+  position: fixed;
+  width:100%;
+  left:0;
+  top:0;
+  z-index: 10;
+  background: $black-color;
 }
 #main-header {
   @include clearfix;
@@ -20,4 +27,6 @@
   background: rgba(255,255,255,0.8);
   color: $black-color; 
 }
-
+#main-content {
+  margin-top: 180px;
+}

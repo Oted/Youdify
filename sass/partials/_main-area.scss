@@ -1,21 +1,19 @@
 // a few webkit-only hacks to make a neat scrollbar..
-::-webkit-scrollbar {
-  width: 12px;
-}
+/*::-webkit-scrollbar {*/
+  /*width: 12px;*/
+/*}*/
  
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
-}
+/*::-webkit-scrollbar-track {*/
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+    /*border-radius: 10px;*/
+/*}*/
  
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-} 
+/*::-webkit-scrollbar-thumb {*/
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
+/*} */
 
 #search-results {
-  overflow-y: auto;
-  height: 387px;
   .video{
     padding: 10px 5px;
     @include clearfix;

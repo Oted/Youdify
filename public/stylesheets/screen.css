@@ -164,10 +164,19 @@ input {
 #main-wrapper #inner-wrapper {
   overflow: hidden;
   *zoom: 1;
-  background: #202020;
 }
 
-/* line 8, ../../sass/partials/_global-components.scss */
+/* line 7, ../../sass/partials/_global-components.scss */
+.fixed-top {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: #262626;
+}
+
+/* line 15, ../../sass/partials/_global-components.scss */
 #main-header {
   overflow: hidden;
   *zoom: 1;
@@ -175,7 +184,7 @@ input {
   margin-bottom: 20px;
 }
 
-/* line 14, ../../sass/partials/_global-components.scss */
+/* line 21, ../../sass/partials/_global-components.scss */
 #message-board {
   position: fixed;
   bottom: 0;
@@ -186,19 +195,28 @@ input {
   color: #262626;
 }
 
+/* line 30, ../../sass/partials/_global-components.scss */
+#main-content {
+  margin-top: 180px;
+}
+
 /* fontawesome */
 /* line 5, ../../sass/partials/_icons.scss */
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
 }
 
-/* line 2, ../../sass/partials/_sidebar.scss */
+/* line 1, ../../sass/partials/_sidebar.scss */
+#main-sidebar {
+  position: fixed;
+}
+/* line 4, ../../sass/partials/_sidebar.scss */
 #main-sidebar .sidebar-component {
   overflow: hidden;
   *zoom: 1;
   margin-bottom: 20px;
 }
-/* line 7, ../../sass/partials/_sidebar.scss */
+/* line 9, ../../sass/partials/_sidebar.scss */
 #main-sidebar .search-field {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -210,46 +228,35 @@ input {
   font-size: 18px;
   height: 40px;
 }
-/* line 16, ../../sass/partials/_sidebar.scss */
+/* line 18, ../../sass/partials/_sidebar.scss */
 #main-sidebar #player-container iframe {
   width: 100%;
   margin-bottom: 3px;
 }
-/* line 22, ../../sass/partials/_sidebar.scss */
+/* line 24, ../../sass/partials/_sidebar.scss */
 #main-sidebar .playback-ctrl-wrap {
   width: 16.66667%;
   display: block;
   float: left;
 }
-/* line 26, ../../sass/partials/_sidebar.scss */
+/* line 28, ../../sass/partials/_sidebar.scss */
 #main-sidebar .playback-ctrl-wrap .playback-ctrl {
   display: block;
   margin: 0 2px;
 }
 
-/* line 2, ../../sass/partials/_main-area.scss */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-/* line 6, ../../sass/partials/_main-area.scss */
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-/* line 11, ../../sass/partials/_main-area.scss */
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
-/* line 16, ../../sass/partials/_main-area.scss */
-#search-results {
-  overflow-y: auto;
-  height: 387px;
-}
-/* line 19, ../../sass/partials/_main-area.scss */
+/*::-webkit-scrollbar {*/
+/*width: 12px;*/
+/*}*/
+/*::-webkit-scrollbar-track {*/
+/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+/*border-radius: 10px;*/
+/*}*/
+/*::-webkit-scrollbar-thumb {*/
+/*border-radius: 10px;*/
+/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
+/*} */
+/* line 17, ../../sass/partials/_main-area.scss */
 #search-results .video {
   padding: 10px 5px;
   overflow: hidden;
@@ -262,17 +269,17 @@ input {
   border-radius: 12px;
   margin-bottom: 7px;
 }
-/* line 25, ../../sass/partials/_main-area.scss */
+/* line 23, ../../sass/partials/_main-area.scss */
 #search-results .video .add {
   float: left;
 }
-/* line 28, ../../sass/partials/_main-area.scss */
+/* line 26, ../../sass/partials/_main-area.scss */
 #search-results .video .title {
   line-height: 25px;
   padding-left: 85px;
 }
 
-/* line 35, ../../sass/partials/_main-area.scss */
+/* line 33, ../../sass/partials/_main-area.scss */
 .search-result {
   -webkit-transition: background linear;
   -webkit-transition-delay: 0.1s;
@@ -286,17 +293,17 @@ input {
   margin-top: 5px;
   cursor: pointer;
 }
-/* line 45, ../../sass/partials/_main-area.scss */
+/* line 43, ../../sass/partials/_main-area.scss */
 .search-result .thumbnail {
   height: 50px;
   background: silver;
 }
-/* line 50, ../../sass/partials/_main-area.scss */
+/* line 48, ../../sass/partials/_main-area.scss */
 .search-result .title {
   color: #115980;
   font-family: "Arial Black", "Helvetica Bold", sans-serif;
 }
-/* line 55, ../../sass/partials/_main-area.scss */
+/* line 53, ../../sass/partials/_main-area.scss */
 .search-result:hover {
   background: #9ed5f2;
 }
