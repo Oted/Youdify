@@ -113,3 +113,10 @@ exports.get = function(name, callback){
 		}
 	});
 };
+
+//gets all playlists
+exports.getAll = function(name, callback){
+	Playlist.find(function(error, doc){
+		callback(doc);
+	}
+};
