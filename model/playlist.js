@@ -115,8 +115,8 @@ exports.get = function(name, callback){
 };
 
 //gets all playlists
-exports.getAll = function(name, callback){
+exports.getAll = function(callback){
 	Playlist.find(function(error, doc){
 		callback(doc);
-	}
+	});
 };

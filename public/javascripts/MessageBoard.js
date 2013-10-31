@@ -1,7 +1,7 @@
 (function(win, doc, $, undefined){
 	"use strict";
 	var BMAP = win.BMAP || {};
-	var message = "Welcome to BuildMeAPlaylist! :)";
+	var message = "Welcome :)";
 
 	var MessageBoard = function(){
 		this.messageEl = $("#message-board");

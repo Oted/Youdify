@@ -108,14 +108,19 @@
 		var nextVideo = undefined;
 		var that = this;	
 		//if there is something queued
-		if (this.queue.length > 0){
-			nextVideo = this.queue.shift();
-			this.play(nextVideo);
+		if (BMAP.VideoController.getRepeat()){
+			this.play(this.current);
 		}
 		else{
-			nextVideo = BMAP.VideoController.onEmptyQueue(function(video){
-				that.play(video);		
-			});
+			if (this.queue.length > 0){
+				nextVideo = this.queue.shift();
+				this.play(nextVideo);
+			}
+			else{
+				nextVideo = BMAP.VideoController.onEmptyQueue(this.previous.slice(0,10),function(video){
+					that.play(video);		
+				});
+			}
 		}
 	};
 
@@ -139,7 +144,10 @@
 	
 	//sets current to parameter video
 	YoutubePlayer.prototype.setCurrent = function(video){
-		this.previous.push(this.current);
+		if (this.previous.indexOf(video)==-1){
+			this.previous.push(this.current);   
+		}	
+
 		this.current = video;
 	};
 

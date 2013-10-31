@@ -10,7 +10,8 @@ exports.index = function(req, res){
 //render view for shared playlist
 exports.playlists = function(req, res){
 var client = req.ip;
-var name = req.params[0];
+var name = req.params[0].replace("+"," ");
+	
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
 			res.render("shared",{
@@ -28,7 +29,7 @@ var name = req.params[0];
 
 //Api-call for checking if playlist exists
 exports.checkIfExist = function(req, res){
-	var name = req.query.name;
+	var name = req.query.name.replace("+"," ");
 	dbHandler.checkIfExist(name, function(data){
 		res.jsonp({"found" : data.found});
 	});
@@ -37,7 +38,7 @@ exports.checkIfExist = function(req, res){
 //Api-call for creating new playlist
 exports.createNewPlaylist = function(req, res){
 	var client = req.ip;
-	var name = req.query.name;
+	var name = req.query.name.replace("+"," ");
 	dbHandler.createNewPlaylist(name, client, function(created){
 		res.jsonp({"created" : created});
 	});
@@ -46,11 +47,8 @@ exports.createNewPlaylist = function(req, res){
 //Api-call for pushing new videos to playlist
 exports.push = function(req, res){
 	var client = req.ip;
-	var name = req.params[0];
+	var name = req.params[0].replace("+"," ");
 	var video = req.query.video;
-	console.log(name);
-	console.log(client);
-	console.log(video);
 	dbHandler.push(name, client, video, function(){
 		socket.pushOne(video, name);
 	});

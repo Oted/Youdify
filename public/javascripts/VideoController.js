@@ -97,7 +97,6 @@
 	};
 	
 	VideoController.prototype.drawThumbs = function(queue, previous){
-		
 		//code for animation thumbs goes here
 	};
 	
@@ -146,8 +145,9 @@
 	};
 
 	//called when queue is empty to get new video to play
-	VideoController.prototype.onEmptyQueue = function(callback){
-	var video;
+	VideoController.prototype.onEmptyQueue = function(previous10,callback){
+		//PREVIOUS10!!!!
+		var video;
 		if (this.autoplay){
 			if (this.shuffle){
 				var r = Math.floor(Math.random()*this.results.length);
@@ -214,6 +214,10 @@
 	//true if element is hidden
 	VideoController.prototype.isHidden = function(video){
 		 return ($(video.element).css("display") == 'none');
+	};
+
+	VideoController.prototype.getRepeat = function(){
+		return this.repeat;
 	};
 
 	BMAP.VideoController = VideoController;

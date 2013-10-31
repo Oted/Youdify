@@ -17,7 +17,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 //opens database, on success set express configurations
 db.once('open', function callback () {
-	console.log("Database successfuly opened\nExpress is now listening on port "+ port +"\nSocket is now listening on port " + port);
+	console.log("Database successfuly opened\nExpress and socket is now listening on port "+ host + ":" + port);
 
 	app.set("view engine", "ejs");	
 	app.use(express.static(__dirname + '/public'));
