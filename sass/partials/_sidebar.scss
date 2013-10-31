@@ -1,6 +1,5 @@
-#main-sidebar {
+#overlay-sidebar,#main-sidebar {
   position: fixed;
-  
   .sidebar-component {
     @include clearfix;
     margin-bottom: 20px;

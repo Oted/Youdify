@@ -1,0 +1,45 @@
+<%- include partials/header.ejs %>
+	<body>
+    <%- include overlay.ejs %>
+		<div id="main-wrapper">
+      <div id="inner-wrapper">
+        <div class="fixed-top">
+          <header id="main-header" class="grid-container">
+            <div class="grid-4">
+              <h2 class="text-center">
+                Internet
+              </h2>
+            </div>
+            <div class="grid-4">
+              <h1 class="text-center">
+                BMAP
+              </h1>
+            </div>
+            <div class="grid-4">
+              <h2 class="text-center">
+                Sex
+              </h2>
+            </div>
+          </header>
+        </div>
+        <div class="grid-container" id="main-content">
+          <div class="grid-4" id="main-sidebar">
+            <div class="search-area sidebar-component">
+              <input class="grid-2 alpha search-field" placeholder="Search" id="search"/>
+              <input class="grid-2 omega search-field" placeholder="Constraints" id="constraints"/>
+            </div>
+          </div>
+          <div class="grid-8 push-4">
+            <div id="playlist-results">
+              <% for(var i=0; i<playlists.length; i++) { %>
+                <% var plName = playlists[i].name; %>
+                 <a class="list-item" href="/playlists/<%= plName%>"><%= plName %></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+    <div class="message text-center" id="message-board"></div>
+	</body>
+</html>

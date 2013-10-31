@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var playlistSchema = new mongoose.Schema({
 	name: String,
 	creator: String,
-  	date: { type: Date, default: Date.now },
+  date: { type: Date, default: Date.now },
 	videos: [{type: String, trim: true}]
 });
 
@@ -43,7 +43,7 @@ exports.createNewPlaylist = function(name, client, callback){
 			var newPlaylist = new Playlist({
 				"name"   : name,
 				"creator": client,
-				"date" 	 : new Date(),
+				"date"   : new Date(),
 				"videos" : []
 			});
 				
@@ -59,7 +59,7 @@ exports.createNewPlaylist = function(name, client, callback){
 			});
 		}
 	});
-}
+};
 	
 //push a video to a given playlist
 exports.push = function(name, client, video, callback){	
@@ -103,20 +103,20 @@ exports.checkForVideo = function(name, video, callback){
 			callback(false);
 		}	
 	});	
-}
+};
 
 //gets a playlist with a given name (uses check if exists)
 exports.get = function(name, callback){
 	this.checkIfExist(name,function(data){
 		if (data.found){
-			callback(data.doc.videos)
+			callback(data.doc.videos);
 		}
 	});
 };
 
 //gets all playlists
-exports.getAll = function(name, callback){
+exports.getAll = function(callback){
 	Playlist.find(function(error, doc){
 		callback(doc);
-	}
+	});
 };

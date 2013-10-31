@@ -4,7 +4,9 @@ var socket = require("../socket.js");
 //render view for local playlist
 exports.index = function(req, res){
 	console.log("Rendering index for " + req.ip);
-	res.render("local",{host: host, port: port});
+  dbHandler.getAll(function (doc) {
+    res.render("index",{ playlists: doc });
+  });
 };
 
 //render view for shared playlist

@@ -1,0 +1,17 @@
+<div id="overlay-background"></div>
+<div id="overlay-wrapper">
+  <div id="overlay-inner-wrapper">
+    <div class="grid-container"> 
+      <div id="overlay-sidebar">
+        <div class="search-area sidebar-component">
+          <input class="grid-2 alpha search-field" placeholder="Search" id="search"/>
+          <input class="grid-2 omega search-field" placeholder="Constraints" id="constraints"/>
+        </div>
+        <div id="player-container" class="sidebar-component">
+          <%- include partials/player.ejs %>
+        </div>
+      </div>
+      <div id="search-results"></div>
+    </div>
+  </div>
+</div>

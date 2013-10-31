@@ -13,8 +13,8 @@
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
 /*} */
 
-#search-results {
-  .video{
+  .video,.list-item{
+    display: block;
     padding: 10px 5px;
     @include clearfix;
     background: #5E5E5E;
@@ -28,30 +28,4 @@
       padding-left: 15px;
     }
   }
-}
-
-.search-result {
-  @include transition(background linear 0.1s);
-
-  background: $white-color;
-  box-sizing: border-box;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-top: 5px;
-  cursor: pointer;
-
-  & .thumbnail {
-    height: 50px;
-    background: darken($white-color, 20%);
-  }
-
-  & .title {
-    color: $blue-color;
-    font-family: $font-family-heavy;
-  }
-
-  &:hover {
-    background: lighten($blue-color, 50%);
-  }
-}
 
