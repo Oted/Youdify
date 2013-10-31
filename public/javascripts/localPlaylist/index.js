@@ -18,11 +18,6 @@
 		var element = doc.createElement("div");
 		$(element).addClass("video");
 	
-		var queue = doc.createElement("button");	
-		$(queue).addClass("add add-to-queue")
-		.html("+Q")
-		.appendTo(element);
-		
 		var playlist = doc.createElement("button");	
 		$(playlist).addClass("add add-to-playlist")
 		.html("+P")

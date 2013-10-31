@@ -30,7 +30,6 @@
 				height: that.height,
 				width: that.width,
 				allowfullscreen: 'true',
-				videoId: 'M7lc1UVf-VE',
 				events: {
 				  	"onReady": function(){
 						BMAP.MessageBoard.putTemporary("Player is now ready");
@@ -48,29 +47,7 @@
 	
 	//called on any statechange that occurs
 	YoutubePlayer.prototype.onPlayerStateChange = function(event){
-		//-3 (previous pressed)
-		//-2 (videos removed)
-		//-1 (unstarted)
-		//0 (ended)
-		//1 (playing)
-		//2 (paused)
-		//3 (buffering)
-		//5 (video cued)
-		switch(event.data)
-		{
-			case 0:
-				this.next();
-				break;
-			case 1:
-				BMAP.MessageBoard.put("Playing video " + this.current.title);
-				break;
-			case 2:
-				BMAP.MessageBoard.put("Video stopped");
-				break;
-			case 3:
-				console.log("Video is buffering");
-				break;
-		}
+		BMAP.VideoController.stateChange(event.data);
 	};
 	
 	//called when error in da player
@@ -82,14 +59,18 @@
 		}				
 	};
 
-	//play video
+	//toggle play video
 	YoutubePlayer.prototype.play = function(video){
 		if (video){
 			this.player.loadVideoById(video.id, 0, "large");	
 			this.setCurrent(video);
 		}
 		else {
-			this.stop();
+			if (this.isPlaying()){
+				this.pause();
+			}else{
+				this.player.playVideo();
+			}
 		}
 	};
 
@@ -149,12 +130,19 @@
 		}	
 
 		this.current = video;
+		console.log(this.current);
 	};
 
 	//returns current
 	YoutubePlayer.prototype.getCurrent = function(){
 		return this.current;
 	};
+	
+	//returns true if the player is playing
+	YoutubePlayer.prototype.isPlaying = function(){
+		return this.player.getPlayerState()===1;
+	};
+
 
 	BMAP.YoutubePlayer = YoutubePlayer; 
 	win.BMAP = BMAP;

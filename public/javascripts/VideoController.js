@@ -32,7 +32,37 @@
 		this.autoplay = false;
 		this.results = [];
 	};	
-	
+
+	//state changed on player, do something with ui
+	VideoController.prototype.stateChange = function(event){
+		var current = BMAP.YoutubePlayer.getCurrent()
+		//-3 (previous pressed)
+		//-2 (videos removed)
+		//-1 (unstarted)
+		//0 (ended)
+		//1 (playing)
+		//2 (paused)
+		//3 (buffering)
+		//5 (video cued)
+		switch(event)
+		{
+			case 0:
+				BMAP.YoutubePlayer.next();
+				break;
+			case 1:
+				BMAP.MessageBoard.put("Playing video " + current.title);
+				$(this.playEl).addClass("active");
+				break;
+			case 2:
+				BMAP.MessageBoard.put("Video stopped");
+				$(this.playEl).removeClass("active");
+				break;
+			case 3:
+				console.log("Video is buffering");
+				break;
+		}
+	}
+
 	VideoController.prototype.play = function(){
 		$(this.playEl).toggleClass("active");
 		BMAP.YoutubePlayer.play();
@@ -71,7 +101,7 @@
 	VideoController.prototype.toggleAutoplay = function(){
 		$(this.autoplayEl).toggleClass("active");
 		this.autoplay = !this.autoplay;
-		if (this.addNewToQue){
+		if (this.autoplay){
 			BMAP.MessageBoard.putTemporary("Autoplay is now on");
 		}
 		else {
@@ -147,11 +177,18 @@
 	//called when queue is empty to get new video to play
 	VideoController.prototype.onEmptyQueue = function(previous10,callback){
 		//PREVIOUS10!!!!
-		var video;
+		var video,
+			r,
+			count = 0;
 		if (this.autoplay){
 			if (this.shuffle){
-				var r = Math.floor(Math.random()*this.results.length);
-				video = this.results[r];
+				//try to avoid playing previous videos
+				do {
+					r = Math.floor(Math.random()*this.results.length),
+					video = this.results[r];
+					count += 1;
+					console.log(count);
+				} while(count<10 && (previous10.indexOf(video)!=-1));
 			}
 			else{
 				var index = this.results.indexOf(BMAP.YoutubePlayer.getCurrent());
@@ -173,7 +210,7 @@
 				callback(video);
 			}
 			else{
-				this.onEmptyyQueue(callback);
+				this.onEmptyQueue(previous10,callback);
 			}
 		}
 	};
@@ -182,7 +219,6 @@
 	VideoController.prototype.checkIfExist = function(video){
 		var found = false;
 		for (var i = 0; i < this.results.length; i++){
-			console.log(this.results[i].id);
 			if (video.id === this.results[i].id){
 				found = true;
 			};
