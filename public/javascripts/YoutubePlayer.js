@@ -140,7 +140,18 @@
 	
 	//returns true if the player is playing
 	YoutubePlayer.prototype.isPlaying = function(){
-		return this.player.getPlayerState()===1;
+		if (this.player.getPlayerState()){
+			return this.player.getPlayerState()===1;
+		}
+		else{
+			return false;
+		}
+	};
+
+	//empty the queue
+	YoutubePlayer.prototype.emptyQueue = function(){
+		this.queue = [];
+		BMAP.MessageBoard.putTemporary("Queue is now empty");
 	};
 
 	BMAP.YoutubePlayer = YoutubePlayer; 

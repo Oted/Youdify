@@ -28,8 +28,8 @@
         <div class="grid-container" id="main-content">
           <div class="grid-4" id="main-sidebar">
             <div class="search-area sidebar-component">
-              	<h1> sfsdfsdfsdf </h1>
-				<button class="icon-button fontawesome-file grid-4 alpha playlist-handlers" id="create-playlist"></button>
+              	<h1> w </h1>
+				<a class="icon-button grid-4 alpha playlist-handlers" id="create-playlist">Create new playlist</a>
           		<input class="grid-4 omega search-field" placeholder="Search for playlist" id="constraints"/>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div id="search-results">
               <% for(var i=0; i<playlists.length; i++) { %>
                 <% var plName = playlists[i].name; %>
-                 <a class="list-item" href="/playlists/<%= plName%>"><%= plName %></a><br>
+                 <a class="list-item title" href="/playlists/<%= plName%>"><%= plName %></a><br>
               <% } %>
             </div>
           </div>
