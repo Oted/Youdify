@@ -143,7 +143,6 @@
 		return this.player.getPlayerState()===1;
 	};
 
-
 	BMAP.YoutubePlayer = YoutubePlayer; 
 	win.BMAP = BMAP;
 }(window, document, jQuery));

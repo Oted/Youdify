@@ -3,23 +3,15 @@ var socket = require("../socket.js");
 
 //render view for local playlist
 exports.index = function(req, res){
-console.log("Rendering index for " + req.ip);
- 	dbHandler.getAll(function (doc) {
-   		res.render("index",{ playlists: doc });
-	});
-};
-
-//render view for adding new songs
-exports.add = function(req, res){
-	var name = req.query.name;
-	console.log("Rendering add view for " + req.ip + " pushing to playlist " + name);
-	res.render("overlay",{name : name});
+	console.log("Rendering index for " + req.ip);
+	res.render("local",{host: host, port: port});
 };
 
 //render view for shared playlist
 exports.playlists = function(req, res){
 var client = req.ip;
 var name = req.params[0].replace("+"," ");
+	
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
 			res.render("shared",{

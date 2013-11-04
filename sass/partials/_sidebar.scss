@@ -1,6 +1,5 @@
-#main-sidebar {
+#overlay-sidebar,#main-sidebar {
   position: fixed;
-  
   .sidebar-component {
     @include clearfix;
     margin-bottom: 20px;
@@ -12,6 +11,8 @@
     font-family: $font-family-light;
     font-size: 18px;
     height: 40px;
+  	padding-left: 5px;
+	margin: 2px; 
   }
 
   #player-container {

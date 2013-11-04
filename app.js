@@ -25,6 +25,7 @@ db.once('open', function callback () {
 
 	//set app route calls
 	app.get("/", routes.index);
+	app.get("/add/*", routes.add);
 	app.get("/index.html", routes.index);
 	app.get("/playlists/*", routes.playlists);
 	

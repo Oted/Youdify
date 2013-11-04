@@ -13,9 +13,9 @@
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
 /*} */
 
-#search-results {
-  .video{
-    padding: 10px 5px;
+.video,.list-item {
+	display:block;
+	padding: 10px 5px;
     @include clearfix;
     background: #5E5E5E;
     @include border-radius(12px);
@@ -27,7 +27,6 @@
     .title {
       padding-left: 15px;
     }
-  }
 }
 
 .search-result {

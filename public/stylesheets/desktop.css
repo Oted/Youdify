@@ -4,247 +4,247 @@
   margin-right: auto;
   width: 960px;
 }
-/* line 35, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 35, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-1, #main-wrapper .grid-container .grid-2, #main-wrapper .grid-container .grid-3, #main-wrapper .grid-container .grid-4, #main-wrapper .grid-container .grid-5, #main-wrapper .grid-container .grid-6, #main-wrapper .grid-container .grid-7, #main-wrapper .grid-container .grid-8, #main-wrapper .grid-container .grid-9, #main-wrapper .grid-container .grid-10, #main-wrapper .grid-container .grid-11, #main-wrapper .grid-container .grid-12 {
   display: inline;
   float: left;
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-1 {
   width: 60px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-2 {
   width: 140px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-3 {
   width: 220px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-4 {
   width: 300px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-5 {
   width: 380px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-6 {
   width: 460px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-7 {
   width: 540px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-8 {
   width: 620px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-9 {
   width: 700px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-10 {
   width: 780px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-11 {
   width: 860px;
 }
-/* line 38, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 38, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .grid-12 {
   width: 940px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-1 {
   padding-left: 80px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-2 {
   padding-left: 160px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-3 {
   padding-left: 240px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-4 {
   padding-left: 320px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-5 {
   padding-left: 400px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-6 {
   padding-left: 480px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-7 {
   padding-left: 560px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-8 {
   padding-left: 640px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-9 {
   padding-left: 720px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-10 {
   padding-left: 800px;
 }
-/* line 46, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 46, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .prefix-11 {
   padding-left: 880px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-1 {
   padding-right: 80px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-2 {
   padding-right: 160px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-3 {
   padding-right: 240px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-4 {
   padding-right: 320px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-5 {
   padding-right: 400px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-6 {
   padding-right: 480px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-7 {
   padding-right: 560px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-8 {
   padding-right: 640px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-9 {
   padding-right: 720px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-10 {
   padding-right: 800px;
 }
-/* line 54, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 54, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .suffix-11 {
   padding-right: 880px;
 }
-/* line 58, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 58, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .alpha {
   margin-left: 0;
 }
-/* line 60, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 60, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .omega {
   margin-right: 0;
 }
-/* line 81, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 81, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-1, #main-wrapper .grid-container .push-2, #main-wrapper .grid-container .push-3, #main-wrapper .grid-container .push-4, #main-wrapper .grid-container .push-5, #main-wrapper .grid-container .push-6, #main-wrapper .grid-container .push-7, #main-wrapper .grid-container .push-8, #main-wrapper .grid-container .push-9, #main-wrapper .grid-container .push-10, #main-wrapper .grid-container .push-11,
 #main-wrapper .grid-container .pull-1, #main-wrapper .grid-container .pull-2, #main-wrapper .grid-container .pull-3, #main-wrapper .grid-container .pull-4, #main-wrapper .grid-container .pull-5, #main-wrapper .grid-container .pull-6, #main-wrapper .grid-container .pull-7, #main-wrapper .grid-container .pull-8, #main-wrapper .grid-container .pull-9, #main-wrapper .grid-container .pull-10, #main-wrapper .grid-container .pull-11 {
   position: relative;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-1 {
   left: 80px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-1 {
   left: -80px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-2 {
   left: 160px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-2 {
   left: -160px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-3 {
   left: 240px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-3 {
   left: -240px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-4 {
   left: 320px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-4 {
   left: -320px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-5 {
   left: 400px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-5 {
   left: -400px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-6 {
   left: 480px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-6 {
   left: -480px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-7 {
   left: 560px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-7 {
   left: -560px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-8 {
   left: 640px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-8 {
   left: -640px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-9 {
   left: 720px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-9 {
   left: -720px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-10 {
   left: 800px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-10 {
   left: -800px;
 }
-/* line 85, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 85, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .push-11 {
   left: 880px;
 }
-/* line 87, ../../../../.rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
+/* line 87, ../../../../../../home/oted/.rvm/gems/ruby-2.0.0-p247@railstutorial_rails_4_0/gems/compass-960-plugin-0.10.4/stylesheets/960/_grid.sass */
 #main-wrapper .grid-container .pull-11 {
   left: -880px;
 }

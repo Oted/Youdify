@@ -1,31 +1,25 @@
 (function(win, doc, $, undefined){
 	"use strict";
 	var BMAP = win.BMAP || {};
-	var playlistName = undefined;
 
 	//constructor for PlaylistHandler
 	var PlaylistHandler = function(){
-		this.host  = $("#host-div").val();
-		this.port  = $("#port-div").val();
-
+		this.playlistName = $("#name-div").val();
 		this.createEl 	= $("#create-playlist").on("click", this.createNewPlaylist.bind(this));
-		this.attachEl 	= $("#attach-playlist").on("click", this.attachPlaylist.bind(this));
-		this.playlistEl = $("#attached-playlist").on("click", this.getToPLaylist.bind(this)).hide();
-		this.serverUrl = "http://" + this.host + ":" + this.port;
-		this.playlistUrl;
 	};
 
 	//creates a new playlist if it does not exists
 	PlaylistHandler.prototype.createNewPlaylist = function(){
 		var that = this;
 		var name = win.prompt("Enter playlist name","");
-		if (name!==null && name!==undefined || name!==""){
+		if (name!==null && name!==undefined && name!==""){
 			this.checkIfExist(name,function(found){
 				if (!found){
 					that.createNewDocument(name,function(created){
 						if (created){
 							BMAP.MessageBoard.putTemporary("Playlist " + name + " has been created");
-							that.attach(name);
+							var url = "http://" + doc.domain + ":" + location.port + "/playlists/" + name;
+							win.location = url;
 						}
 						else{
 							BMAP.MessageBoard.putTemporary("Playlist " + name + " was not created");
@@ -41,8 +35,9 @@
 	
 	//call server to see if a playlist exists
 	PlaylistHandler.prototype.checkIfExist = function(name, callback){
+		console.log(this.serverUrl);
 		$.ajax({
-			url: this.serverUrl + "/checkifexist/?name=" + name + "&callback=?",
+			url: "/checkifexist/?name=" + name + "&callback=?",
 			dataType:"jsonp",
 			beforesend: function(){
 				console.log("Sending...");
@@ -56,8 +51,9 @@
 
 	//calls server and creates a new document
 	PlaylistHandler.prototype.createNewDocument = function(name, callback){
+		console.log("in create new;");
 		$.ajax({
-			url: this.serverUrl + "/createnewplaylist/?name=" + name + "&callback=?",
+			url: "/createnewplaylist/?name=" + name + "&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Sending...");
@@ -69,49 +65,18 @@
 		});
 	};	
 	
-	//attach a playlist to the view
-	PlaylistHandler.prototype.attach = function(name){
-		this.createEl.hide();
-		this.attachEl.hide();
-		this.playlistEl.show().text("Open attached playlist");
-		this.playlistName = name;
-		this.playlistUrl = this.serverUrl + "/playlists/" + name.replace(" ", "+");
-		$(".add-to-playlist").show();		
-		BMAP.MessageBoard.putTemporary("The view is now attached to " + name);
-	};
-
-	//opens a new tab with the playlist attached
-	PlaylistHandler.prototype.getToPLaylist = function(){
-		win.open(this.playlistUrl, "_blank");
-	};
-
-	//called when attach playlist is clicked, if the playlist name exists its attached to the view
-	PlaylistHandler.prototype.attachPlaylist = function(name){
-		var that = this;
-		var name = win.prompt("Enter playlist name","here");
-		
-		this.checkIfExist(name,function(found){
-			if (found){
-				that.attach(name);
-			}
-			else{
-				BMAP.MessageBoard.putTemporary("Playlist " + name + " was not found");
-			}
-		});
-	};
-
 	//push videoids to server
 	PlaylistHandler.prototype.push = function(videos){
 		var that = this;
 		var videosTemp = videos;
 		if (this.playlistName){
-		for (var i = 0; i < videosTemp.length; i++){
+			for (var i = 0; i < videosTemp.length; i++){
 				$(videosTemp[i].element).find(".add-to-playlist").hide();
 				videosTemp[i].element = {};
 				
 				var str = JSON.stringify(videosTemp[i]);
 				$.ajax({
-					url: this.serverUrl + "/push/" + this.playlistName + "?video=" + replaceChars(str) + "&callback=?",
+					url: "/push/" + this.playlistName + "?video=" + replaceChars(str) + "&callback=?",
 					dataType:"jsonp",
 					beforeSend: function(){
 						console.log("Pushing " + videosTemp[i].title);

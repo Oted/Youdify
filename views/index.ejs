@@ -1,0 +1,49 @@
+<%- include partials/header.ejs %> 
+   	<script src="/javascripts/localPlaylist/index.js"></script>        
+    <script src="/javascripts/localPlaylist/LocalFeatures.js"></script>
+    <script src="/javascripts/localPlaylist/SearchMachine.js"></script>
+    <script src="/javascripts/localPlaylist/PlaylistHandler.js"></script>
+	<body>
+		<div id="main-wrapper">
+      <div id="inner-wrapper">
+        <div class="fixed-top">
+          <header id="main-header" class="grid-container">
+            <div class="grid-4">
+              <h2 class="text-center">
+              
+			  </h2>
+            </div>
+            <div class="grid-4">
+              <h1 class="text-center">  
+                Share your playlists!
+              </h1>
+            </div>
+            <div class="grid-4">
+              <h2 class="text-center">
+                
+              </h2>
+            </div>
+          </header>
+        </div>
+        <div class="grid-container" id="main-content">
+          <div class="grid-4" id="main-sidebar">
+            <div class="search-area sidebar-component">
+              	<h1> sfsdfsdfsdf </h1>
+				<button class="icon-button fontawesome-file grid-4 alpha playlist-handlers" id="create-playlist"></button>
+          		<input class="grid-4 omega search-field" placeholder="Search for playlist" id="constraints"/>
+            </div>
+          </div>
+          <div class="grid-8 push-4">
+            <div id="search-results">
+              <% for(var i=0; i<playlists.length; i++) { %>
+                <% var plName = playlists[i].name; %>
+                 <a class="list-item" href="/playlists/<%= plName%>"><%= plName %></a><br>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+    <div class="message text-center" id="message-board"></div>
+	</body>
+</html>

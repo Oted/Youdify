@@ -1,0 +1,46 @@
+#overlay-wrapper {
+  display:none;
+  position: fixed;
+  top: 10%;
+  left: 22%;
+  right: 22%;
+  height: 75%;
+  width:66%;
+  z-index: 30;
+  @include border-radius(2px);
+  @include box-shadow(0 2px 4px rgba(0,0,0,0.8));
+  overflow-y: scroll;
+}
+
+#overlay-inner-wrapper{
+  margin:10px;
+}
+
+#overlay-search-results {
+ margin: 10px 10px 10px 420px; 
+}
+
+.overlay-search-result {
+  @include transition(background linear 0.1s);
+
+  background: $white-color;
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+
+  & .thumbnail {
+    height: 50px;
+    background: darken($white-color, 20%);
+  }
+
+  & .title {
+    color: $blue-color;
+    font-family: $font-family-heavy;
+  }
+
+  &:hover {
+    background: lighten($blue-color, 50%);
+  }
+}

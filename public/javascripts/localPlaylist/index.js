@@ -5,13 +5,14 @@
 	//the first to run when document is ready
     $(function(){
 		var templateEl = generateTemplate();
-
+		var resultEl       = $("#overlay-search-results");
+		
 		BMAP.YoutubePlayer = new BMAP.YoutubePlayer(280,200);
-		BMAP.VideoController = new BMAP.VideoController(templateEl);
+		BMAP.VideoController = new BMAP.VideoController(templateEl,resultEl);
+		
 		BMAP.LocalFeatures = new BMAP.LocalFeatures();
 		BMAP.SearchMachine = new BMAP.SearchMachine();
 		BMAP.PlaylistHandler = new BMAP.PlaylistHandler();
-		BMAP.MessageBoard = new BMAP.MessageBoard();
 	});
 
 	var generateTemplate = function(){
@@ -20,7 +21,7 @@
 	
 		var playlist = doc.createElement("button");	
 		$(playlist).addClass("add add-to-playlist")
-		.html("+P")
+		.html("Add")
 		.appendTo(element);
 		
 		var title = doc.createElement("h3");

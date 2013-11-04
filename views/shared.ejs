@@ -1,21 +1,45 @@
 <%- include partials/header.ejs %>
+
 <script src="/socket.io/socket.io.js"></script>	
+
 <script src="/javascripts/sharedPlaylist/index.js"></script>
 <script src="/javascripts/sharedPlaylist/SharedFeatures.js"></script>
 <script src="/javascripts/sharedPlaylist/PlaylistSocket.js"></script>
-	
 	<body>
 		<input type="hidden" id="name-div" value="<%=name %>"/>
 		<input type="hidden" id="client-div" value="<%=client %>"/>
 		<input type="hidden" id="host-div" value="<%=host %>"/>
 		<input type="hidden" id="port-div" value="<%=port %>"/>
+	<iframe id="overlay-wrapper" src="http://<%=host %>:<%=port %>/add/?name=<%=name %>"></iframe>
     <div id="main-wrapper">
       <div id="inner-wrapper">
+		<div class="fixed-top">
+          <header id="main-header" class="grid-container">
+            <div class="grid-4">
+              <h2 class="text-center">
+			  
+			  </h2>
+            </div>
+            <div class="grid-4">
+              <h1 class="text-center">  
+				<%=name %>
+			  </h1>
+            </div>
+            <div class="grid-4">
+              <h2 class="text-center">
+                
+              </h2>
+            </div>
+          </header>
+        </div>
+
         <div id="main-content" class="grid-container">
           <div id="main-sidebar" class="grid-4">
-            <div id="player-container" class="sidebar-component">
+            <button id="add-video"> Add new video </button>
+            <button id="add-new-to-queue"> Add new videos to queue </button>
+			<div id="player-container" class="sidebar-component">
 				<%- include partials/player.ejs %>
-            </di v>
+			</div>
           </div>
           <div class="grid-8 push-4">
             <div id="search-results"></div>

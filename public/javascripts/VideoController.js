@@ -2,11 +2,14 @@
 	"use strict";
 	var BMAP = win.BMAP || {};
 
-	var VideoController = function(template){
+	var VideoController = function(template, resultEl){
 		this.templateEl     = template;
-		this.resultEl       = $("#search-results");
+		this.resultEl       = resultEl;
 		this.qContainerEl 	= $("#queue");
 		this.pContainerEl 	= $("#previous");
+   		this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this)).attr("title",
+			""		
+		);
 		
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
@@ -66,20 +69,17 @@
 	VideoController.prototype.play = function(){
 		$(this.playEl).toggleClass("active");
 		BMAP.YoutubePlayer.play();
-		//code for animations go here
 		return false;
 	};
 
 	VideoController.prototype.forward = function(){
 		BMAP.YoutubePlayer.next();
-		//code for animations go here
 		return false;
 	};
 
 	//previous pressed
 	VideoController.prototype.previous = function(){
 		BMAP.YoutubePlayer.playPrev();
-		//code for animantion goes here
 		return false;
 	};
 	
@@ -93,7 +93,6 @@
 		else {
 			BMAP.MessageBoard.putTemporary("Shuffle is now off");
 		}
-		//code for animations here
 		return false;
 	};
 
@@ -107,7 +106,6 @@
 		else {
 			BMAP.MessageBoard.putTemporary("Autoplay is now off");
 		}
-		//code for animations here
 		return false;
 	};
 
@@ -122,7 +120,6 @@
 		else {
 			BMAP.MessageBoard.putTemporary("Repeat one is now off");
 		}
-		//code for animations goes here
 		return false;
 	};
 	
@@ -150,7 +147,6 @@
 		element.find(".add-to-queue").on("click", function(){
 			BMAP.YoutubePlayer.queueVideo(video);
 		});
-
 		
 		//add action for +P
         element.find(".add-to-playlist").on("click", function(){
@@ -159,16 +155,12 @@
 			BMAP.PlaylistHandler.push(videos);
 		});
 
-		if (!BMAP.PlaylistHandler || !BMAP.PlaylistHandler.isAttached()){
-			element.find(".add-to-playlist").hide();
-		};
-
 		video.element = element;
 		this.resultEl.append(element);
 		
-		if (this.addNewToQue){
+		if (BMAP.SharedFeatures && BMAP.SharedFeatures.getAddNewToQue()){
 			BMAP.YoutubePlayer.queueVideo(video);	
-			if (BMAP.YoutubePlayer.isStopped()){
+			if (!BMAP.YoutubePlayer.isPlaying()){
 				BMAP.YoutubePlayer.next();
 			}
 		}
@@ -176,10 +168,7 @@
 
 	//called when queue is empty to get new video to play
 	VideoController.prototype.onEmptyQueue = function(previous10,callback){
-		//PREVIOUS10!!!!
-		var video,
-			r,
-			count = 0;
+		var video, r, count = 0;
 		if (this.autoplay){
 			if (this.shuffle){
 				//try to avoid playing previous videos
@@ -252,9 +241,66 @@
 		 return ($(video.element).css("display") == 'none');
 	};
 
+	//returns if repeating
 	VideoController.prototype.getRepeat = function(){
 		return this.repeat;
 	};
+
+	//triggers when constraints keyup
+	VideoController.prototype.constrKeypress = function(event){
+		var results = BMAP.VideoController.getResults();
+		var key = event.which;
+		var backspace = key == 8;
+		var constraints = this.constraintEl.val().split(",");
+		var constraint = constraints[constraints.length - 1];
+			
+		if (constraint.length == 0 && constraints.length ==0){
+			$(".video").show();
+			return;
+		}
+
+		//triggers when we are inbetween two keywords
+		if (constraint.length == 0){
+			//input box is empty
+			if (constraints.length <= 1){
+				results.forEach(function(video){
+					if (BMAP.VideoController.isHidden(video)){
+						video.element.show();
+					}
+				});
+				return;
+			}
+			else{
+				backspace = true;
+			}
+		}
+
+		if (constraint.indexOf("-")==0){
+			constraint = constraint.replace("-","");
+				if(constraint.length!==0){
+					results.forEach(function(video){
+						if (video.title.toLowerCase().indexOf(constraint) !== -1){
+							video.element.hide();
+						}else if (backspace){
+							video.element.show();
+						}
+					});
+				}
+		}
+		else {
+			constraint = constraint.replace("+","");
+			if(constraint.length!==0){
+				results.forEach(function(video){
+					if (video.title.toLowerCase().indexOf(constraint) == -1){
+						video.element.hide();
+					}else if (backspace){
+						video.element.show();
+					}
+				});
+			}
+		}
+	};
+
 
 	BMAP.VideoController = VideoController;
 	win.BMAP = BMAP;
