@@ -20,12 +20,30 @@
 			"Empty the queue"		
 		);
 
-		this.addNewToQueEl	= $("#add-new-to-queue").on("click", this.toggleAddNewToQue.bind(this)).attr("title",
+		this.addNewToQueEl = $("#add-new-to-queue").on("click", this.toggleAddNewToQue.bind(this)).attr("title",
 			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
 		);
 
+		this.hooverEl = $("#hoover-element");
+
 		this.addNewToQue = false;
 	};	
+
+	//show info for video
+	SharedFeatures.prototype.showInfo = function(video){
+		$("#video-thumb").attr("src", video.thumb);
+		$("#video-category").text("Category : "+video.category);
+		$("#video-views").text("Views : "+video.views);
+		$("#video-duration").text("Duration : "+video.duration);
+		$("#video-likes").text("Likes : "+video.likes);
+		$("#video-dislikes").text("Dislikes : "+video.dislikes);
+		$(this.hooverEl).show();
+	};
+
+	//hide info for video	
+	SharedFeatures.prototype.hideInfo = function(video){
+		$(this.hooverEl).hide();
+	};
 
 	//empty the queue
 	SharedFeatures.prototype.emptyQueue = function(){

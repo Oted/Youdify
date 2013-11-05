@@ -137,11 +137,7 @@
 		.on("click", function(){
 			BMAP.YoutubePlayer.play(video);	
 		});
-		
-        element.find(".duration").html(video.duration);
-        element.find(".views").html(video.views);
-        element.find(".category").html(video.category);
-
+	
 		//add action for +Q
 		element.find(".add-to-queue").on("click", function(){
 			BMAP.YoutubePlayer.queueVideo(video);
@@ -153,6 +149,16 @@
 			videos.push(video);
 			BMAP.PlaylistHandler.push(videos);
 		});
+		
+		if (BMAP.SharedFeatures){
+			element.mouseenter(function(event){
+				BMAP.SharedFeatures.showInfo(video);
+			});
+		
+			element.mouseleave(function(event){
+				BMAP.SharedFeatures.hideInfo();
+			});
+		}
 
 		video.element = element;
 		this.resultEl.append(element);
