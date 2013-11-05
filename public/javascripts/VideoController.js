@@ -151,6 +151,7 @@
 	
 		//set properties of video element
 		element.find(".thumb").attr("src", video.thumb);
+		$("<h4></h4>").text(video.category).appendTo(element.find(".subtitle"));
 		$("<h4></h4>").text("Duration : " + video.duration).appendTo(element.find(".subtitle"));
 		$("<h4></h4>").text("Views : " + video.views).appendTo(element.find(".subtitle"));
 		$("<h4></h4>").text("Likes : " + video.likes).appendTo(element.find(".subtitle"));

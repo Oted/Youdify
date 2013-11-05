@@ -36,7 +36,7 @@
 		.html("Add2Q")
 		.appendTo(thumbDiv);
 
-		$(subTitleDiv).addClass("grid-6 subtitle")
+		$(subTitleDiv).addClass("grid-2 subtitle")
 		.appendTo(element);
 
 		return element;

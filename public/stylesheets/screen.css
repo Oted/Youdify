@@ -282,18 +282,19 @@ input {
   -o-border-radius: 3px;
   border-radius: 3px;
   margin-bottom: 7px;
+  display: -webkit-flex;
 }
-/* line 23, ../../sass/partials/_main-area.scss */
+/* line 25, ../../sass/partials/_main-area.scss */
 .video *, .list-item * {
   line-height: 15px;
 }
-/* line 26, ../../sass/partials/_main-area.scss */
+/* line 28, ../../sass/partials/_main-area.scss */
 .video .title, .list-item .title {
   cursor: pointer;
   padding-left: 20px;
 }
 
-/* line 32, ../../sass/partials/_main-area.scss */
+/* line 34, ../../sass/partials/_main-area.scss */
 .search-result {
   -webkit-transition: background linear;
   -webkit-transition-delay: 0.1s;
@@ -307,17 +308,17 @@ input {
   margin-top: 5px;
   cursor: pointer;
 }
-/* line 42, ../../sass/partials/_main-area.scss */
+/* line 44, ../../sass/partials/_main-area.scss */
 .search-result .thumbnail {
   height: 50px;
   background: silver;
 }
-/* line 47, ../../sass/partials/_main-area.scss */
+/* line 49, ../../sass/partials/_main-area.scss */
 .search-result .title {
   color: #115980;
   font-family: "Arial Black", "Helvetica Bold", sans-serif;
 }
-/* line 52, ../../sass/partials/_main-area.scss */
+/* line 54, ../../sass/partials/_main-area.scss */
 .search-result:hover {
   background: #9ed5f2;
 }
