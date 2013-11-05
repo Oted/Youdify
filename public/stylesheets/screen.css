@@ -340,11 +340,11 @@ input {
   background: #262626;
   position: fixed;
   width: 900px;
-  height: 400px;
+  height: 420px;
   left: 50%;
   margin-left: -450px;
   top: 50%;
-  margin-top: -200px;
+  margin-top: -210px;
   z-index: 30;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
