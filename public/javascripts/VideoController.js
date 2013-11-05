@@ -133,8 +133,7 @@
 		
 		element.attr("id", "");
         element.find(".title")
-		.html(video.title)
-		.on("click", function(){
+		.html(video.title).on("click", function(){
 			BMAP.YoutubePlayer.play(video);	
 		});
 	
@@ -149,17 +148,14 @@
 			videos.push(video);
 			BMAP.PlaylistHandler.push(videos);
 		});
-		
-		if (BMAP.SharedFeatures){
-			element.mouseenter(function(event){
-				BMAP.SharedFeatures.showInfo(video);
-			});
-		
-			element.mouseleave(function(event){
-				BMAP.SharedFeatures.hideInfo();
-			});
-		}
-
+	
+		//set properties of video element
+		element.find(".thumb").attr("src", video.thumb);
+		$("<h4></h4>").text("Duration : " + video.duration).appendTo(element.find(".subtitle"));
+		$("<h4></h4>").text("Views : " + video.views).appendTo(element.find(".subtitle"));
+		$("<h4></h4>").text("Likes : " + video.likes).appendTo(element.find(".subtitle"));
+		$("<h4></h4>").text("Dislikes : " + video.dislikes).appendTo(element.find(".subtitle"));
+	
 		video.element = element;
 		this.resultEl.append(element);
 		

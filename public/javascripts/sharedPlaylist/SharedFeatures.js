@@ -24,8 +24,6 @@
 			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
 		);
 
-		this.hooverEl = $("#hoover-element");
-
 		this.addNewToQue = false;
 	};	
 
@@ -37,12 +35,6 @@
 		$("#video-duration").text("Duration : "+video.duration);
 		$("#video-likes").text("Likes : "+video.likes);
 		$("#video-dislikes").text("Dislikes : "+video.dislikes);
-		$(this.hooverEl).show();
-	};
-
-	//hide info for video	
-	SharedFeatures.prototype.hideInfo = function(video){
-		$(this.hooverEl).hide();
 	};
 
 	//empty the queue

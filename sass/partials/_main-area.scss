@@ -18,14 +18,14 @@
 	padding: 10px 5px;
     @include clearfix;
     background: #5E5E5E;
-    @include border-radius(12px);
+    @include border-radius(3px);
     margin-bottom: 7px;
     * {
-      float: left;
-      line-height: 25px;
+      line-height: 15px;
     }
     .title {
-      padding-left: 15px;
+	  cursor:pointer;
+      padding-left: 20px;
     }
 }
 
