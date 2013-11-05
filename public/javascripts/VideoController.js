@@ -7,9 +7,8 @@
 		this.resultEl       = resultEl;
 		this.qContainerEl 	= $("#queue");
 		this.pContainerEl 	= $("#previous");
-   		this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this)).attr("title",
-			""		
-		);
+
+   		this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
 		
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
@@ -32,7 +31,7 @@
 
 		this.shuffle = false;
 		this.repeat  = false;
-		this.autoplay = false;
+		this.autoplay = true;
 		this.results = [];
 	};	
 

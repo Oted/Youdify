@@ -16,12 +16,21 @@
 			"Add new video to the playlist"		
 		);
 
+		this.emptyQueEl	= $("#empty-queue").on("click", this.emptyQueue.bind(this)).attr("title",
+			"Empty the queue"		
+		);
+
 		this.addNewToQueEl	= $("#add-new-to-queue").on("click", this.toggleAddNewToQue.bind(this)).attr("title",
 			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
 		);
 
 		this.addNewToQue = false;
 	};	
+
+	//empty the queue
+	SharedFeatures.prototype.emptyQueue = function(){
+		BMAP.YoutubePlayer.emptyQueue();
+	};
 
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
@@ -30,6 +39,7 @@
     $("body").toggleClass('no-scrolling');
 	};
 
+	//returns the bool addNewToQue
 	SharedFeatures.prototype.getAddNewToQue = function(){
 		return this.addNewToQue;
 	};

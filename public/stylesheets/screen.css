@@ -239,14 +239,15 @@ input {
 #overlay-sidebar #player-container iframe, #main-sidebar #player-container iframe {
   width: 100%;
   margin-bottom: 3px;
+  margin-top: 3px;
 }
-/* line 25, ../../sass/partials/_sidebar.scss */
+/* line 26, ../../sass/partials/_sidebar.scss */
 #overlay-sidebar .playback-ctrl-wrap, #main-sidebar .playback-ctrl-wrap {
   width: 16.66667%;
   display: block;
   float: left;
 }
-/* line 29, ../../sass/partials/_sidebar.scss */
+/* line 30, ../../sass/partials/_sidebar.scss */
 #overlay-sidebar .playback-ctrl-wrap .playback-ctrl, #main-sidebar .playback-ctrl-wrap .playback-ctrl {
   display: block;
   margin: 0 2px;
