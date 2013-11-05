@@ -99,67 +99,43 @@ h2 {
   font-size: 50px;
 }
 
-<<<<<<< HEAD
-/* line 29, ../../sass/partials/_base.scss */
+/* line 32, ../../sass/partials/_base.scss */
 h4 {
   font-size: 15px;
 }
 
-/* line 33, ../../sass/partials/_base.scss */
+/* line 36, ../../sass/partials/_base.scss */
 h4 {
   font-size: 12px;
 }
 
-/* line 37, ../../sass/partials/_base.scss */
-=======
-/* line 32, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 40, ../../sass/partials/_base.scss */
 .hidden {
   display: none;
 }
 
-<<<<<<< HEAD
-/* line 41, ../../sass/partials/_base.scss */
-=======
-/* line 36, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 44, ../../sass/partials/_base.scss */
 .text-center {
   text-align: center;
 }
 
-<<<<<<< HEAD
-/* line 45, ../../sass/partials/_base.scss */
-=======
-/* line 40, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 48, ../../sass/partials/_base.scss */
 .block {
   display: block;
 }
 
-<<<<<<< HEAD
-/* line 49, ../../sass/partials/_base.scss */
-=======
-/* line 44, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 52, ../../sass/partials/_base.scss */
 a {
   text-decoration: none;
   color: #262626;
 }
-<<<<<<< HEAD
-/* line 53, ../../sass/partials/_base.scss */
-=======
-/* line 48, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 56, ../../sass/partials/_base.scss */
 a:hover {
   color: #404040;
   text-decoration: none;
 }
 
-<<<<<<< HEAD
-/* line 59, ../../sass/partials/_base.scss */
-=======
-/* line 54, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 62, ../../sass/partials/_base.scss */
 .icon-button {
   text-align: center;
   -webkit-transition: all ease-in;
@@ -178,19 +154,11 @@ a:hover {
   font-size: 25px;
   cursor: pointer;
 }
-<<<<<<< HEAD
-/* line 67, ../../sass/partials/_base.scss */
-.icon-button:hover {
-  background: #1d98da;
-}
 /* line 70, ../../sass/partials/_base.scss */
-=======
-/* line 62, ../../sass/partials/_base.scss */
 .icon-button:hover {
   background: #1d98da;
 }
-/* line 65, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 73, ../../sass/partials/_base.scss */
 .icon-button.active {
   background: #1d98da;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) inset;
@@ -198,11 +166,7 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) inset;
 }
 
-<<<<<<< HEAD
-/* line 78, ../../sass/partials/_base.scss */
-=======
-/* line 73, ../../sass/partials/_base.scss */
->>>>>>> 88b8a59a717a2d8ce0d49380056595e29922ead0
+/* line 81, ../../sass/partials/_base.scss */
 input {
   border: 0;
 }
