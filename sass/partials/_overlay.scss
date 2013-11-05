@@ -1,15 +1,29 @@
+#overlay-background {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  opacity: 0.5;
+  z-index: 20;
+}
+
+$overlay-width: 900px;
+$overlay-height: 400px;
 #overlay-wrapper {
   display:none;
+  background: $black-color;
   position: fixed;
-  top: 10%;
-  left: 22%;
-  right: 22%;
-  height: 75%;
-  width:66%;
+  width: $overlay-width;
+  height: $overlay-height;
+  left: 50%;
+  margin-left: -$overlay-width/2;
+  top: 50%;
+  margin-top: -$overlay-height/2;
   z-index: 30;
   @include border-radius(2px);
   @include box-shadow(0 2px 4px rgba(0,0,0,0.8));
-  overflow-y: scroll;
+  padding: 10px;
 }
 
 #overlay-inner-wrapper{
@@ -17,7 +31,7 @@
 }
 
 #overlay-search-results {
- margin: 10px 10px 10px 420px; 
+ margin-left: 300px; 
 }
 
 .overlay-search-result {
