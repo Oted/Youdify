@@ -34,18 +34,9 @@
 
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
-		if ($("#overlay-wrapper").is(":visible")){	
-			$("#overlay-wrapper").toggle(400,function(){
-				$("body").css("background", "#262626");
-				$("#main-wrapper").toggle(400);	
-			});	
-		}
-		else{
-			$("#main-wrapper").toggle(400,function(){
-				$("body").css("background", "grey");
-				$("#overlay-wrapper").toggle(400);	
-			});	
-		}
+    $("#overlay-wrapper").toggle(400);	
+    $("#overlay-background").toggle(100);
+    $("body").toggleClass('no-scrolling');
 	};
 
 	//returns the bool addNewToQue
