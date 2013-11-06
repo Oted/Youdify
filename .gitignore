@@ -20,6 +20,7 @@ results
 
 npm-debug.log
 ### node_modules we use local node_modules
+node_modules
 
 ### /home/jnes/.gitignore-boilerplates/Global/vim.gitignore
 
