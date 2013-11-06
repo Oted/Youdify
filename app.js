@@ -21,7 +21,7 @@ db.once('open', function callback () {
 
 	app.set("view engine", "ejs");
 	app.use(express.static(__dirname + '/public'));
-	app.user(express.stats(__dirname + '/node_modules/knockout/build/output'));
+	app.use(express.static(__dirname + '/node_modules/knockout/build/output'));
 	app.enable('trust proxy');
 
 	//set app route calls
