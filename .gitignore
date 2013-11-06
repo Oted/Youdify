@@ -27,6 +27,6 @@ npm-debug.log
 *.un~
 Session.vim
 .netrwhist
-*~
+public/stylesheets/*.css
 
 
