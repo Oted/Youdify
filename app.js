@@ -19,8 +19,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 	console.log("Database successfuly opened\nExpress and socket is now listening on port "+ host + ":" + port);
 
-	app.set("view engine", "ejs");	
+	app.set("view engine", "ejs");
 	app.use(express.static(__dirname + '/public'));
+	app.user(express.stats(__dirname + '/node_modules/knockout/build/output'));
 	app.enable('trust proxy');
 
 	//set app route calls
@@ -28,7 +29,7 @@ db.once('open', function callback () {
 	app.get("/add/*", routes.add);
 	app.get("/index.html", routes.index);
 	app.get("/playlists/*", routes.playlists);
-	
+
 	//Api calls
 	app.get("/checkifexist/*", routes.checkIfExist);
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
