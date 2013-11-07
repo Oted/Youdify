@@ -16,6 +16,8 @@
 			"Add new video to the playlist"		
 		);
 
+		this.overlayEl = $("#overlay-background").on("click", this.toggleAddVideo.bind(this));
+
 		this.emptyQueEl	= $("#empty-queue").on("click", this.emptyQueue.bind(this)).attr("title",
 			"Empty the queue"		
 		);
@@ -34,9 +36,10 @@
 
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
-    $("#overlay-wrapper").toggle(400);	
-    $("#overlay-background").toggle(100);
-    $("body").toggleClass('no-scrolling');
+    	$("#player").toggle(200);
+		$("#overlay-wrapper").toggle(400);	
+    	$("#overlay-background").toggle(100);
+    	$("body").toggleClass('no-scrolling');
 	};
 
 	//returns the bool addNewToQue

@@ -8,7 +8,7 @@
   z-index: 20;
 }
 
-$overlay-width: 900px;
+$overlay-width: 920px;
 $overlay-height: 420px;
 #overlay-wrapper {
   display:none;
@@ -17,7 +17,7 @@ $overlay-height: 420px;
   width: $overlay-width;
   height: $overlay-height;
   left: 50%;
-  margin-left: -$overlay-width/2;
+  margin-left: -$overlay-width/2 - 10;
   top: 50%;
   margin-top: -$overlay-height/2;
   z-index: 30;
