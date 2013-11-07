@@ -17,7 +17,6 @@
 				if (!found){
 					that.createNewDocument(name,function(created){
 						if (created){
-							BMAP.MessageBoard.putTemporary("Playlist " + name + " has been created");
 							var url = "http://" + doc.domain + ":" + location.port + "/playlists/" + name;
 							win.location = url;
 						}
@@ -35,7 +34,6 @@
 	
 	//call server to see if a playlist exists
 	PlaylistHandler.prototype.checkIfExist = function(name, callback){
-		console.log(this.serverUrl);
 		$.ajax({
 			url: "/checkifexist/?name=" + name + "&callback=?",
 			dataType:"jsonp",
