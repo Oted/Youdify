@@ -37,6 +37,7 @@
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
     	$("#main-sidebar").toggle();
+    	$("#player").toggle();
 		$("#overlay-wrapper").toggle(400);	
     	$("#overlay-background").toggle(100);
     	$("body").toggleClass('no-scrolling');
