@@ -18,6 +18,7 @@
 			thumbDiv = doc.createElement("div"),
 			subTitleDiv = doc.createElement("div"),
 			queue = doc.createElement("button"),	
+			hide = doc.createElement("button"),	
 			title = doc.createElement("h3"),
 			thumb = doc.createElement("image");
 
@@ -32,8 +33,12 @@
 		$(thumb).addClass("thumb grid-1")
 		.appendTo(thumbDiv);
 	
-		$(queue).addClass("add-to-queue grid-1")
-		.html("Add2Q")
+		$(queue).addClass("grid-1 add-to-queue")
+		.html("Queue")
+		.appendTo(thumbDiv);
+	
+		$(hide).addClass("grid-1 hide-video")
+		.html("Remove")
 		.appendTo(thumbDiv);
 
 		$(subTitleDiv).addClass("grid-2 subtitle")

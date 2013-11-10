@@ -139,10 +139,16 @@
 			BMAP.YoutubePlayer.play(video);	
 		});
 	
-		//add action for +Q
+		//add action for queue
 		element.find(".add-to-queue").on("click", function(){
 			BMAP.YoutubePlayer.queueVideo(video);
 		});
+
+		//add action for remove (hide)
+		element.find(".hide-video").on("click", function(){
+			$(element).hide(100);
+		});
+
 		
 		//add action for +P
         element.find(".add-to-playlist").on("click", function(){
