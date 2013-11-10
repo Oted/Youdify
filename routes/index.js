@@ -5,7 +5,8 @@ var socket = require("../socket.js");
 exports.index = function(req, res){
 console.log("Rendering index for " + req.ip);
  	dbHandler.getAll(function (doc) {
-   		res.render("index",{ playlists: doc });
+		console.log(doc[0]);
+		res.render("index",{ playlists: doc });
 	});
 };
 

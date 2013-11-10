@@ -26,6 +26,7 @@
 			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
 		);
 
+		this.overlayed = false;
 		this.addNewToQue = false;
 	};	
 
@@ -36,11 +37,16 @@
 
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
-    	$("#main-sidebar").toggle();
+		$("#main-sidebar").toggle();
     	$("#player").toggle();
 		$("#overlay-wrapper").toggle(400);	
     	$("#overlay-background").toggle(100);
     	$("body").toggleClass('no-scrolling');
+		try{
+			doc.getElementById("overlay-wrapper").contentWindow.window.BMAP.YoutubePlayer.stop();
+		}catch(error){
+			console.log("lol not in overlay noob");
+		}
 	};
 
 	//returns the bool addNewToQue

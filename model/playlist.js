@@ -85,14 +85,18 @@ exports.push = function(name, client, video, callback){
 
 //chekck if a video exist in a playlist
 exports.checkForVideo = function(name, video, callback){
+	var videos, found, vid;
 	console.log("in check for video : " + video.id);
 	this.checkIfExist(name,function(data){
 		if (data.found){
-			var videos = data.doc.videos;
-			var found = false;
+			videos = data.doc.videos;
+			found = false;
 			for (var i = 0; i < videos.length; i++){
-				var vid = JSON.parse(videos[i]);
-				console.log(vid.id);
+				try{
+					vid = JSON.parse(videos[i]);
+				}catch(error){
+					console.log("ERROR IN VIDEOS checkForVideo: probably wring format för JSON parse\nerror");
+				}
 				if (vid.id === video.id){
 					found = true;
 				}
@@ -117,6 +121,10 @@ exports.get = function(name, callback){
 //gets all playlists
 exports.getAll = function(callback){
 	Playlist.find(function(error, doc){
+		for (var i = 0; i < doc.length; i++){
+			var number = doc[i].videos.length;
+			doc[i].videos = number + "";
+		}
 		callback(doc);
 	});
 };

@@ -8,7 +8,9 @@
 		this.qContainerEl 	= $("#queue");
 		this.pContainerEl 	= $("#previous");
 
-   		this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this));
+   		this.constraintEl   = $("#constraints").on("keyup", this.constrKeypress.bind(this)).attr("title",
+			"By typing here you sort out what is shown in the list"
+		);
 		
 		this.playEl 		= $("#play").on("click", this.play.bind(this)).attr("title",
 			"Play or pause video"	
