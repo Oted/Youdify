@@ -35,10 +35,12 @@
 	
 		$(queue).addClass("grid-1 add-to-queue")
 		.html("Queue")
+		.attr("title", "Add this video to the que")
 		.appendTo(thumbDiv);
 	
 		$(hide).addClass("grid-1 hide-video")
 		.html("Remove")
+		.attr("title", "Remove this video from the list, the video will still be in the list efter refresh")
 		.appendTo(thumbDiv);
 
 		$(subTitleDiv).addClass("grid-2 subtitle")

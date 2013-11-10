@@ -208,7 +208,7 @@
 				callback(video);
 			}
 			else{
-				this.onEmptyQueue(previous10,callback);
+				this.onEmptyQueue(previous10.slice(0,previous10.length-1),callback);
 			}
 		}
 	};
