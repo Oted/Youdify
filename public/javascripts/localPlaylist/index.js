@@ -4,6 +4,7 @@
 	
 	//the first to run when document is ready
     $(function(){
+		$("#main-sidebar").toggle().toggle();
 		var templateEl = generateTemplate();
 		var resultEl       		= $("#overlay-search-results");
 		BMAP.YoutubePlayer 		= new BMAP.YoutubePlayer(280,200);

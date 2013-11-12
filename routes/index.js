@@ -28,6 +28,7 @@ var name = req.params[0].replace("+"," ");
 				host: host,
 				port: port
 			});
+			dbHandler.update(name);
 		}
 		else {
 			res.send("no such playlist");

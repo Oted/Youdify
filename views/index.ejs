@@ -47,14 +47,26 @@
           </div>
           <div class="grid-8 push-4">
             <div id="search-results">
-              <% for(var i=0; i<playlists.length; i++) { %>
-                <% var plName = playlists[i].name; %>
-                <% var plVideos = playlists[i].videos[0]; %>
-                <% var plDate = new Date(playlists[i].date).toDateString(); %>
-				 <a class="list-item" href="/playlists/<%= plName %>"> 
-					<span class="grid-4"> <%= plName %></span>
-					<span class="grid-2"> Videos : <%= plVideos %></span>
-					<span class="grid-2"> <%= plDate %></span>
+					<a class="head-results list-item"> 
+						<span class="grid-3"> Name </span>
+						<span class="grid-1"> Videos </span>
+						<span class="grid-2"> Category </span>
+						<span class="grid-2"> Freetag </span>
+						<span class="grid-2"> Description </span>
+				 	</a><br>
+             	 <% for(var i=0; i<playlists.length; i++) { %>
+                	<% var plName = playlists[i].name; %>
+                	<% var plVideos = playlists[i].videos[0]; %>
+                	<% var plCategory = playlists[i].category; %>
+                	<% var plDescription = playlists[i].description; %>
+                	<% var plFreetag = playlists[i].freetag; %>
+                	<% var plDate = new Date(playlists[i].date).toDateString(); %>
+					<a class="list-item" href="/playlists/<%= plName %>"> 
+					<span class="grid-3"> <%= plName %></span>
+					<span class="grid-1"> <%= plVideos %></span>
+					<span class="grid-2"> <%= plCategory %></span>
+					<span class="grid-2"> #<%= plFreetag %></span>
+					<span class="grid-2"> <%= plDescription %></span>
 				 </a>
 				<% } %>
             </div>

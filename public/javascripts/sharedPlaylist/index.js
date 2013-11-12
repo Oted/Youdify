@@ -4,6 +4,9 @@
 	
 	//the first to run when document is ready
     $(function(){
+		//stupid firefox bugfix
+		$("#main-sidebar").toggle().toggle();
+
 		var templateEl = generateTemplate();
 		var resultEl       		= $("#search-results");	
 		BMAP.YoutubePlayer		= new BMAP.YoutubePlayer(280,200);		
@@ -21,7 +24,7 @@
 			queue = doc.createElement("button"),	
 			hide = doc.createElement("button"),	
 			title = doc.createElement("h3"),
-			thumb = doc.createElement("image");
+			thumb = doc.createElement("img");
 
 		$(element).addClass("video");
 
@@ -44,7 +47,7 @@
 		.attr("title", "Remove this video from the list, the video will still be in the list efter refresh")
 		.appendTo(thumbDiv);
 
-		$(subTitleDiv).addClass("grid-2 subtitle")
+		$(subTitleDiv).addClass("subtitle")
 		.appendTo(element);
 
 		return element;

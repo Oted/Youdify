@@ -27,7 +27,6 @@
     }
 }
 
- 
 
 .video{
 	display:block;
@@ -41,11 +40,22 @@
 	* {
       line-height: 15px;
     }
+
     .title {
 	  cursor:pointer;
       padding-left: 20px;
     }
+
+	.subtitle{
+		float:right;
+		width:120px;
+	}
 }
+
+.thumb{
+	float:bottom;
+}
+
 
 .search-result {
   @include transition(background linear 0.1s);
