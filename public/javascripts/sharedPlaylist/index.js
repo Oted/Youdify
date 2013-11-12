@@ -5,7 +5,7 @@
 	//the first to run when document is ready
     $(function(){
 		var templateEl = generateTemplate();
-		var resultEl       = $("#search-results");	
+		var resultEl       		= $("#search-results");	
 		BMAP.YoutubePlayer		= new BMAP.YoutubePlayer(280,200);		
 		BMAP.VideoController	= new BMAP.VideoController(templateEl, resultEl);		
 		BMAP.SharedFeatures		= new BMAP.SharedFeatures();		

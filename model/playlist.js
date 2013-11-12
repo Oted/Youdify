@@ -72,13 +72,12 @@ exports.createNewPlaylist = function(name, client, description, tag, freetag, ca
 }
 	
 //push a video to a given playlist
-exports.push = function(name, client, video, callback){	
-	var videoObj = JSON.parse(video);
-	this.checkForVideo(name, videoObj, function(found){
+exports.push = function(name, client, videoId, callback){	
+	this.checkForVideo(name, videoId, function(found){
 		if (!found){
-			console.log("Pushing " + video);
+			console.log("Pushing " + videoId);
 			Playlist.findOneAndUpdate({"name": name},
-				{$push: {"videos": video}},
+				{$push: {"videos": videoId}},
 				{safe: true, upsert: true},
 				function(err, model) {
 					if (model){
@@ -88,26 +87,21 @@ exports.push = function(name, client, video, callback){
 			);
 		}
 		else{
-			console.log("Video " + videoObj.title + " already exist in the playlist");
+			console.log("Video " + videoId + " already exist in the playlist");
 		}
 	});
 };
 
 //chekck if a video exist in a playlist
-exports.checkForVideo = function(name, video, callback){
+exports.checkForVideo = function(name, videoId, callback){
 	var videos, found, vid;
-	console.log("in check for video : " + video.id);
+	console.log("in check for video : " + videoId);
 	this.checkIfExist(name,function(data){
 		if (data.found){
 			videos = data.doc.videos;
 			found = false;
 			for (var i = 0; i < videos.length; i++){
-				try{
-					vid = JSON.parse(videos[i]);
-				}catch(error){
-					console.log("ERROR IN VIDEOS checkForVideo: probably wring format för JSON parse\nerror");
-				}
-				if (vid.id === video.id){
+				if (videoId === videos[i]){
 					found = true;
 				}
 			}

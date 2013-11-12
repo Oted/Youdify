@@ -5,14 +5,12 @@
 	//the first to run when document is ready
     $(function(){
 		var templateEl = generateTemplate();
-		var resultEl       = $("#overlay-search-results");
-		
-		BMAP.YoutubePlayer = new BMAP.YoutubePlayer(280,200);
-		BMAP.VideoController = new BMAP.VideoController(templateEl,resultEl);
-		
-		BMAP.LocalFeatures = new BMAP.LocalFeatures();
-		BMAP.SearchMachine = new BMAP.SearchMachine();
-		BMAP.PlaylistHandler = new BMAP.PlaylistHandler();
+		var resultEl       		= $("#overlay-search-results");
+		BMAP.YoutubePlayer 		= new BMAP.YoutubePlayer(280,200);
+		BMAP.VideoController	= new BMAP.VideoController(templateEl,resultEl);
+		BMAP.LocalFeatures 		= new BMAP.LocalFeatures();
+		BMAP.SearchMachine 		= new BMAP.SearchMachine();
+		BMAP.PlaylistHandler 	= new BMAP.PlaylistHandler();
 	});
 
 	var generateTemplate = function(){
