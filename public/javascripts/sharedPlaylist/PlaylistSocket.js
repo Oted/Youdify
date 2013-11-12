@@ -15,13 +15,14 @@
 			socket.emit("ok", {name : n, client: c});
 		});	
 				
-		socket.on("push",function(data){
-			var video = JSON.parse(replaceChars(data.video));
-			if (!BMAP.VideoController.checkIfExist(video)){
-				BMAP.VideoController.generateResultDiv(video);
-			}
-		});
-	};
+		socket.on("push",function(obj){
+			var video = BMAP.SearchMachine.getVideoFromId(obj.video, function(video){
+				if (!BMAP.VideoController.checkIfExist(video)){
+					BMAP.VideoController.generateResultDiv(video);
+				};	
+			});
+		})
+	}
 
 	//decodes the replacement that was from the pusher
 	var replaceChars = function(video){

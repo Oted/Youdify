@@ -9,6 +9,7 @@
 		BMAP.YoutubePlayer		= new BMAP.YoutubePlayer(280,200);		
 		BMAP.VideoController	= new BMAP.VideoController(templateEl, resultEl);		
 		BMAP.SharedFeatures		= new BMAP.SharedFeatures();		
+		BMAP.SearchMachine		= new BMAP.SearchMachine();		
 		BMAP.PlaylistSocket		= new BMAP.PlaylistSocket();
 		BMAP.MessageBoard		= new BMAP.MessageBoard();
 	});

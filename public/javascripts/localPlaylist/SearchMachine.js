@@ -21,7 +21,6 @@
 			url = this.buildQueryUrl(SINGLE_VIDEO_URL, id);
 		
 		$.getJSON(url, function(data) {
-			console.log(data);
 			that.harvestData(data.entry, callback);
 		});
 	};
@@ -38,6 +37,7 @@
 		});
 	};
 
+	//harvers data from a videoresponse
 	SearchMachine.prototype.harvestData = function(item, callback){
 		var entry = {};
 				

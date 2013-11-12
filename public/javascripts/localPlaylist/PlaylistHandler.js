@@ -114,11 +114,9 @@
 		if (this.playlistName){
 			for (var i = 0; i < videosTemp.length; i++){
 				$(videosTemp[i].element).find(".add-to-playlist").hide();
-				videosTemp[i].element = {};
 				
-				var str = JSON.stringify(videosTemp[i]);
 				$.ajax({
-					url: "/push/" + this.playlistName + "?video=" + replaceChars(str) + "&callback=?",
+					url: "/push/" + this.playlistName + "?video=" + videosTemp[i].id + "&callback=?",
 					dataType:"jsonp",
 					beforeSend: function(){
 						console.log("Pushing " + videosTemp[i].title);
