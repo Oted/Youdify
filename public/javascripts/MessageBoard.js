@@ -11,7 +11,6 @@
 	MessageBoard.prototype.put = function(m){
 		this.message = m;
 		this.messageEl.text(this.message);
-		console.log(message);
 	};
 
 	MessageBoard.prototype.putTemporary = function(message){

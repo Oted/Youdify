@@ -4,6 +4,11 @@ var mongoose = require("mongoose");
 var playlistSchema = new mongoose.Schema({
 	name: String,
 	creator: String,
+	category: String,
+	freetag: String,
+	description: String,
+	timesvisited: Number,
+	lastvisited: { type: Date, default: Date.now },
   	date: { type: Date, default: Date.now },
 	videos: [{type: String, trim: true}]
 });
@@ -37,13 +42,18 @@ exports.getMyPlaylists = function(client, callback){
 };
 
 //creates a new playlist with the given name
-exports.createNewPlaylist = function(name, client, callback){
+exports.createNewPlaylist = function(name, client, description, tag, freetag, callback){
 	this.checkIfExist(name,function(data){
 		if (!data.found){
 			var newPlaylist = new Playlist({
 				"name"   : name,
 				"creator": client,
+				"category": tag,
+				"freetag" : freetag,
+				"description": description,
 				"date" 	 : new Date(),
+				"lastvisited" : new Date(),
+				"timesvisited" : 1,
 				"videos" : []
 			});
 				

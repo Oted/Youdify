@@ -28,9 +28,23 @@
         <div class="grid-container" id="main-content">
           <div class="grid-4" id="main-sidebar">
             <div class="search-area sidebar-component">
-				<a class="icon-button grid-4 alpha playlist-handlers" id="create-playlist">Create new playlist</a>
-          		<input class="grid-4 omega search-field" placeholder="Search for playlist" id="constraints"/>
-            </div>
+				<a class="icon-button grid-4 alpha playlist-handlers" id="create-playlist">Create a playlist</a>
+				<form id="create-new-playlist-div" style="display:none" class="grid-4">
+              		<h3 class="text-center"> Fill in the form and submit</h3>
+					<input class="grid-3 omega search-field" placeholder="Playlist name" id="pname"/>
+					<input class="grid-3 omega search-field" placeholder="Description..." id="pdescription"/>
+					<select id="tag-select" class="search-field grid-3">
+					  <option id="music" selected="selected">Music</option>
+					  <option id="knowledge">Knowledge</option>
+					  <option id="movies">Movies</option>
+					  <option id="comedy">For the lulz</option>
+					  <option id="other">Other</option>
+					</select>	
+              		<h3 class="text-center grid-3"> Freetags allow you to later find a collection of playlists by searching for the freetag</h3>	
+					<input class="grid-3 omega search-field" placeholder="Freetag" id="pfreetag"/>
+					<a class="icon-button grid-2 omega" id="submit">Submit</a>
+				</form>
+			</div>
           </div>
           <div class="grid-8 push-4">
             <div id="search-results">
@@ -43,15 +57,12 @@
 					<span class="grid-2"> Videos : <%= plVideos %></span>
 					<span class="grid-2"> <%= plDate %></span>
 				 </a>
-
-
-
 				<% } %>
             </div>
           </div>
         </div>
       </div>
 	</div>
-    <div class="message text-center" id="message-board"></div>
+  <div class="message text-center" id="message-board"></div>
 	</body>
-</html>
+ </html>

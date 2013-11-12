@@ -45,9 +45,13 @@ exports.checkIfExist = function(req, res){
 
 //Api-call for creating new playlist
 exports.createNewPlaylist = function(req, res){
-	var client = req.ip;
-	var name = req.query.name.replace("+"," ");
-	dbHandler.createNewPlaylist(name, client, function(created){
+	var client = req.ip,
+		name = req.query.name.replace("+"," "),
+		description = req.query.desc.replace("+"," "),
+		tag = req.query.tag.replace("+"," "),
+		freetag = req.query.freetag.replace("+"," ");
+	
+	dbHandler.createNewPlaylist(name, client, description, tag, freetag, function(created){
 		res.jsonp({"created" : created});
 	});
 };
