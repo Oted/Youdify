@@ -3,6 +3,7 @@ host = "0.0.0.0";
 dbName = "test";
 
 var express = require("express"),
+	httpProxy = require("http-proxy"),
 	app = express(),
 	routes = require("./routes/index");
 	mongoose = require("mongoose"),
@@ -10,6 +11,8 @@ var express = require("express"),
 	io = require("socket.io").listen(app.listen(port)),
 	socket = require("./socket.js").init(io);
 
+
+httpProxy.createServer(port, "localhost").listen(8080);
 
 //connects to database
 mongoose.connect("mongodb://" + host + "/" + dbName);
