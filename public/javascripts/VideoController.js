@@ -177,8 +177,10 @@
 	};
 
 	//called when queue is empty to get new video to play
-	VideoController.prototype.onEmptyQueue = function(previous10,callback){
-		var video, r, count = 0, index;
+	VideoController.prototype.onEmptyQueue = function(previous,callback){
+		console.log(previous);
+		var video, r, count = 0, index, prev = previous.slice(0,this.results.length-1);
+		console.log(prev);
 		if (this.autoplay){
 			if (this.shuffle){
 				//try to avoid playing previous videos
@@ -186,7 +188,7 @@
 					r = Math.floor(Math.random()*this.results.length),
 					video = this.results[r];
 					count += 1;
-				} while(count<10 && (previous10.indexOf(video)!==-1));
+				} while(count<10 && (prev.indexOf(video)!==-1));
 			}
 			else{
 				index = this.results.indexOf(BMAP.YoutubePlayer.getCurrent());

@@ -98,7 +98,7 @@
 				this.play(nextVideo);
 			}
 			else{
-				nextVideo = BMAP.VideoController.onEmptyQueue(this.previous.slice(0,10),function(video){
+				nextVideo = BMAP.VideoController.onEmptyQueue(this.previous,function(video){
 					that.play(video);		
 				});
 			}
@@ -125,12 +125,8 @@
 	
 	//sets current to parameter video
 	YoutubePlayer.prototype.setCurrent = function(video){
-		if (this.previous.indexOf(video)==-1){
-			this.previous.push(this.current);   
-		}	
-
 		this.current = video;
-		console.log(this.current);
+		this.previous.unshift(this.current);   
 	};
 
 	//returns current
