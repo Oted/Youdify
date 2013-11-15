@@ -1,16 +1,11 @@
 (function(win, doc, $, undefined){
 	"use strict";
-	var BMAP = win.BMAP || {};
+	var BMAP = win.BMAP || {},
+		IFRAME_SRC;
 
 	var SharedFeatures = function(){	
 		var that = this;
 		
-		//load the iframe
-		$("#overlay-wrapper").load(function () {
-			$("#close-add-video", frames["overlay-wrapper"].document).on("click", that.toggleAddVideo.bind(this)).attr("title",
-				"Go back to the playlist"
-			);
-		});
 
 		this.addVideoEl = $("#add-video").on("click", this.toggleAddVideo.bind(this)).attr("title",
 			"Add new video to the playlist"		
@@ -26,6 +21,7 @@
 			"Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically"		
 		);
 
+		IFRAME_SRC = $("#overlay-wrapper").attr("src");
 		this.overlayed = false;
 		this.addNewToQue = false;
 	};	
@@ -37,15 +33,29 @@
 
 	//back and forth between adding videos and playlist
 	SharedFeatures.prototype.toggleAddVideo = function(){
-		$("#main-sidebar").toggle();
-    	$("#player").toggle();
-		$("#overlay-wrapper").toggle(400);	
-    	$("#overlay-background").toggle(100);
-    	$("body").toggleClass('no-scrolling');
-		try{
-			doc.getElementById("overlay-wrapper").contentWindow.window.BMAP.YoutubePlayer.stop();
-		}catch(error){
-			console.log("lol not in overlay noob");
+		//load the iframe
+		this.overlayed = !this.overlayed;
+
+		if (!this.overlayed){
+			console.log(IFRAME_SRC);
+			$("#overlay-wrapper").attr("src", "#");
+			$("#overlay-wrapper").toggle(400);	
+			$("#main-sidebar").toggle();
+    		$("#player").toggle();
+    		$("#overlay-background").toggle(100);
+    		$("body").toggleClass('no-scrolling');
+		}
+		else{
+			$("#overlay-wrapper").attr("src", IFRAME_SRC);
+			$("#overlay-wrapper").load(function(){
+				
+			});
+			
+			$("#overlay-wrapper").toggle(400);	
+			$("#main-sidebar").toggle();
+    		$("#player").toggle();
+    		$("#overlay-background").toggle(100);
+    		$("body").toggleClass('no-scrolling');	
 		}
 	};
 
