@@ -75,7 +75,6 @@ exports.createNewPlaylist = function(name, client, description, tag, freetag, ca
 exports.push = function(name, client, videoId, callback){	
 	this.checkForVideo(name, videoId, function(found){
 		if (!found){
-			console.log("Pushing " + videoId);
 			Playlist.findOneAndUpdate({"name": name},
 				{$push: {"videos": videoId}},
 				{safe: true, upsert: true},
@@ -87,7 +86,7 @@ exports.push = function(name, client, videoId, callback){
 			);
 		}
 		else{
-			console.log("Video " + videoId + " already exist in the playlist");
+			callback();
 		}
 	});
 };

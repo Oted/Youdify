@@ -5,7 +5,6 @@ $white-color: #F3F3F3;
 $font-family-light: "Arial", "Helvetica", sans-serif;
 $font-family-heavy: "Arial Black", "Helvetica Bold", sans-serif;
 
-
 /** ======================================== **/
 /**             Base Style                   **/
 /** ======================================== **/
@@ -30,8 +29,9 @@ h1 {
 h2 {
   font-size: 50px;
 }
-h4 {
-  font-size: 15px;
+
+h3 {
+  font-size: 17px;
 }
 
 h4 {
@@ -77,6 +77,10 @@ a {
   }
 
   cursor: pointer;
+}
+
+.sort{
+  cursor: pointer; 
 }
 
 input {

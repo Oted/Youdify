@@ -14,6 +14,8 @@
     "grunt": "~0.4.1",
     "browserify": "~2.35.2",
     "grunt-browserify": "~1.2.11",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-compass": "~0.6.0"
   }
 }

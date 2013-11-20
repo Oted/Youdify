@@ -14,6 +14,7 @@
 
 $overlay-width: 920px;
 $overlay-height: 420px;
+
 #overlay-wrapper {
   display:none;
   background: $black-color;
@@ -32,6 +33,17 @@ $overlay-height: 420px;
 
 #overlay-inner-wrapper{
   margin:10px;
+}
+
+.video{
+  .thumb{
+	float:bottom;
+   }
+
+   .subtitle{
+    float:right;
+	width:120px;
+   }
 }
 
 #overlay-search-results {

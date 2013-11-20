@@ -10,3 +10,9 @@ $ninesixty-gutter-width: 20px;
     @include grid-system($ninesixty-columns);
   }
 }
+
+#overlay-inner-wrapper {
+  .grid-container {
+    @include grid-system($ninesixty-columns);
+  }
+}

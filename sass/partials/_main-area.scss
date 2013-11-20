@@ -17,7 +17,7 @@
 	display:block;
 	padding: 10px 5px;
     @include clearfix;
-    background: #DFDFDF;
+    background: #FCFCFC;
     @include border-radius(3px);
     margin-bottom: 7px;
 	display:-webkit-flex;
@@ -56,29 +56,8 @@
 	float:bottom;
 }
 
-
-.search-result {
-  @include transition(background linear 0.1s);
-
-  background: $white-color;
-  box-sizing: border-box;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-top: 5px;
+#video-list {
+  margin-bottom:65px;
   cursor: pointer;
-
-  & .thumbnail {
-    height: 50px;
-    background: darken($white-color, 20%);
-  }
-
-  & .title {
-    color: $blue-color;
-    font-family: $font-family-heavy;
-  }
-
-  &:hover {
-    background: lighten($blue-color, 50%);
-  }
 }
 

@@ -5,7 +5,7 @@ var socket = require("../socket.js");
 exports.index = function(req, res){
 console.log("Rendering index for " + req.ip);
  	dbHandler.getAll(function (doc) {
-		res.render("index",{ playlists: doc });
+		res.render("firstpage",{ playlists: doc });
 	});
 };
 
@@ -13,7 +13,7 @@ console.log("Rendering index for " + req.ip);
 exports.add = function(req, res){
 	var name = req.query.name;
 	console.log("Rendering add view for " + req.ip + " pushing to playlist " + name);
-	res.render("overlay",{name : name});
+	res.render("addvideos",{name : name});
 };
 
 //render view for shared playlist
@@ -22,7 +22,7 @@ var client = req.ip;
 var name = req.params[0].replace("+"," ");
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
-			res.render("shared",{
+			res.render("playlist",{
 				name : name,
 				client : client,
 				host: host,
