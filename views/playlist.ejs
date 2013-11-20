@@ -1,9 +1,6 @@
 <%- include partials/header.ejs %>
 <script src="/socket.io/socket.io.js"></script>	
-
-<script src="/javascripts/sharedPlaylist/index.js"></script>
-<script src="/javascripts/sharedPlaylist/SharedFeatures.js"></script>
-<script src="/javascripts/sharedPlaylist/PlaylistSocket.js"></script>
+<script src="/PlaylistScript.js"></script>
 	<body>
 		<input type="hidden" id="name-div" value="<%=name %>"/>
 		<input type="hidden" id="client-div" value="<%=client %>"/>
@@ -18,12 +15,11 @@
             <div class="grid-4">
              <a id="add-video" class="icon-button grid-4 alpha playlist-handlers">Add new video </a>
             </div>
-            <div class="grid-4">
-              <h3 class="text-center">  
-				In playlist <%=name %> 
-			  </h3>
-            </div>
-            <div class="grid-4">
+				<a class="head-results list-item grid-7"> 
+					<span id="sort-category-1" class="grid-6 sort">
+						<br><h2><%=name %></h2> 
+					</span>
+				</a>	
             </div>
           </header>
         </div>
@@ -37,7 +33,7 @@
 			</div>
           </div>
           <div class="grid-8 push-4">
-            <div id="search-results"></div>
+            <div id="video-list"></div>
           </div>
         </div>
       </div>

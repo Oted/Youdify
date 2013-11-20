@@ -1,0 +1,29 @@
+<%- include partials/header.ejs %>
+<script src="/AddVideoScript.js"></script>        
+<body>
+  <div id="overlay-inner-wrapper">
+	<input type="hidden" id="name-div" value="<%=name %>"/>
+
+    <div class="grid-container"> 
+      <div id="overlay-sidebar" class="grid-4">
+        <div class="search-area sidebar-component">
+          <input class="grid-4 alpha search-field" placeholder="Search" id="search"/>
+			<input id="search-option" type="radio" name="search-type" checked>Video search
+			<input type="radio" name="search-type">Playlist search
+
+          <input class="grid-4 alpha search-field" placeholder="Sort among the results" id="constraints"/>
+        </div>
+        <div id="overlay-player-container" class="sidebar-component">
+       		<div id="player"></div><br> 
+		</div>
+      </div>
+	<a class="head-results list-item grid-7 push-4"> 
+		<span id="sort-category-1" class="grid-2 sort active"> Views </span>
+		<span id="sort-category-2" class="grid-2 sort"> Duration </span>
+		<span id="sort-category-3" class="grid-2 sort"> Rating </span>
+	</a>	
+	<div id="overlay-search-results" class="grid-7 push-4"></div>
+
+	</div>
+  </div>
+</body>
