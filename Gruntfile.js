@@ -22,7 +22,8 @@ module.exports = function(grunt){
 				tasks : ["browserify"]
 			},
 			options: {
-         	   livereload: 1337
+         	   livereload: 1337,
+			   atBegin : true
         	},
         	css: {
           		files: ['sass/**/*.scss'],

@@ -30,4 +30,7 @@ Session.vim
 .netrwhist
 public/stylesheets/*.css
 
-
+### 
+public/AddVideoScript.js
+public/FirstpageScript.js
+public/PlaylistScript.js
