@@ -157,7 +157,12 @@
 			if (this.isPlaying()){
 				this.pause();
 			}else{
-				this.player.playVideo();
+				if (this.current){
+					this.player.playVideo();
+				}
+				else{
+					this.playNext();
+				}
 			}
 		}
 	};
