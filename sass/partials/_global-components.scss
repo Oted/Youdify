@@ -28,6 +28,17 @@
   color: $black-color; 
 }
 
+#navigation-board {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  padding: 10px 0;
+  background: #FCFCFC;
+  color: $black-color; 
+    @include border-radius(3px);
+}
+
+
 #main-content {
   margin-top: 180px;
 }

@@ -31,9 +31,6 @@
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.Mediator.subscribe("videoPushed", this.videoPushed.bind(this));
 
-		this.resultEl       = $("#video-list");
-		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
-
 		this.overlayed 		= false;
 		this.addNewToQue 	= false;		
 		this.isPlaying 		= false;		
@@ -45,15 +42,22 @@
 	//bind and set attr on UI controls
 	PlaylistControllerIndex.prototype.initUI = function(){
 		this.overlayEl 		= $("#overlay-wrapper");
+
 		
+
+		this.resultEl       = $("#video-list");
+		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
+
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
-		
-		this.addVideoEl 	= $("#add-video")
+	
+		$("#home").attr("href", "http://" + doc.domain);
+
+		$("#add-video")
 		.on("click", this.toggleAddVideo.bind(this))
 		.attr("title","Add new video to the playlist");
 		
-		this.emptyQueEl		= $("#empty-queue")
+		$("#empty-queue")
 		.on("click", this.emptyQueue.bind(this))
 		.attr("title","Empty the queue");
 		
@@ -65,11 +69,11 @@
 		.on("click", this.play.bind(this))
 		.attr("title","Play or pause video");
 
-		this.forwardEl 		= $("#next")
+		$("#next")
 		.on("click", this.forward.bind(this))
 		.attr("title","Play the next video");
 		
-		this.previousEl		= $("#prev")
+		$("#prev")
 		.on("click", this.previous.bind(this))
 		.attr("title","Play previous video");
 		
