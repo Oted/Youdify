@@ -8,6 +8,7 @@
 		this.Mediator = Mediator;	
 		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 		this.Mediator.subscribe("submitPlaylist", this.submitPlaylist.bind(this));	
+		this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
 	};
 
 	APIHandler.prototype.submitPlaylist = function(prop){
@@ -114,6 +115,25 @@
 			})
 		}
 	};
+	
+	//client sends a message
+	APIHandler.prototype.sendMessage = function(message){
+		var that = this;
+		if (this.playlistName){
+			$.ajax({
+				url: "/message/" + this.playlistName + "?meassge=" + message + "&callback=?",
+				dataType:"jsonp",
+				beforeSend: function(){
+					console.log("Seadning message " + message);
+				},
+				success: function(message){
+					console.log("Success!")
+					console.log(message + " sendt to " + that.playlistName);
+				}
+			})
+		}
+	};
+
 
 	var replaceChars = function(string){
 		return string.replace("&","//a").replace("%","//p");

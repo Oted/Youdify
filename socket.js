@@ -15,6 +15,11 @@ exports.init = function(io){
 	});
 };
 
+//chat message received
+exports.chatMessage = function(name, message, client){
+	that.io.sockets.in(name+"").emit("chatMessage", {message: message, client: client})
+};
+
 //push one new video to all clients in the same room (attached to the same playlist)
 exports.pushOne = function(video, name){
 	that.io.sockets.in(name+"").emit("push", {video: video});
@@ -30,3 +35,7 @@ exports.pushAll = function(socket, name, client){
 	});
 };
 
+exports.chatMessage = function(){
+ 	
+
+};

@@ -26,11 +26,15 @@
 		var MessageBoard = require("../model/MessageBoard.js").MessageBoard;
 		new MessageBoard(this.Mediator);
 
+		var APIHandler = require("../model/APIHandler.js").APIHandler;
+		new APIHandler(this.Mediator);
+
 		this.Mediator.subscribe("playerStateChange", playerStateChange.bind(this));
 		this.Mediator.subscribe("removeVideo", removeVideo.bind(this));
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.Mediator.subscribe("videoPushed", this.videoPushed.bind(this));
 		this.Mediator.subscribe("queueChanged", this.queueChanged.bind(this));
+		this.Mediator.subscribe("chatMessage", this.chatMessage.bind(this));
 
 		this.overlayed 		= false;
 		this.addNewToQue 	= false;		
@@ -39,6 +43,11 @@
 		
 		this.initUI();
 	};	
+
+	//received chatmessage from the socket
+	PlaylistControllerIndex.prototype.chatMessage = function(message){
+		console.log(message);
+	};
 
 	//called when queue changes, updates the queue element
 	PlaylistControllerIndex.prototype.queueChanged = function(newQueue){
@@ -389,7 +398,7 @@
 	
 	//remove the given video from the div and array
 	var removeVideo = function(video){
-		for(var i = this.results.length; i--) {
+		for(var i = this.results.length; i--;) {
 			if (this.results[i].id === video.id) {
 				this.Mediator.write("putTemporary", "Video has been removed");
 				$(this.results[i].element).remove();

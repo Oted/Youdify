@@ -36,6 +36,7 @@ db.once('open', function callback () {
 	app.get("/checkifexist/*", routes.checkIfExist);
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
 	app.get("/push/*", routes.push);
+	app.get("/message/*", routes.chatMessage);
 });
 
 //on exit, close database

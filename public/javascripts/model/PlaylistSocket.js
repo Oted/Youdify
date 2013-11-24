@@ -19,6 +19,10 @@
 		socket.on("push",function(obj){
 			var video = Mediator.write("videoPushed", obj.video);
 		});
+		
+		socket.on("chatMessage",function(obj){
+			var video = Mediator.write("chatMessage", obj.message);
+		});
 	};
 
 	//decodes the replacement that was from the pusher
