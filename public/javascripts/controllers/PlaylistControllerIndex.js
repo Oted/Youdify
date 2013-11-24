@@ -30,6 +30,7 @@
 		this.Mediator.subscribe("removeVideo", removeVideo.bind(this));
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.Mediator.subscribe("videoPushed", this.videoPushed.bind(this));
+		this.Mediator.subscribe("queueChanged", this.queueChanged.bind(this));
 
 		this.overlayed 		= false;
 		this.addNewToQue 	= false;		
@@ -39,13 +40,29 @@
 		this.initUI();
 	};	
 
+	//called when queue changes, updates the queue element
+	PlaylistControllerIndex.prototype.queueChanged = function(newQueue){
+		var toggleEl = $("#show-queue");
+		toggleEl.html("Queue (" + newQueue.length + ")");
+
+		this.navToggleEl.empty();
+		if (newQueue.length === 0){
+			this.navToggleEl.hide(200);
+			toggleEl.hide(400);
+		}
+		else{
+			toggleEl.show(400);
+			for (var i=0; i < newQueue.length; ++i){
+				this.navToggleEl.append(newQueue[i].preview);
+			}
+		}
+	};
+
 	//bind and set attr on UI controls
 	PlaylistControllerIndex.prototype.initUI = function(){
 		this.overlayEl 		= $("#overlay-wrapper");
-
-		
-
 		this.resultEl       = $("#video-list");
+		this.navToggleEl 	= $("#navigation-toggle");
 		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
 
 		this.overlayBEl 	= $("#overlay-background")
@@ -61,6 +78,17 @@
 		.on("click", this.emptyQueue.bind(this))
 		.attr("title","Empty the queue");
 		
+		$("#next")
+		.on("click", this.forward.bind(this))
+		.attr("title","Play the next video");
+		
+		$("#prev")
+		.on("click", this.previous.bind(this))
+		.attr("title","Play previous video");
+
+		$("#show-queue")
+		.on("click", this.showQueue.bind(this));
+
 		this.addNewToQueEl 	= $("#add-new-to-queue")
 		.on("click", this.toggleAddNewToQue.bind(this))
 		.attr("title","Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically");
@@ -69,14 +97,6 @@
 		.on("click", this.play.bind(this))
 		.attr("title","Play or pause video");
 
-		$("#next")
-		.on("click", this.forward.bind(this))
-		.attr("title","Play the next video");
-		
-		$("#prev")
-		.on("click", this.previous.bind(this))
-		.attr("title","Play previous video");
-		
 		this.shuffleEl		= $("#shuffle")
 		.on("click", this.toggleShuffle.bind(this))
 		.attr("title","Toggle shuffle");
@@ -88,6 +108,13 @@
 		this.repeatEl		= $("#repeat")
 		.on("click", this.toggleRepeat.bind(this))
 		.attr("title","Toggle repeat one");
+	};
+
+	PlaylistControllerIndex.prototype.showQueue = function(){
+		var	number = $(this.navToggleEl).find(".preview").length;
+		if (number>0){
+			this.navToggleEl.toggle(200);
+		}
 	};
 
 	//called each time a video is pushed throu socket
@@ -281,6 +308,7 @@
 	//creates a new video element and append it to the list
 	PlaylistControllerIndex.prototype.generateResultDiv = function(video){
 		var that = this;
+
 		this.results.push(video);
 		this.Mediator.write("resultsChange", this.results);
 		
@@ -308,7 +336,28 @@
 		$("<h4></h4>").text("Views : " + video.views).appendTo($(element).find(".subtitle"));
 		$("<h4></h4>").text("Likes : " + video.likes).appendTo($(element).find(".subtitle"));
 		$("<h4></h4>").text("Dislikes : " + video.dislikes).appendTo($(element).find(".subtitle"));
+
+		//generates a preview element shown in "show queue etc"
+		var preview 	= doc.createElement("div"),
+			prevThumb	= $(element).find(".thumb").clone(),
+			prevTitle 	= doc.createElement("h4"),
+			title		= video.title;
+		
+		if (title.length >= 15){
+			title = title.slice(0,12);
+			title += "...";
+		}
+
+		$(preview).addClass("grid-1 preview");
+
+		$(prevThumb)
+		.appendTo(preview);
 	
+		$(prevTitle).html(title)
+		.addClass("subtitle")
+		.appendTo(preview);
+
+		video.preview = preview;
 		video.element = element;
 		this.resultEl.append(element);
 		
@@ -340,7 +389,7 @@
 	
 	//remove the given video from the div and array
 	var removeVideo = function(video){
-		for(var i = this.results.length; i--;) {
+		for(var i = this.results.length; i--) {
 			if (this.results[i].id === video.id) {
 				this.Mediator.write("putTemporary", "Video has been removed");
 				$(this.results[i].element).remove();

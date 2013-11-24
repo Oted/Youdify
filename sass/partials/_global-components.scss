@@ -29,15 +29,25 @@
 }
 
 #navigation-board {
+  @include clearfix;
   position: fixed;
   top: 0;
   z-index: 20;
   padding: 10px 0;
   background: #FCFCFC;
   color: $black-color; 
-    @include border-radius(3px);
+  @include border-radius(3px); 
+  #navigation-toggle{
+	border-top: solid $black-color;
+	border-top-width:10px;
+	max-height: 82px;
+	margin-top: 20px;
+  	  .preview{
+		margin-top:10px;
+		display:inline-block;
+	  }
+	}
 }
-
 
 #main-content {
   margin-top: 180px;

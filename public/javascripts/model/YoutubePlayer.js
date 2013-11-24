@@ -12,13 +12,13 @@
 		this.Mediator.subscribe("emptyQueue", emptyQueue.bind(this));
 		this.Mediator.subscribe("play", this.play.bind(this));
 		this.Mediator.subscribe("playNext", this.playNext.bind(this));
+
 		this.Mediator.subscribe("playPrev", playPrev.bind(this));
 		this.Mediator.subscribe("queueVideo", queueVideo.bind(this));
 		
 		this.Mediator.subscribe("toggleShuffle", toggleShuffle.bind(this));
 		this.Mediator.subscribe("toggleRepeat", toggleRepeat.bind(this));
 		this.Mediator.subscribe("toggleAutoplay", toggleAutoplay.bind(this));
-		
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		
 		this.current 		= undefined;
@@ -42,6 +42,7 @@
 		else{
 			if (this.queue.length > 0){
 				nextVideo = this.queue.shift();
+				this.Mediator.write("queueChanged", this.queue);
 				this.play(nextVideo);
 			}
 			else{
@@ -182,7 +183,7 @@
 		if(this.queue.indexOf(video)===-1){
 			this.queue.push(video);
 			this.Mediator.write("temporaryMessage", video.title + " queued");
-			this.Mediator.write("queueChange", this.queue);
+			this.Mediator.write("queueChanged", this.queue);
 		}
 		else{
 			this.Mediator.write("temporaryMessage", video.title + " is already in the queue");
@@ -268,6 +269,7 @@
 	var emptyQueue = function(){
 		this.queue = [];
 		this.Mediator.write("temporaryMessage", "Queue is now empty");
+		this.Mediator.write("queueChanged", this.queue);
 	};
 
 	exports.YoutubePlayer = YoutubePlayer;
