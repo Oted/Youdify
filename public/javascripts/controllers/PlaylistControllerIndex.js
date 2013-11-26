@@ -100,7 +100,6 @@
 		$("#show-chat")
 		.on("click", this.showChat.bind(this));
 
-
 		this.addNewToQueEl 	= $("#add-new-to-queue")
 		.on("click", this.toggleAddNewToQue.bind(this))
 		.attr("title","Toggle add new to queue, if this is enabled videos pushed by anyone will be added to queue and played automatically");
@@ -125,15 +124,20 @@
 	//start the chat!
 	PlaylistControllerIndex.prototype.showChat = function(){
 		var colors = ["chocolate","indigo", "tomato", "sienna", "blue", "crimson", "darkgreen", "dimgray", "yellow", "springgreen"],
-			r = Math.floor(Math.random()*colors.length);
+			r = Math.floor(Math.random()*colors.length),
+			tempNick;
 		
 		if (!this.chatClient){
-			this.chatClient = {};
-			this.chatClient.nickName = prompt("Please enter your nickname");
-			this.chatClient.color = colors[r];  
+			tempNick = prompt("Please enter your nickname");
+			if (tempNick){
+				this.chatClient = {"color":colors[r],"nickName":tempNick};
 
-			//tell the others you joined the chat
-			this.Mediator.write("joinChat", this.chatClient);
+				//tell the others you joined the chat
+				this.Mediator.write("joinChat", this.chatClient);
+				this.chatToggleEl.toggle(400);
+			}else{
+				return;	
+			}
 		}else{
 			this.chatToggleEl.toggle(400);
 		}
