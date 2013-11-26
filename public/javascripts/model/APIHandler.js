@@ -6,9 +6,9 @@
 		this.playlistName = plName;
 
 		this.Mediator = Mediator;	
-		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 		this.Mediator.subscribe("submitPlaylist", this.submitPlaylist.bind(this));	
-		this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
+		//this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
+		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 	};
 
 	APIHandler.prototype.submitPlaylist = function(prop){
@@ -103,14 +103,13 @@
 		var that = this;
 		if (this.playlistName){
 			$.ajax({
-				url: "/push/" + this.playlistName + "?video=" + video.id + "&callback=?",
+				url: "/push/?name=" + this.playlistName + "&video=" + video.id + "&callback=?",
 				dataType:"jsonp",
 				beforeSend: function(){
 					console.log("Pushing " + video.title);
 				},
 				success: function(id){
 					console.log("Success!")
-					console.log(id + " pushed to " + that.playlistName);
 				}
 			})
 		}
@@ -120,11 +119,12 @@
 	APIHandler.prototype.sendMessage = function(message){
 		var that = this;
 		if (this.playlistName){
+			console.log(that.playlistName);
 			$.ajax({
-				url: "/message/" + this.playlistName + "?meassge=" + message + "&callback=?",
+				url: "/message/?name=" + that.playlistName + "&message=" + message + "&callback=?",
 				dataType:"jsonp",
 				beforeSend: function(){
-					console.log("Seadning message " + message);
+					console.log("Sending message " + message);
 				},
 				success: function(message){
 					console.log("Success!")

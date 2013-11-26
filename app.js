@@ -12,7 +12,7 @@ var express = require("express"),
 	socket = require("./socket.js").init(io);
 
 
-httpProxy.createServer(port, "localhost").listen(8080);
+httpProxy.createServer(port, "localhost").listen(80);
 
 //connects to database
 mongoose.connect("mongodb://" + host + "/" + dbName);
@@ -26,7 +26,7 @@ db.once('open', function callback () {
 	app.use(express.static(__dirname + '/public'));
 	app.enable('trust proxy');
 
-	//set app route calls
+	//Rendering calls
 	app.get("/", routes.index);
 	app.get("/add/*", routes.add);
 	app.get("/index.html", routes.index);

@@ -19,7 +19,7 @@ exports.add = function(req, res){
 //render view for shared playlist
 exports.playlists = function(req, res){
 	var client = req.ip,
-	name = req.params[0].replace("+"," ");
+		name = req.params[0].replace("+"," ");
 
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
@@ -61,9 +61,10 @@ exports.createNewPlaylist = function(req, res){
 //Api-call for pushing new videos to playlist
 exports.push = function(req, res){
 	var client = req.ip,
-		name = req.params[0].replace("+"," "),
+		name = req.query.name.replace("+"," "),
 		video = req.query.video;
 
+	res.jsonp({});
 	dbHandler.push(name, client, video, function(){
 		socket.pushOne(video, name);
 	});
@@ -72,8 +73,8 @@ exports.push = function(req, res){
 //Api-call for sending a message to other clients
 exports.chatMessage = function(req, res){
 	var client = req.ip,
-		name = req.params[0].replace("+"," "),
+		name = req.query.name.replace("+"," "),
 		message = req.query.message;
 
-	socket.chatMessage(name, message, client);
+	socket.message(name, message, client);
 };

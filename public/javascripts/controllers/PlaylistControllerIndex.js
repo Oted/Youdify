@@ -12,6 +12,7 @@
 	
 	//contructor of PlaylistController
 	var PlaylistControllerIndex = function(){
+		var playlistName 	= doc.getElementById("name-div").value;
 		this.Mediator = require("../Mediator.js").Mediator;
 		
 		var YoutubePlayer = require("../model/YoutubePlayer.js").YoutubePlayer;
@@ -27,13 +28,17 @@
 		new MessageBoard(this.Mediator);
 
 		var APIHandler = require("../model/APIHandler.js").APIHandler;
-		new APIHandler(this.Mediator);
+		new APIHandler(this.Mediator, playlistName);
 
 		this.Mediator.subscribe("playerStateChange", playerStateChange.bind(this));
 		this.Mediator.subscribe("removeVideo", removeVideo.bind(this));
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.Mediator.subscribe("videoPushed", this.videoPushed.bind(this));
 		this.Mediator.subscribe("queueChanged", this.queueChanged.bind(this));
+	
+		//mediator calls for handle chat	
+		this.Mediator.subscribe("chatLeave", this.chatChanged.bind(this));
+		this.Mediator.subscribe("chatJoin", this.chatChanged.bind(this));
 		this.Mediator.subscribe("chatMessage", this.chatMessage.bind(this));
 
 		this.overlayed 		= false;
@@ -44,40 +49,22 @@
 		this.initUI();
 	};	
 
-	//received chatmessage from the socket
-	PlaylistControllerIndex.prototype.chatMessage = function(message){
-		console.log(message);
-	};
-
-	//called when queue changes, updates the queue element
-	PlaylistControllerIndex.prototype.queueChanged = function(newQueue){
-		var toggleEl = $("#show-queue");
-		toggleEl.html("Queue (" + newQueue.length + ")");
-
-		this.navToggleEl.empty();
-		if (newQueue.length === 0){
-			this.navToggleEl.hide(200);
-			toggleEl.hide(400);
-		}
-		else{
-			toggleEl.show(400);
-			for (var i=0; i < newQueue.length; ++i){
-				this.navToggleEl.append(newQueue[i].preview);
-			}
-		}
-	};
-
 	//bind and set attr on UI controls
 	PlaylistControllerIndex.prototype.initUI = function(){
 		this.overlayEl 		= $("#overlay-wrapper");
 		this.resultEl       = $("#video-list");
-		this.navToggleEl 	= $("#navigation-toggle");
+		this.navToggleEl	= $("#navigation-toggle");
+		this.queueToggleEl 	= $("#queue-toggle");
+		this.chatToggleEl 	= $("#chat-toggle");
 		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
 
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
 	
 		$("#home").attr("href", "http://" + doc.domain);
+
+		$("#send-message")
+		.on("click", this.sendMessage.bind(this)); 
 
 		$("#add-video")
 		.on("click", this.toggleAddVideo.bind(this))
@@ -97,6 +84,10 @@
 
 		$("#show-queue")
 		.on("click", this.showQueue.bind(this));
+
+		$("#chet-queue")
+		.on("click", this.showChat.bind(this));
+
 
 		this.addNewToQueEl 	= $("#add-new-to-queue")
 		.on("click", this.toggleAddNewToQue.bind(this))
@@ -119,13 +110,61 @@
 		.attr("title","Toggle repeat one");
 	};
 
+	PlaylistControllerIndex.prototype.showChat = function(){
+		this.chatToggleEl.toggle(200);
+	};
+
+	PlaylistControllerIndex.prototype.sendMessage = function(){
+		this.Mediator.write("sendMessage", "heölloooo");
+	};
+
 	PlaylistControllerIndex.prototype.showQueue = function(){
-		var	number = $(this.navToggleEl).find(".preview").length;
+		var	number = $(this.queueToggleEl).find(".preview").length;
 		if (number>0){
-			this.navToggleEl.toggle(200);
+			this.queueToggleEl.toggle(200);
 		}
 	};
 
+	//received chatmessage from the socket
+	PlaylistControllerIndex.prototype.chatMessage = function(message){
+		console.log(message);
+	};
+
+	//called when chat state changes
+	PlaylistControllerIndex.prototype.chatChanged = function(obj){
+		var toggleEl = $("#show-chat");
+		toggleEl.html("Chat (" + obj.clients + ")");
+
+		if (obj.clients < 2){
+			this.chatToggleEl.hide(200);
+			toggleEl.hide(400);
+		}
+		else{
+			toggleEl.show(400);
+			//for (var i=0; i < newQueue.length; ++i){
+			//	this.chatToggleEl.append(newQueue[i].preview);
+			//}
+		}
+	};
+	
+	//called when queue changes, updates the queue element
+	PlaylistControllerIndex.prototype.queueChanged = function(newQueue){
+		var toggleEl = $("#show-queue");
+		toggleEl.html("Queue (" + newQueue.length + ")");
+
+		this.queueToggleEl.empty();
+		if (newQueue.length === 0){
+			this.queueToggleEl.hide(200);
+			toggleEl.hide(400);
+		}
+		else{
+			toggleEl.show(400);
+			for (var i=0; i < newQueue.length; ++i){
+				this.queueToggleEl.append(newQueue[i].preview);
+			}
+		}
+	};
+	
 	//called each time a video is pushed throu socket
 	PlaylistControllerIndex.prototype.videoPushed = function(videoId){
 		var that = this,

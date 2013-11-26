@@ -37,7 +37,7 @@
   background: #FCFCFC;
   color: $black-color; 
   @include border-radius(3px); 
-  #navigation-toggle{
+  #queue-toggle{
 	border-top: solid $black-color;
 	border-top-width:10px;
 	max-height: 82px;
@@ -46,6 +46,14 @@
 		margin-top:10px;
 		display:inline-block;
 	  }
+	}
+   
+  #chat-toggle{
+	border-top: solid $black-color;
+	border-top-width:10px;
+	max-height: 82px;
+	margin-top: 20px;	
+
 	}
 }
 

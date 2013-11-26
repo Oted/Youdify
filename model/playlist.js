@@ -132,10 +132,8 @@ exports.getAll = function(callback){
 	});
 };
 
-
 exports.update = function(name){
-	console.log("In update....");
 	Playlist.update({"name": name}, {$inc: {"timesvisited" : 1}, $set: {"lastvisited":new Date()}},  function(err){
-		console.log("Could not update" + name + " : " + err);
+		if (err) console.log("Error in database update : \n" + err);	
 	});
 };	

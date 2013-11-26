@@ -14,8 +14,14 @@
           <header id="main-header" class="grid-container">
     		<div class="message text-center grid-12" id="navigation-board">
 				<a id="home" class="grid-4" > Home </a>
-				<a id="show-queue" style="display:none" href="#" class="grid-2" ></a><br>
-				<div style="display:none" id="navigation-toggle"></div>
+				<a id="show-queue" style="display:none" href="#" class="grid-2" ></a>
+				<a id="show-chat"  style="display:none" href="#" class="grid-2" ></a><br>
+				<div style="display:none" id="queue-toggle">
+          			<a id="empty-queue" class="icon-button grid-1">Empty queue</a>
+				</div>	
+				<div style="display:none" id="chat-toggle">
+             		<a id="send-message" class="icon-button">Send</a>
+				</div>
 			</div><br>
              <a id="add-video" class="icon-button grid-4 playlist-handlers">Add new video </a>
             </div>
@@ -26,7 +32,6 @@
           <div id="main-sidebar" class="grid-4">
 			<div id="player-container" class="sidebar-component">
           	<a id="add-new-to-queue" class="icon-button grid-2 alpha playlist-handlers">Add New2Q</a>
-          	<a id="empty-queue" class="icon-button grid-2 alpha playlist-handlers">EmptyQ</a>
 				<%- include partials/player.ejs %>
 			</div>
           </div>

@@ -5,31 +5,55 @@ var that = this;
 exports.init = function(io){
 	that.io = io;
 	io.sockets.on("connection", function (socket) {
-		socket.emit("register", {message:"Hello and welcome"});	
+		socket.emit("register", {});	
 		
+		//ack
 		socket.on("ok", function(data){
-			console.log("client " + data.client + " is now registered to playlist " + data.name); 		
-			socket.join(data.name+"");
-			that.pushAll(socket, data.name, data.client);
-		});
+			var name   = data.name,
+				client = data.client;
+				
+			
+			console.log("client " + client + " is now registered to playlist " + name); 		
+			socket.join(name);
+			
+			//push all videos
+			that.pushAll(socket, name, client);
+			
+			//tell the others that client has joined
+			that.io.sockets.in(name).emit("chatJoin", {client: data.client, 
+													   clients: io.sockets.clients(name).length
+			});
+			
+			//on disconnect, tell the others
+			socket.on("disconnect", function(){
+				that.io.sockets.in(name).emit("chatLeave", {client: data.client,
+															clients: io.sockets.clients(name).length-1
+				});
+			});
+		
+			//on message, send to all
+			socket.on("message", function(obj){
+				that.io.sockets.in(name).emit("chatMessage", {message : obj.message});
+			});
+		});	
 	});
 };
 
 //chat message received
-exports.chatMessage = function(name, message, client){
-	that.io.sockets.in(name+"").emit("chatMessage", {message: message, client: client})
+exports.message = function(name, message, client){
+	var bajs = that.io.sockets.clients(name);
+	that.io.sockets.in(name).emit("chatMessage", {message: message + ":" + bajs.length, client: client});
 };
 
 //push one new video to all clients in the same room (attached to the same playlist)
 exports.pushOne = function(video, name){
-	that.io.sockets.in(name+"").emit("push", {video: video});
+	that.io.sockets.in(name).emit("push", {video: video});
 }
 
 //push all videos in a playlist to a client (used when a new client connect)
 exports.pushAll = function(socket, name, client){
 	dbHandler.get(name,function(videos){
 		videos.forEach(function(video){	
-			//that.socket.emit("push",{video: v});	
 			socket.emit("push", {video: video});
 		});
 	});

@@ -13,12 +13,11 @@
 	//constroctor for this controller
 	var AddVideoControllerIndex = function(){
 		var playlistName 	= doc.getElementById("name-div").value;
-		
 		this.Mediator 		= require("../Mediator.js").Mediator;
 		
 		var YoutubePlayer	= require("../model/YoutubePlayer.js").YoutubePlayer;	
 		new YoutubePlayer(this.Mediator, 280, 200);
-
+		
 		var SearchMachine 	= require("../model/SearchMachine.js").SearchMachine;
 		new SearchMachine(this.Mediator);
 		
