@@ -37,13 +37,16 @@
 		this.Mediator.subscribe("queueChanged", this.queueChanged.bind(this));
 	
 		//mediator calls for handle chat	
-		this.Mediator.subscribe("chatLeave", this.chatChanged.bind(this));
-		this.Mediator.subscribe("chatJoin", this.chatChanged.bind(this));
-		this.Mediator.subscribe("chatMessage", this.chatMessage.bind(this));
+		this.Mediator.subscribe("clientLeave", this.numberOfClientsChanged.bind(this));
+		this.Mediator.subscribe("newClient", this.numberOfClientsChanged.bind(this));		
+		
+		//this.Mediator.subscribe("chatLeave", this.newChatEntry.bind(this));
+		this.Mediator.subscribe("chatJoin", this.newChatEntry.bind(this));
+		this.Mediator.subscribe("chatMessage", this.newChatEntry.bind(this));
 
 		this.overlayed 		= false;
-		this.addNewToQue 	= false;		
-		this.isPlaying 		= false;		
+		this.addNewToQue 	= false;
+		this.isPlaying 		= false;
 		this.results 		= [];
 		
 		this.initUI();
@@ -51,19 +54,28 @@
 
 	//bind and set attr on UI controls
 	PlaylistControllerIndex.prototype.initUI = function(){
+		var that = this;
 		this.overlayEl 		= $("#overlay-wrapper");
 		this.resultEl       = $("#video-list");
 		this.navToggleEl	= $("#navigation-toggle");
 		this.queueToggleEl 	= $("#queue-toggle");
 		this.chatToggleEl 	= $("#chat-toggle");
 		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
+		this.chatClient 	= undefined;
 
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
 	
 		$("#home").attr("href", "http://" + doc.domain);
 
-		$("#send-message")
+		$("#message-input")
+		.on("keypress", function(event){
+			if(event.which === 13){
+				that.sendMessage();
+			}			
+		});
+
+		$("#message-send")
 		.on("click", this.sendMessage.bind(this)); 
 
 		$("#add-video")
@@ -85,7 +97,7 @@
 		$("#show-queue")
 		.on("click", this.showQueue.bind(this));
 
-		$("#chet-queue")
+		$("#show-chat")
 		.on("click", this.showChat.bind(this));
 
 
@@ -110,12 +122,40 @@
 		.attr("title","Toggle repeat one");
 	};
 
+	//start the chat!
 	PlaylistControllerIndex.prototype.showChat = function(){
-		this.chatToggleEl.toggle(200);
+		var colors = ["chocolate","indigo", "tomato", "sienna", "blue", "crimson", "darkgreen", "dimgray", "yellow", "springgreen"],
+			r = Math.floor(Math.random()*colors.length);
+		
+		if (!this.chatClient){
+			this.chatClient = {};
+			this.chatClient.nickName = prompt("Please enter your nickname");
+			this.chatClient.color = colors[r];  
+
+			//tell the others you joined the chat
+			this.Mediator.write("joinChat", this.chatClient);
+		}else{
+			this.chatToggleEl.toggle(400);
+		}
 	};
 
 	PlaylistControllerIndex.prototype.sendMessage = function(){
-		this.Mediator.write("sendMessage", "heölloooo");
+		var message = doc.getElementById("message-input").value,
+			obj = this.chatClient;
+
+		if (message.length > 0){
+			if (this.chatClient){
+				obj.message  = message;
+				this.Mediator.write("sendMessage", obj);
+				doc.getElementById("message-input").value = "";
+			}
+			else{
+				this.Mediator.write("temporaryMessage", "No nickname :(");
+			}
+		}
+		else{
+			this.Mediator.write("temporaryMessage", "You must type a message to send");
+		}
 	};
 
 	PlaylistControllerIndex.prototype.showQueue = function(){
@@ -126,12 +166,20 @@
 	};
 
 	//received chatmessage from the socket
-	PlaylistControllerIndex.prototype.chatMessage = function(message){
-		console.log(message);
+	PlaylistControllerIndex.prototype.newChatEntry = function(obj){
+		console.log(obj);
+		if (obj.message){
+			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
+										obj.nickName + " says : " + obj.message + "</p></div>");
+		}else{
+			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
+										obj.nickName + " has joined the playlist" + "</p></div>");
+		}
+		doc.getElementById("chat-entries").scrollTop = 9999999999;
 	};
 
 	//called when chat state changes
-	PlaylistControllerIndex.prototype.chatChanged = function(obj){
+	PlaylistControllerIndex.prototype.numberOfClientsChanged = function(obj){
 		var toggleEl = $("#show-chat");
 		toggleEl.html("Chat (" + obj.clients + ")");
 
@@ -141,9 +189,6 @@
 		}
 		else{
 			toggleEl.show(400);
-			//for (var i=0; i < newQueue.length; ++i){
-			//	this.chatToggleEl.append(newQueue[i].preview);
-			//}
 		}
 	};
 	

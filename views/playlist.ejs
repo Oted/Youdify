@@ -17,11 +17,7 @@
 				<a id="show-queue" style="display:none" href="#" class="grid-2" ></a>
 				<a id="show-chat"  style="display:none" href="#" class="grid-2" ></a><br>
 				<div style="display:none" id="queue-toggle">
-          			<a id="empty-queue" class="icon-button grid-1">Empty queue</a>
 				</div>	
-				<div style="display:none" id="chat-toggle">
-             		<a id="send-message" class="icon-button">Send</a>
-				</div>
 			</div><br>
              <a id="add-video" class="icon-button grid-4 playlist-handlers">Add new video </a>
             </div>
@@ -32,10 +28,12 @@
           <div id="main-sidebar" class="grid-4">
 			<div id="player-container" class="sidebar-component">
           	<a id="add-new-to-queue" class="icon-button grid-2 alpha playlist-handlers">Add New2Q</a>
+          	<a id="empty-queue" class="icon-button grid-2 omega playlist-handlers">EmptyQ</a>
 				<%- include partials/player.ejs %>
 			</div>
           </div>
           <div class="grid-8 push-4">
+		  	<%- include partials/chat.ejs %>
             <div id="video-list"></div>
           </div>
         </div>

@@ -53,18 +53,7 @@ $overlay-height: 420px;
     @include clearfix;
     margin-bottom: 20px;
   }
-  .search-field {
-    @include border-radius(2px);
-    background: #F3F3F3;
-    font-family: $font-family-light;
-    font-size: 18px;
-    height: 40px;
-  	padding-left: 5px;
-	margin: 2px; 
-  }
-
-
-
+  
   #player-container {
     iframe {
       width: 100%;

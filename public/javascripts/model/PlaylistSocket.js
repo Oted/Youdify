@@ -4,6 +4,7 @@
 	var PlaylistSocket = function(Mediator){	
 		this.Mediator = Mediator;
 		this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
+		this.Mediator.subscribe("joinChat", this.joinChat.bind(this));
 		
 		var n = doc.getElementById("name-div").value;
 		var c = doc.getElementById("client-div").value;
@@ -23,27 +24,37 @@
 		});
 
 		//quick! tell the others im here ! :3	
+		socket.on("newClient",function(obj){
+			Mediator.write("newClient", obj);
+		});
+		
+		//Haii guyss im here!! :)
 		socket.on("chatJoin",function(obj){
-			console.log("chat join\n" + obj.clients);
-			var video = Mediator.write("chatJoin", obj);
+			Mediator.write("chatJoin", obj);
 		});
 		
 		//sry guis, have to leave :(
-		socket.on("chatLeave",function(obj){
-			console.log("chat leave\n" + obj.clients);
-			var video = Mediator.write("chatLeave", obj);
+		socket.on("clientLeave",function(obj){
+			Mediator.write("clientLeave", obj);
 		});
-		
+
 		//here u go, message! :D
 		socket.on("chatMessage",function(obj){
-			console.log("chat message : " + obj.message);
-			var video = Mediator.write("chatMessage", obj.message);
+			Mediator.write("chatMessage", obj);
 		});
 	};
 
-	PlaylistSocket.prototype.sendMessage = function(message){
-		this.socket.emit("message", {message : message});	
+	//this client joins the chat, tell the server
+	PlaylistSocket.prototype.joinChat = function(obj){
+		console.log("Im gna join the chat!");
+		this.socket.emit("joinChat", obj);	
 	};
+	
+	//this client sends a message in the chat, tell the server
+	PlaylistSocket.prototype.sendMessage = function(obj){
+		this.socket.emit("message", obj);	
+	};
+
 
 	//decodes the replacement that was from the pusher
 	var replaceChars = function(video){

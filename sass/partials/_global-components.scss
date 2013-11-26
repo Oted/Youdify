@@ -4,6 +4,7 @@
     @include clearfix;
   }
 }
+
 .fixed-top {
   position: fixed;
   width:100%;
@@ -36,8 +37,22 @@
   padding: 10px 0;
   background: #FCFCFC;
   color: $black-color; 
-  @include border-radius(3px); 
-  #queue-toggle{
+
+}
+
+.search-field {
+    @include border-radius(2px);
+    background: #F3F3F3;
+    font-family: $font-family-light;
+    font-size: 18px;
+    height: 40px;
+  	padding-left: 5px;
+	margin: 2px; 
+  }
+
+
+
+#queue-toggle{
 	border-top: solid $black-color;
 	border-top-width:10px;
 	max-height: 82px;
@@ -46,15 +61,6 @@
 		margin-top:10px;
 		display:inline-block;
 	  }
-	}
-   
-  #chat-toggle{
-	border-top: solid $black-color;
-	border-top-width:10px;
-	max-height: 82px;
-	margin-top: 20px;	
-
-	}
 }
 
 #main-content {

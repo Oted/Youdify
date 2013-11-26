@@ -20,20 +20,24 @@ exports.init = function(io){
 			that.pushAll(socket, name, client);
 			
 			//tell the others that client has joined
-			that.io.sockets.in(name).emit("chatJoin", {client: data.client, 
+			that.io.sockets.in(name).emit("newClient", {client: data.client, 
 													   clients: io.sockets.clients(name).length
 			});
 			
 			//on disconnect, tell the others
 			socket.on("disconnect", function(){
-				that.io.sockets.in(name).emit("chatLeave", {client: data.client,
+				that.io.sockets.in(name).emit("clientLeave", {client: data.client,
 															clients: io.sockets.clients(name).length-1
 				});
 			});
 		
 			//on message, send to all
 			socket.on("message", function(obj){
-				that.io.sockets.in(name).emit("chatMessage", {message : obj.message});
+				that.io.sockets.in(name).emit("chatMessage", obj);
+			});
+
+			socket.on("joinChat", function(obj){
+				that.io.sockets.in(name).emit("chatJoin", obj);	
 			});
 		});	
 	});
