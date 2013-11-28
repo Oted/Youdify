@@ -52,6 +52,10 @@ $overlay-height: 420px;
   }
 }
 
+#search-option{
+	color:$white-color;
+}
+
 .overlay-search-result {
   @include transition(background linear 0.1s);
 

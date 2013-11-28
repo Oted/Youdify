@@ -159,9 +159,6 @@
 				this.Mediator.write("temporaryMessage", "No nickname :(");
 			}
 		}
-		else{
-			this.Mediator.write("temporaryMessage", "You must type a message to send");
-		}
 	};
 
 	PlaylistControllerIndex.prototype.showQueue = function(){
@@ -421,11 +418,14 @@
 
 		$(preview).addClass("grid-1 preview");
 
-		$(remove).addClass("remove fontawesome-remove")
-		.on("click", function(){
-			that.Mediator.write("removeVideoFromQueue", video);
-		})
+		$(remove)
+		.addClass("remove fontawesome-remove")
 		.appendTo(preview);
+
+		$(preview).on("click", function(){
+			console.log("lol remove")
+			that.Mediator.write("removeVideoFromQueue", video);
+		});
 
 		$(prevThumb)
 		.appendTo(preview);

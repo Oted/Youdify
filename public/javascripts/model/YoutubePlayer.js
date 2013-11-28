@@ -34,6 +34,7 @@
 
 	//remove a specific video from the queue
 	var removeVideoFromQueue = function(video){
+		console.log(video.title);
 		var index = this.queue.indexOf(video);
 		if (index >= 0){
 			this.queue.splice(index,1);
