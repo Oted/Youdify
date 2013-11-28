@@ -12,9 +12,11 @@
 		this.Mediator.subscribe("emptyQueue", emptyQueue.bind(this));
 		this.Mediator.subscribe("play", this.play.bind(this));
 		this.Mediator.subscribe("playNext", this.playNext.bind(this));
-
 		this.Mediator.subscribe("playPrev", playPrev.bind(this));
-		this.Mediator.subscribe("queueVideo", queueVideo.bind(this));
+
+		this.Mediator.subscribe("queueVideoFirst", queueVideoFirst.bind(this));
+		this.Mediator.subscribe("queueVideoLast", queueVideoLast.bind(this));
+		this.Mediator.subscribe("removeVideoFromQueue", removeVideoFromQueue.bind(this));
 		
 		this.Mediator.subscribe("toggleShuffle", toggleShuffle.bind(this));
 		this.Mediator.subscribe("toggleRepeat", toggleRepeat.bind(this));
@@ -28,6 +30,15 @@
 		this.repeat  		= false;
 		this.autoplay		= true;
 		this.results		= [];
+	};
+
+	//remove a specific video from the queue
+	var removeVideoFromQueue = function(video){
+		var index = this.queue.indexOf(video);
+		if (index >= 0){
+			this.queue.splice(index,1);
+			this.Mediator.write("queueChanged", this.queue);
+		}
 	};
 
 	//called to play next song
@@ -178,17 +189,30 @@
 		this.player.stopVideo();
 	};
 
-	//add videos to queue
-	var queueVideo = function(video){
+	//add videos last to queue
+	var queueVideoLast = function(video){
 		if(this.queue.indexOf(video)===-1){
 			this.queue.push(video);
-			this.Mediator.write("temporaryMessage", video.title + " queued");
+			this.Mediator.write("temporaryMessage", video.title + " queued last");
 			this.Mediator.write("queueChanged", this.queue);
 		}
 		else{
 			this.Mediator.write("temporaryMessage", video.title + " is already in the queue");
 		}
 	};
+	
+	//add videos first to queue
+	var queueVideoFirst = function(video){
+		if(this.queue.indexOf(video)===-1){
+			this.queue.unshift(video);
+			this.Mediator.write("temporaryMessage", video.title + " queued first");
+			this.Mediator.write("queueChanged", this.queue);
+		}
+		else{
+			this.Mediator.write("temporaryMessage", video.title + " is already in the queue");
+		}
+	};
+
 	
 	//sets current to parameter video
 	YoutubePlayer.prototype.setCurrent = function(video){
@@ -232,6 +256,7 @@
 				if (index >= this.results.length){	   
 					index = 0;
 				}
+				console.log(this.results[index]);
 				while (this.results[index].element.style.display === "none"){
 					index++;
 					iterationLimit ++;
@@ -250,7 +275,7 @@
 
 			//if the video element is hidden we want to generate a new one else we are done
 			console.log(video.element.style.display);
-			if(video.element.style.display !== "none") {
+			if (video.element.style.display !== "none") {
 				callback(video);
 			}
 			else{

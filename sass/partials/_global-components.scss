@@ -25,7 +25,7 @@
   left: 0;
   width: 100%;
   padding: 20px 0;
-  background: #FCFCFC;
+  background: $white-color;
   color: $black-color; 
 }
 
@@ -35,22 +35,24 @@
   top: 0;
   z-index: 20;
   padding: 10px 0;
-  background: #FCFCFC;
+  background: $white-color;
   color: $black-color; 
-
+  #empty-queue{
+	padding:0px 6px;
+	margin-left:3px;
+ 	float:left;
+  }
 }
 
 .search-field {
     @include border-radius(2px);
-    background: #F3F3F3;
+    background: $white-color;
     font-family: $font-family-light;
     font-size: 18px;
     height: 40px;
   	padding-left: 5px;
 	margin: 2px; 
-  }
-
-
+}
 
 #queue-toggle{
 	border-top: solid $black-color;
@@ -58,9 +60,14 @@
 	max-height: 82px;
 	margin-top: 20px;
   	  .preview{
-		margin-top:10px;
+		margin-top:2px;
 		display:inline-block;
 	  }
+}
+
+.remove{
+	margin-right:100%;
+	float:left;	
 }
 
 #main-content {

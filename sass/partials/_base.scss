@@ -1,6 +1,7 @@
 $blue-color: #115980;
 $black-color: #262626;
-$white-color: #F3F3F3;
+$white-color: #FCFCFC;
+$grey-color: #5E5E5E;
 
 $font-family-light: "Arial", "Helvetica", sans-serif;
 $font-family-heavy: "Arial Black", "Helvetica Bold", sans-serif;
@@ -58,6 +59,25 @@ a {
       text-decoration: none;
   }
 }
+
+.options {
+  width:98%;
+  display:block;
+  margin-top:2px;
+  padding:2px;
+  @include transition(all ease-in 0.2s);
+  @include border-radius(2px);
+  background: $white-color;
+  &:hover {
+    background: lighten($blue-color, 20%);
+  }
+  &.active {
+    background: lighten($blue-color, 20%);
+    @include box-shadow(0 2px 4px rgba(0,0,0,0.8) inset);
+  }
+  cursor: pointer;
+}
+
 
 .icon-button {
   text-align: center;

@@ -133,6 +133,8 @@
 			entry.average = 0;
 		}
 
+		//url???
+
 		callback(entry);
 	};
 

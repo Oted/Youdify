@@ -1,0 +1,37 @@
+.video{
+	display:block;
+	padding: 10px 5px;
+    @include clearfix;
+    background: $grey-color;
+    @include border-radius(3px);
+    margin-bottom: 7px;
+	display:-webkit-flex;
+	
+	* {
+      line-height: 15px;
+    }
+	
+	.toggle-video-options{
+		height: 20px;
+	}
+
+    .title {
+	  cursor:pointer;
+      padding-left: 20px;
+    }
+
+	.subtitle{
+		float:right;
+		width:120px;
+	}
+
+	.video-options{
+  		@include border-radius(2px);
+		padding:2px;
+		background:$white-color;
+	}
+	
+	.thumb{
+		float:bottom;
+	}
+}

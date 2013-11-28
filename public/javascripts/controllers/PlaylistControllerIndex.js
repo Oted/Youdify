@@ -83,7 +83,9 @@
 		.attr("title","Add new video to the playlist");
 		
 		$("#empty-queue")
-		.on("click", this.emptyQueue.bind(this))
+		.on("click", function(){
+			that.Mediator.write("emptyQueue");
+		})
 		.attr("title","Empty the queue");
 		
 		$("#next")
@@ -201,7 +203,7 @@
 		var toggleEl = $("#show-queue");
 		toggleEl.html("Queue (" + newQueue.length + ")");
 
-		this.queueToggleEl.empty();
+		this.queueToggleEl.find(".preview").remove();
 		if (newQueue.length === 0){
 			this.queueToggleEl.hide(200);
 			toggleEl.hide(400);
@@ -235,49 +237,6 @@
 			}
 			
 		this.Mediator.write("getVideoFromId", object);
-	};
-
-	//generates a template for a video element
-	var generateTemplate = function(){
-		var element 	= doc.createElement("div"),
-			thumbDiv 	= doc.createElement("div"),
-			subTitleDiv = doc.createElement("div"),
-			queue 		= doc.createElement("button"),	
-			hide 		= doc.createElement("button"),	
-			title 		= doc.createElement("h3"),
-			thumb 		= doc.createElement("img");
-
-		$(element).addClass("video");
-
-		$(thumbDiv).addClass("grid-1")
-		.appendTo(element);
-	
-		$(title).addClass("title grid-6")
-		.appendTo(element);
-
-		$(thumb).addClass("thumb grid-1")
-		.appendTo(thumbDiv);
-	
-		$(queue).addClass("grid-1 add-to-queue")
-		.html("Queue")
-		.attr("title", "Add this video to the que")
-		.appendTo(thumbDiv);
-	
-		$(hide).addClass("grid-1 hide-video")
-		.html("Remove")
-		.attr("title", "Remove this video from the list, the video will still be in the list efter refresh")
-		.appendTo(thumbDiv);
-
-		$(subTitleDiv).addClass("subtitle")
-		.appendTo(element);
-
-		return element;
-	};
-
-
-	//empty the queue
-	PlaylistControllerIndex.prototype.emptyQueue = function(){
-		this.Mediator.write("emptyQueue");
 	};
 
 	//back and forth between adding videos and playlist
@@ -409,17 +368,31 @@
 		this.results.push(video);
 		this.Mediator.write("resultsChange", this.results);
 		
-		var element = generateTemplate();
-		
+		var element = $("#video-tempelate").clone().show().attr("id","")[0];
+
         $(element).find(".title")
 		.html(video.title).on("click", function(){
 			that.Mediator.write("play", video);	
 		});
 	
-		//add action for queue
-		$(element).find(".add-to-queue").on("click", function(){
-			that.Mediator.write("queueVideo", video);
+		//add action for queue last
+		$(element).find(".add-last-to-queue").on("click", function(){
+			that.Mediator.write("queueVideoLast", video);
+			$(this.parentNode).hide(200);
 		});
+		
+		$(element).find(".toggle-video-options")
+		.on("click", function(){
+			$(element).find(".video-options").toggle(200);		
+		});
+
+		
+		//add action for queue first
+		$(element).find(".add-first-to-queue").on("click", function(){
+			that.Mediator.write("queueVideoFirst", video);
+			$(this.parentNode).hide(200);
+		});
+
 
 		//add action for remove (hide)
 		$(element).find(".hide-video").on("click", function(){
@@ -438,7 +411,8 @@
 		var preview 	= doc.createElement("div"),
 			prevThumb	= $(element).find(".thumb").clone(),
 			prevTitle 	= doc.createElement("h4"),
-			title		= video.title;
+			title		= video.title,
+			remove 		= doc.createElement("a");
 		
 		if (title.length >= 15){
 			title = title.slice(0,12);
@@ -446,6 +420,12 @@
 		}
 
 		$(preview).addClass("grid-1 preview");
+
+		$(remove).addClass("remove fontawesome-remove")
+		.on("click", function(){
+			that.Mediator.write("removeVideoFromQueue", video);
+		})
+		.appendTo(preview);
 
 		$(prevThumb)
 		.appendTo(preview);

@@ -17,42 +17,13 @@
 	display:block;
 	padding: 10px 5px;
     @include clearfix;
-    background: #FCFCFC;
+    background: $white-color;
     @include border-radius(3px);
     margin-bottom: 7px;
 	display:-webkit-flex;
 	* {
       line-height: 20px;
     }
-}
-
-
-.video{
-	display:block;
-	padding: 10px 5px;
-    @include clearfix;
-    background: #5E5E5E;
-    @include border-radius(3px);
-    margin-bottom: 7px;
-	display:-webkit-flex;
-	
-	* {
-      line-height: 15px;
-    }
-
-    .title {
-	  cursor:pointer;
-      padding-left: 20px;
-    }
-
-	.subtitle{
-		float:right;
-		width:120px;
-	}
-}
-
-.thumb{
-	float:bottom;
 }
 
 #video-list {
