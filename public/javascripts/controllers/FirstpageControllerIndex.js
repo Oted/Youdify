@@ -27,7 +27,39 @@
 		.on("click", this.submitPlaylist.bind(this))
 		.attr("title","Save and submit the playlist");
 
+		$("#sort-category-1")
+		.on("click", function(){
+			that.sortOnCategory(1);
+		});
+	};
 
+	//sort the results
+	AddVideoControllerIndex.prototype.sortOnCategory = function(category){	
+		var tempArr = this.results;
+		if (category===1){
+			tempArr.sort(
+				function(a,b){
+						return b.views-a.views;
+				}
+			);
+		} else if (category===2){
+			tempArr.sort(
+				function(a,b){
+						return b.durationSec - a.durationSec;
+				}
+			);
+		} else if (category===3){
+			tempArr.sort(
+				function(a,b){
+						return b.average - a.average;
+				}
+			);
+		};
+
+		this.clear();
+		for (var i = 0; i < tempArr.length; ++i){
+			this.generateResultDiv(tempArr[i]);
+		}
 	};
 
 

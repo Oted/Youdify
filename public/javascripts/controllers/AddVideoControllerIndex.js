@@ -25,9 +25,7 @@
 		new APIHandler(this.Mediator, playlistName);
 
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
-		
 		this.results 		= [];
-
 		this.initUI();
 	};
 
@@ -46,17 +44,17 @@
 		this.searchOptionEl = $("#search-option")
 		.attr("title","Video search is the standard search, playlistsearch is better when searcrching for albums or collections of videos");
 		
-		this.sortCategory1 	= $("#sort-category-1")
+		$("#sort-category-1")
 		.on("click", function(){
 			that.sortOnCategory(1);
 		});
 
-		this.sortCategory2 	= $("#sort-category-2")
+		$("#sort-category-2")
 		.on("click", function(){
 			that.sortOnCategory(2);
 		});
 
-		this.sortCategory3 	= $("#sort-category-3")
+		$("#sort-category-3")
 		.on("click", function(){
 			that.sortOnCategory(3);
 		});
