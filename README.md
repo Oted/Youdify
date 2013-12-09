@@ -2,4 +2,4 @@ BMAP
 ====
 
 Node / Javascript youtube player
-![ScreenShot](https://raw.github.com/Oted/BMAP/blop/Master/Youdify.png)
+![ScreenShot](https://github.com/Oted/BMAP/blob/master/Youdify.png)
