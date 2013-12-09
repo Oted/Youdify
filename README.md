@@ -1,5 +1,3 @@
 BMAP
 ====
-
-Node / Javascript youtube player
-![ScreenShot](https://github.com/Oted/BMAP/blob/master/Youdify.png)
+![ScreenShot](https://raw.github.com/Oted/BMAP/master/Youdify.png)
