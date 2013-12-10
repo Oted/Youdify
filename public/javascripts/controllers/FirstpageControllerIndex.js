@@ -54,6 +54,7 @@
 				}
 			}
 		this.clear();
+		$("#"+type).addClass("active");
 		this.Mediator.write("getPlaylists", obj);
 	};
 
@@ -124,6 +125,11 @@
 	};
 
 	FirstpageControllerIndex.prototype.clear = function(){
+		var elements = doc.getElementsByClassName("active");
+		for(var i = 0; i < elements.length; ++i){
+			elements[i].className = elements[i].className.replace("active", "");
+		};
+
 		this.resultEl.innerHTML = "";
 		this.results = [];
 	};
