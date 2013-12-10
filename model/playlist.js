@@ -34,13 +34,6 @@ exports.checkIfExist = function(name, callback){
 	});
 };
 
-//find a playlist that belongs to a client
-exports.getMyPlaylists = function(client, callback){
-	Playlist.find({"creator": client}, function(err, docs){
-		console.log(docs);		
-	});	
-};
-
 //creates a new playlist with the given name
 exports.createNewPlaylist = function(name, client, description, tag, freetag, callback){
 	this.checkIfExist(name,function(data){
@@ -67,6 +60,9 @@ exports.createNewPlaylist = function(name, client, description, tag, freetag, ca
 					callback(true);
 				}
 			});
+		}
+		else{
+			callback(false);
 		}
 	});
 }
@@ -136,4 +132,67 @@ exports.update = function(name){
 	Playlist.update({"name": name}, {$inc: {"timesvisited" : 1}, $set: {"lastvisited":new Date()}},  function(err){
 		if (err) console.log("Error in database update : \n" + err);	
 	});
-};	
+};
+
+exports.getMostViewed = function(count, callback){
+	Playlist.find().sort({"timesvisited": -1}).limit(count).exec(function(err, doc) {
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getMostViewed: \n" + err)
+		}
+	});
+}
+
+exports.getLastVisited = function(count, callback){
+	Playlist.find().sort({"lastvisited": -1}).limit(count).exec(function(err, doc) {
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+				doc[i].creator = "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getLastVisited: \n" + err)
+		}
+	});
+}
+
+exports.getNewest = function(count, callback){
+	Playlist.find().sort({"date": -1}).limit(count).exec(function(err, doc) {
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+				doc[i].creator = "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getNewest: \n" + err)
+		}
+	});
+}
+
+exports.getMine = function(client, callback){
+	Playlist.find({creator: client}, function(err, doc){
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+				doc[i].creator = "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getMine: \n" + err)
+		}
+	});	
+};

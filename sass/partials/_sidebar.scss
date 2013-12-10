@@ -13,13 +13,7 @@
     }
   }
   
-  #create-new-playlist-div{
- 	margin-top:30px;
-	@include border-radius(2px);
-    @include box-shadow(0 2px 4px rgba(0,0,0,0.8));
-  }
-
-  .playback-ctrl-wrap {
+ .playback-ctrl-wrap {
     width: 100/6 * 1%;
     display: block;
     float: left;

@@ -9,8 +9,24 @@
 		this.Mediator.subscribe("submitPlaylist", this.submitPlaylist.bind(this));	
 		//this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
 		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
+		this.Mediator.subscribe("getPlaylists", this.getPlaylists.bind(this));	
 	};
 
+	//get a collection of playlists from the database
+	APIHandler.prototype.getPlaylists = function(obj){
+		$.ajax({
+			url: "/getPlaylists/?type=" + obj.type + "&count=" + obj.count +"&callback=?",
+			dataType:"jsonp",
+			beforesend: function(){
+				console.log("Getting " + obj.type +  " from server");
+			},
+			success: function(data){
+				obj.callback(data.data);
+			}
+		});
+	};
+
+	//submit a playlist to the server
 	APIHandler.prototype.submitPlaylist = function(prop){
 		var that = this,
 			url;
@@ -114,26 +130,6 @@
 			})
 		}
 	};
-	
-	//client sends a message
-	APIHandler.prototype.sendMessage = function(message){
-		var that = this;
-		if (this.playlistName){
-			console.log(that.playlistName);
-			$.ajax({
-				url: "/message/?name=" + that.playlistName + "&message=" + message + "&callback=?",
-				dataType:"jsonp",
-				beforeSend: function(){
-					console.log("Sending message " + message);
-				},
-				success: function(message){
-					console.log("Success!")
-					console.log(message + " sendt to " + that.playlistName);
-				}
-			})
-		}
-	};
-
 
 	var replaceChars = function(string){
 		return string.replace("&","//a").replace("%","//p");

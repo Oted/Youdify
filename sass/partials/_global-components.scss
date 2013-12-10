@@ -70,6 +70,16 @@
 	float:left;	
 }
 
+#create-new-playlist-div{
+	@include box-shadow(0 15px 25px rgba(0,0,0.4,0.7));
+	padding:3px;
+	padding-top:10px;
+	@include clearfix;
+ 	margin-top:30px;
+	margin-bottom:20px;
+	background-color:$black-color;
+}
+
 #main-content {
   margin-top: 180px;
 }

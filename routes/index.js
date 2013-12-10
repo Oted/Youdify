@@ -70,11 +70,30 @@ exports.push = function(req, res){
 	});
 };
 
-//Api-call for sending a message to other clients
-exports.chatMessage = function(req, res){
-	var client = req.ip,
-		name = req.query.name.replace("+"," "),
-		message = req.query.message;
-
-	socket.message(name, message, client);
+//get a collection of playlists from the db and return it to the client
+exports.getPlaylists = function(req, res){
+	var type = req.query.type,
+		count = req.query.count,
+		client = req.ip;
+		
+	if (type==="viewed"){
+		dbHandler.getMostViewed(count, function(data){
+			res.jsonp({"data" : data});
+		});
+	} else if (type==="visits"){
+		dbHandler.getLastVisited(count, function(data){
+			res.jsonp({"data" : data});
+		});
+	} else if (type==="new"){
+		dbHandler.getNewest(count, function(data){
+			res.jsonp({"data" : data});
+		});
+	} else if (type==="mine"){
+		dbHandler.getMine(client, function(data){
+			res.jsonp({"data" : data});
+		});
+	}
+	else{
+		res.jsonp({"data" : ""});
+	}
 };

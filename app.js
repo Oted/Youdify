@@ -22,6 +22,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 	console.log("Database successfuly opened\nExpress and socket is now listening on port "+ host + ":" + port);
 
+	app.use(express.favicon(__dirname + '/public/images/favicon.ico')); 
 	app.set("view engine", "ejs");	
 	app.use(express.static(__dirname + '/public'));
 	app.enable('trust proxy');
@@ -34,9 +35,9 @@ db.once('open', function callback () {
 	
 	//Api calls
 	app.get("/checkifexist/*", routes.checkIfExist);
+	app.get("/getPlaylists/*", routes.getPlaylists);
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
 	app.get("/push/*", routes.push);
-	app.get("/message/*", routes.chatMessage);
 });
 
 //on exit, close database

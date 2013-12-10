@@ -7,51 +7,32 @@
         <div class="fixed-top">
           <header id="main-header" class="grid-container">
 			<div class="message text-center grid-12" id="navigation-board">
-				<a id="home" class="grid-4 fontawesome-home" > Home</a>
-				<a id="show-queue" style="display:none" href="#" class="grid-2" ></a>
-				<a id="show-chat"  style="display:none" href="#" class="grid-2" ></a><br>
-				<div style="display:none" id="queue-toggle">
-          			<a id="empty-queue" class="fontawesome-trash options"></a>
-				</div>	
-			</div><br>
-            <div class="grid-6">
-              <h2 class="text-center">  
-                HEUHUEHUEHUEHE
-              </h2>
-            </div>
+				<a id="home" class="grid-4 fontawesome-home sort"> Home</a>
+				<a id="create-playlist" class="grid-4 sort">New playlist</a>
+				</div><br>
+              <img class="grid-4 alpha" src="images/Youdify-logo.png"></img>
+			  <%- include partials/newPlaylist.ejs %>				
           </header>
         </div>
         <div class="grid-container" id="main-content">
           <div class="grid-4" id="main-sidebar">
-            <div class="search-area sidebar-component">
-				<a class="icon-button grid-4 alpha playlist-handlers" id="create-playlist">Create a playlist</a>
-				<form id="create-new-playlist-div" style="display:none" class="grid-4">
-              		<h3 class="text-center"> Fill in the form and submit</h3>
-					<input class="grid-3 omega search-field" placeholder="Playlist name" id="pname"/>
-					<input class="grid-3 omega search-field" placeholder="Description..." id="pdescription"/>
-					<select id="tag-select" class="search-field grid-3">
-					  <option id="music" selected="selected">Music</option>
-					  <option id="knowledge">Knowledge</option>
-					  <option id="movies">Movies</option>
-					  <option id="comedy">For the lulz</option>
-					  <option id="other">Other</option>
-					</select>	
-              		<h3 class="text-center grid-3"> Freetags allow you to later find a collection of playlists by searching for the freetag</h3>	
-					<input class="grid-3 omega search-field" placeholder="Freetag" id="pfreetag"/>
-					<a class="icon-button grid-2 omega" id="submit">Submit</a>
-				</form>
-			</div>
           </div>
-          <div class="grid-10 push-4">
-            <div id="search-results">
-				<a class="head-results list-item"> 
-					<span id="sort-category-1"class="grid-2"> Name </span>
-					<span class="grid-1"> Videos </span>
-					<span class="grid-2"> Category </span>
-					<span class="grid-2"> Freetag </span>
-					<span class="grid-2"> Description </span>
-				 </a><br>
-            </div>
+              <a id="new" class="icon-button grid-2 request-button">New</a>
+              <a id="viewed" class="icon-button grid-3 request-button">Most viewed</a>
+			  <a id="visits" class="icon-button grid-3 request-button">Last visited</a>
+			  <a id="active" class="icon-button grid-2 request-button" style="display:none">Active now</a>
+			  <a id="mine" class="icon-button grid-2 request-button">Mine</a>
+          <div class="grid-12">
+			<a class="head-results list-item"> 
+				<span id="sort-category-1" class="grid-3 name"> Name </span>
+				<span class="grid-3 description"> Description </span>
+				<span class="grid-2 category"> Category </span>
+				<span class="grid-2 freetag"> Freetag </span>
+				<span class="grid-2 videos"> Videos </span>
+			</a><br>
+
+			<div id="search-results">
+			</div>
           </div>
         </div>
       </div>
