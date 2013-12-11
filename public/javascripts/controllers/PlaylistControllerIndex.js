@@ -222,12 +222,12 @@
 					if (!that.checkIfExist(video)){
 						that.generateResultDiv(video);	
 						if (that.addNewToQue){
-							this.Mediator.write("queueVideo", video);
+							that.Mediator.write("queueVideoLast", video);
 						}
 					}
 					else{
 						if (that.addNewToQue){
-							this.Mediator.write("queueVideo", video);
+							that.Mediator.write("queueVideoLast", video);
 						}		
 					}	
 				}			

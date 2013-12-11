@@ -5,7 +5,8 @@
 		$("#main-sidebar").toggle().toggle();	
 		new FirstpageControllerIndex();	
 	});
-
+	
+	//constructor for firstpage controller
 	var FirstpageControllerIndex = function(){	
 		this.results 	= [];
 		this.Mediator 	= require("../Mediator.js").Mediator;
@@ -39,6 +40,8 @@
 		.on("click", function(){
 			that.sortOnCategory(1);
 		});
+
+		this.getPlaylists("new");
 	};
 
 	//get a collection of playlists
