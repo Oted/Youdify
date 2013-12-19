@@ -15,12 +15,14 @@
 
 .list-item {
 	display:block;
-	padding: 10px 5px;
-    @include clearfix;
-    background: $white-color;
-    @include border-radius(3px);
-    margin-bottom: 7px;
-	display:-webkit-flex;
+	padding: 10px 0px;
+  @include clearfix;
+  background: $white-color;
+  @include border-radius(3px);
+  margin-bottom: 7px;
+  span {
+    padding: 0 10px;
+  }
 	* {
       line-height: 20px;
     }
