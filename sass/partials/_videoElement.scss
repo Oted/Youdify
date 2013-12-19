@@ -5,8 +5,6 @@
     background: $grey-color;
     @include border-radius(3px);
     margin-bottom: 7px;
-	display:-webkit-flex;
-	
 	* {
       line-height: 15px;
     }
@@ -17,7 +15,6 @@
 
     .title {
 	  cursor:pointer;
-      padding-left: 20px;
     }
 
 	.subtitle{
