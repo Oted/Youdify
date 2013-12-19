@@ -230,7 +230,7 @@
 							that.Mediator.write("queueVideoLast", video);
 						}		
 					}	
-				}			
+				}	
 			}
 			
 		this.Mediator.write("getVideoFromId", object);

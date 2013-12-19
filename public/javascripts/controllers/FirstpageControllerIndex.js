@@ -49,7 +49,7 @@
 		var that = this,
 			obj = {
 				type : type,
-				count : 10,
+				count : 5,
 				callback : function(playlists){
 					for (var i = 0; i < playlists.length; ++i){
 						that.generateResultDiv(playlists[i]);
@@ -115,12 +115,13 @@
 		element.className = "";
 		element.className = "list-item playlist";
 		element.setAttribute("href", "/playlists/" + playlist.name);		
+		element.id = "";	
 		
-		element.getElementsByClassName("name")[0].innerText = playlist.name;		
-		element.getElementsByClassName("description")[0].innerText = playlist.description;		
-		element.getElementsByClassName("category")[0].innerText = playlist.category;		
-		element.getElementsByClassName("freetag")[0].innerText = playlist.freetag ? playlist.freetag : "";		
-		element.getElementsByClassName("videos")[0].innerText = playlist.videos;		
+		$(".name", element).text(playlist.name);		
+		$(".description", element).text(playlist.description);		
+		$(".category", element).text(playlist.category);		
+		$(".freetag", element).text(playlist.freetag ? playlist.freetag : "-");		
+		$(".videos", element).text(playlist.videos);		
 
 		playlist.element = element;	
 		this.results.push(playlist);	
