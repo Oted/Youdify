@@ -10,7 +10,8 @@ var playlistSchema = new mongoose.Schema({
 	timesvisited: Number,
 	lastvisited: { type: Date, default: Date.now },
   	date: { type: Date, default: Date.now },
-	videos: [{type: String, trim: true}]
+	videos: [{type: String, trim: true}],
+	locked: String
 });
 
 //add playlist schema to db
@@ -47,7 +48,8 @@ exports.createNewPlaylist = function(name, client, description, tag, freetag, ca
 				"date" 	 : new Date(),
 				"lastvisited" : new Date(),
 				"timesvisited" : 1,
-				"videos" : []
+				"videos" : [],
+				"locked" : false
 			});
 				
 			newPlaylist.save(function(error){

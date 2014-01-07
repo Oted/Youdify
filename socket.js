@@ -9,10 +9,10 @@ exports.init = function(io){
 		
 		//ack
 		socket.on("ok", function(data){
+			//name of playlist and the ip of the client 
 			var name   = data.name,
 				client = data.client;
 				
-			
 			console.log("client " + client + " is now registered to playlist " + name); 		
 			socket.join(name);
 			
@@ -27,7 +27,7 @@ exports.init = function(io){
 			//on disconnect, tell the others
 			socket.on("disconnect", function(){
 				that.io.sockets.in(name).emit("clientLeave", {client: data.client,
-															clients: io.sockets.clients(name).length-1
+														clients: io.sockets.clients(name).length-1
 				});
 			});
 		
@@ -35,7 +35,8 @@ exports.init = function(io){
 			socket.on("message", function(obj){
 				that.io.sockets.in(name).emit("chatMessage", obj);
 			});
-
+			
+			//on chat join, tell the others
 			socket.on("joinChat", function(obj){
 				that.io.sockets.in(name).emit("chatJoin", obj);	
 			});
@@ -61,9 +62,4 @@ exports.pushAll = function(socket, name, client){
 			socket.emit("push", {video: video});
 		});
 	});
-};
-
-exports.chatMessage = function(){
- 	
-
 };
