@@ -105,10 +105,10 @@
 
 		$(element).addClass("video");
 
-		$(thumbDiv).addClass("grid-1")
+		$(thumbDiv).addClass("grid-1 alpha")
 		.appendTo(element);
 	
-		$(title).addClass("title grid-6")
+		$(title).addClass("title grid-6 omega")
 		.appendTo(element);
 
 		$(thumb).addClass("thumb grid-1")
