@@ -1,6 +1,10 @@
 <form id="create-new-playlist-div" style="display:none" class="grid-4">
-              			<h3 class="text-center white-text"> Fill in the form and submit</h3>
 						<input class="grid-3 omega search-field" placeholder="Playlist name" id="pname"/>
+              			<h3 class="text-center grid-3 white-text"> 
+							By setting a password, you can later claim ownership of the playlist.
+							This allows you to remove videos, lock and unlock the playlist and edit name and description.
+						</h3>	
+						<input class="grid-3 omega search-field" placeholder="Password" id="ppassword"/>
 						<input class="grid-3 omega search-field" placeholder="Description..." id="pdescription"/>
 						<select id="tag-select" class="search-field grid-3">
 						  <option id="music" selected="selected">Music</option>
@@ -9,7 +13,9 @@
 						  <option id="comedy">For the lulz</option>
 						  <option id="other">Other</option>
 						</select>	
-              			<h3 class="text-center grid-3 white-text"> Freetags allow you to later find a collection of playlists by searching for the freetag</h3>	
+              			<h3 class="text-center grid-3 white-text"> 
+							Freetags allow you to later find a collection of playlists by searching for the freetag
+						</h3>	
 						<input class="grid-3 omega search-field" placeholder="Freetag" id="pfreetag"/>
 						<a class="icon-button grid-2 omega" id="submit">Submit</a>
 					</form>

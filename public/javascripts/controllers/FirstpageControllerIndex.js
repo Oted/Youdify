@@ -100,6 +100,7 @@
 			prop = {};
 
 		prop.name = doc.getElementById("pname").value;
+		prop.password = doc.getElementById("ppassword").value;
 		prop.desc = doc.getElementById("pdescription").value;
 		prop.freetag = doc.getElementById("pfreetag").value.replace("#","");
 		prop.tag = selectTagEl.options[selectTagEl.selectedIndex].id

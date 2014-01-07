@@ -1,8 +1,10 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+	bcrypt = require("bcrypt");
 
 //playlist schema
 var playlistSchema = new mongoose.Schema({
-	name: String,
+    name: { type: String, required: true, index: { unique: true } },
+	password : String,
 	creator: String,
 	category: String,
 	freetag: String,
@@ -14,9 +16,11 @@ var playlistSchema = new mongoose.Schema({
 	locked: String
 });
 
+
+
 //add playlist schema to db
 var Playlist = mongoose.model("Playlists", playlistSchema);
-	
+
 //checks if a playlist with as given name exists, if it does the ducument is returned
 exports.checkIfExist = function(name, callback){
 	console.log("Checking if playlist " + name + " exists..");
@@ -36,31 +40,35 @@ exports.checkIfExist = function(name, callback){
 };
 
 //creates a new playlist with the given name
-exports.createNewPlaylist = function(name, client, description, tag, freetag, callback){
+exports.createNewPlaylist = function(name, password, client, description, tag, freetag, callback){
 	this.checkIfExist(name,function(data){
 		if (!data.found){
-			var newPlaylist = new Playlist({
-				"name"   : name,
-				"creator": client,
-				"category": tag,
-				"freetag" : freetag,
-				"description": description,
-				"date" 	 : new Date(),
-				"lastvisited" : new Date(),
-				"timesvisited" : 1,
-				"videos" : [],
-				"locked" : false
-			});
+			//encrypt password before saving
+			encrypt(password, function(hashPassword){
+				var newPlaylist = new Playlist({
+					"name"   : name,
+					"password": hashPassword,
+					"creator": client,
+					"category": tag,
+					"freetag" : freetag,
+					"description": description,
+					"date" 	 : new Date(),
+					"lastvisited" : new Date(),
+					"timesvisited" : 1,
+					"videos" : [],
+					"locked" : false
+				});
 				
-			newPlaylist.save(function(error){
-				if (error){
-					console.log("Error while creating playlist\n" + error);
-					callback(false);
-				}
-				else{
-					console.log("New playlist created");
-					callback(true);
-				}
+				newPlaylist.save(function(error){
+					if (error){
+						console.log("Error while creating playlist\n" + error);
+						callback(false);
+					}
+					else{
+						console.log("New playlist created");
+						callback(true);
+					}
+				});
 			});
 		}
 		else{
@@ -68,7 +76,31 @@ exports.createNewPlaylist = function(name, client, description, tag, freetag, ca
 		}
 	});
 }
-	
+
+//encrypt password
+var encrypt = function(password, callback){
+	bcrypt.genSalt(10, function(err, salt){
+		if (err) throw err;
+		else{
+			bcrypt.hash(password, salt, function(err, hash){
+				if (err) throw err;
+				else{
+					callback(hash);
+				}		
+			});
+
+		}
+	});
+};
+
+//compare a passwords
+var comparePasswords = function(candidatePassword, password) {
+    bcrypt.compare(candidatePassword, password, function(err, isMatch) {
+        if (err) throw err;
+		else return isMatch;
+    });
+};
+
 //push a video to a given playlist
 exports.push = function(name, client, videoId, callback){	
 	this.checkForVideo(name, videoId, function(found){

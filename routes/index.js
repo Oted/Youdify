@@ -49,11 +49,12 @@ exports.checkIfExist = function(req, res){
 exports.createNewPlaylist = function(req, res){
 	var client = req.ip,
 		name = req.query.name.replace("+"," "),
+		password = req.query.password.replace("+"," "),
 		description = req.query.desc.replace("+"," "),
 		tag = req.query.tag.replace("+"," "),
 		freetag = req.query.freetag.replace("+"," ");
 	
-	dbHandler.createNewPlaylist(name, client, description, tag, freetag, function(created){
+	dbHandler.createNewPlaylist(name, password, client, description, tag, freetag, function(created){
 		res.jsonp({"created" : created});
 	});
 };

@@ -102,7 +102,12 @@
 	//calls server and creates a new document
 	APIHandler.prototype.createNewDocument = function(prop, callback){
 		$.ajax({
-			url: "/createnewplaylist/?name=" + prop.name + "&desc=" + prop.desc + "&tag=" + prop.tag + "&freetag=" + prop.freetag + "&callback=?",
+			url: "/createnewplaylist/?name=" + prop.name + 
+									"&password=" + prop.password +
+									"&desc=" + prop.desc + 
+									"&tag=" + prop.tag + 
+									"&freetag=" + prop.freetag + 
+									"&callback=?",
 			dataType:"jsonp",
 			beforeSend: function(){
 				console.log("Creating new new playlist");
