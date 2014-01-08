@@ -43,19 +43,24 @@ db.once('open', function callback(){
 	app.get("/playlists/*", routes.playlist(false));
 
 	//authentication rendering of playlist
-	app.post("/auth", passport.authenticate("local"), function(req,res){res.redirect(§routes.playlist(true))});
+	app.post("/auth", passport.authenticate("local", { failureFlash: "Invalid passoword :("}),
+	function(req, res) {
+		res.send({"auth":true})
+	});
 	
 	//Api calls
 	app.get("/checkifexist/*", routes.checkIfExist);
 	app.get("/getPlaylists/*", routes.getPlaylists);
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
 	app.get("/push/*", routes.push);
+	app.get("/deleteVideo/*", routes.deleteVideo);
 	
 });
 
 
 passport.serializeUser(function(user, done) {
 	console.log('Serialize user called.');
+	
 	done(null, user.name);
 });
 

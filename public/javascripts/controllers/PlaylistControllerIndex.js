@@ -13,6 +13,7 @@
 	//contructor of PlaylistController
 	var PlaylistControllerIndex = function(){
 		console.log("Auth : " + isAuthenticated);	
+		
 		this.playlistName 	= doc.getElementById("name-div").value;
 		this.Mediator = require("../Mediator.js").Mediator;
 		
@@ -36,6 +37,7 @@
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.Mediator.subscribe("videoPushed", this.videoPushed.bind(this));
 		this.Mediator.subscribe("queueChanged", this.queueChanged.bind(this));
+		this.Mediator.subscribe("authenticated", this.authenticated.bind(this));
 	
 		//mediator calls for handle chat	
 		this.Mediator.subscribe("clientLeave", this.numberOfClientsChanged.bind(this));
@@ -129,6 +131,10 @@
 		this.repeatEl		= $("#repeat")
 		.on("click", this.toggleRepeat.bind(this))
 		.attr("title","Toggle repeat one");
+	};
+
+	PlaylistControllerIndex.prototype.authenticated = function(){
+		isAuthenticated = true;	
 	};
 
 	//start the chat!
@@ -401,7 +407,16 @@
 
 		//add action for remove (hide)
 		$(element).find(".hide-video").on("click", function(){
-			$(element).hide(100);
+			var obj = {
+				"id":video.id,
+				"name":that.playlistName
+			}
+			if (isAuthenticated){
+				that.Mediator.write("deleteVideo", obj);
+			}
+			else{
+				$(element).hide(100);
+			}
 		});
 
 		//set properties of video element

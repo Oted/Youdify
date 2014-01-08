@@ -27,6 +27,14 @@ passport.use(new LocalStrategy(
 	}
 ));
 
+//delete a video from the list
+exports.deleteVideo = function(req, res){
+	var name = req.query.name.replace("+"," "),
+		id = req.query.id;
+	
+	dbHandler.deleteVideo(name, id);
+};
+
 //render view for local playlist
 exports.index = function(req, res){
 	console.log("Rendering index for " + req.ip);
@@ -44,29 +52,29 @@ exports.add = function(req, res){
 
 //render view for shared playlist
 exports.playlist = function(auth){
-return function(req, res){
-	var client = req.ip, name;
+	return function(req, res){
+		var client = req.ip, name;
 
-	if (req.params[0]) name = req.params[0].replace("+"," ");
-	else name = req.body.username;
-	console.log(name);
-	dbHandler.checkIfExist(name, function(data){
-		if (data.found){
-			res.render("playlist",{
-				name : name,
-				client : client,
-				host: host,
-				port: port,
-				auth: auth
-			});
-			dbHandler.update(name);
-		}
-		else {
-			res.send("no such playlist");
-		}
-	});
+		if (req.params[0]) name = req.params[0].replace("+"," ");
+		else name = req.body.username;
+		console.log(name);
+		dbHandler.checkIfExist(name, function(data){
+			if (data.found){
+				res.render("playlist",{
+					name : name,
+					client : client,
+					host: host,
+					port: port,
+					auth: auth
+				});
+				dbHandler.update(name);
+			}
+			else {
+				res.send("no such playlist");
+			}
+		});
+	};
 };
-}
 
 //authenticate for editing a playlist
 exports.auth = function(req, res, next){	

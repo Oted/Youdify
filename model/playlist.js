@@ -140,6 +140,27 @@ exports.checkForVideo = function(name, videoId, callback){
 	});	
 }
 
+//delete a video from the playlist
+exports.deleteVideo = function(name, videoId){
+	var videos, index = -1;
+	this.checkIfExist(name,function(data){
+		if (data.found){
+			videos = data.doc.videos;
+			for (var i = 0; i < videos.length; i++){
+				if (videoId === videos[i]){
+					index = i;
+				}
+			}
+			console.log("Delete video with index : " + index);
+			if (index != -1)                
+				videos.splice(index, 1);
+				data.doc.save();
+			}
+	});	
+};
+
+
+
 //gets a playlist with a given name (uses check if exists)
 exports.get = function(name, callback){
 	this.checkIfExist(name,function(data){

@@ -11,16 +11,37 @@
 		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 		this.Mediator.subscribe("getPlaylists", this.getPlaylists.bind(this));	
 		this.Mediator.subscribe("authenticate", this.authenticate.bind(this));	
+		this.Mediator.subscribe("deleteVideo", this.deleteVideo.bind(this));	
+	};
+
+	//delete the video all together from the database
+	APIHandler.prototype.deleteVideo = function(obj){
+		$.ajax({
+			url: "/deleteVideo/?name=" + obj.name + "&id=" + obj.id +"&callback=?",
+			dataType:"jsonp",
+			beforesend: function(){
+				console.log("Delete video " + obj.id);
+			},
+			success: function(data){
+				console.log("Success!!")
+			}
+		});
 	};
 
 	//authenticates and give preveliges to a user
 	APIHandler.prototype.authenticate = function(obj){
+		var that = this;
 		$.ajax({
 			url: "/auth",
 			type:"POST",
 			data: {"username":obj.playlist,"password":obj.password},
 			beforesend: function(){
-				console.log("Authenticating");
+				console.log("Authenticating...");
+			},
+			success: function(obj){
+				if (obj.auth===true){
+					that.Mediator.write("authenticated");
+				}
 			}
 		});
 
