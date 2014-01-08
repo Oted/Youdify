@@ -10,6 +10,20 @@
 		//this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
 		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 		this.Mediator.subscribe("getPlaylists", this.getPlaylists.bind(this));	
+		this.Mediator.subscribe("authenticate", this.authenticate.bind(this));	
+	};
+
+	//authenticates and give preveliges to a user
+	APIHandler.prototype.authenticate = function(obj){
+		$.ajax({
+			url: "/auth",
+			type:"POST",
+			data: {"username":obj.playlist,"password":obj.password},
+			beforesend: function(){
+				console.log("Authenticating");
+			}
+		});
+
 	};
 
 	//get a collection of playlists from the database

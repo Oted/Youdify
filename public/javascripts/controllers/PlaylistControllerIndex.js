@@ -12,7 +12,8 @@
 	
 	//contructor of PlaylistController
 	var PlaylistControllerIndex = function(){
-		var playlistName 	= doc.getElementById("name-div").value;
+		console.log("Auth : " + isAuthenticated);	
+		this.playlistName 	= doc.getElementById("name-div").value;
 		this.Mediator = require("../Mediator.js").Mediator;
 		
 		var YoutubePlayer = require("../model/YoutubePlayer.js").YoutubePlayer;
@@ -28,7 +29,7 @@
 		new MessageBoard(this.Mediator);
 
 		var APIHandler = require("../model/APIHandler.js").APIHandler;
-		new APIHandler(this.Mediator, playlistName);
+		new APIHandler(this.Mediator, this.playlistName);
 
 		this.Mediator.subscribe("playerStateChange", playerStateChange.bind(this));
 		this.Mediator.subscribe("removeVideo", removeVideo.bind(this));
@@ -67,6 +68,13 @@
 		.on("click", this.toggleAddVideo.bind(this));
 	
 		$("#home").attr("href", "http://" + doc.domain);
+		
+		$("#claim").attr("href", "#").on("click", function(){
+			var password = prompt("Please enter password");
+			if (password){
+				that.Mediator.write("authenticate", {"playlist":that.playlistName,"password":password})
+			}
+		});
 
 		$("#message-input")
 		.on("keypress", function(event){

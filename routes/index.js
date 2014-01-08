@@ -1,9 +1,35 @@
-var dbHandler = require("../model/playlist.js");
-var socket = require("../socket.js");
+var dbHandler = require("../model/playlist.js"),
+	LocalStrategy = require("passport-local").Strategy,
+	passport = require("passport"),
+	socket = require("../socket.js");
+
+//init passport local strategy
+passport.use(new LocalStrategy(
+		function(username, password, done){
+		dbHandler.checkIfExist(username, function(obj){
+			var playlist = obj.doc;
+			if (!obj.found) {
+				return done(null, false);
+			} 
+			if (!obj.doc){
+				return done(null, false);
+			}
+			dbHandler.verifyPassword(password, playlist.password, function(isMatch){
+				console.log(isMatch);
+				if (!isMatch){
+					return done(null, false);
+				}
+				else{
+					return done(null, playlist);
+				}
+			});
+		});
+	}
+));
 
 //render view for local playlist
 exports.index = function(req, res){
-console.log("Rendering index for " + req.ip);
+	console.log("Rendering index for " + req.ip);
  	dbHandler.getAll(function (doc) {
 		res.render("firstpage",{ playlists: doc });
 	});
@@ -17,23 +43,40 @@ exports.add = function(req, res){
 };
 
 //render view for shared playlist
-exports.playlists = function(req, res){
-	var client = req.ip,
-		name = req.params[0].replace("+"," ");
+exports.playlist = function(auth){
+return function(req, res){
+	var client = req.ip, name;
 
+	if (req.params[0]) name = req.params[0].replace("+"," ");
+	else name = req.body.username;
+	console.log(name);
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
 			res.render("playlist",{
 				name : name,
 				client : client,
 				host: host,
-				port: port
+				port: port,
+				auth: auth
 			});
 			dbHandler.update(name);
 		}
 		else {
 			res.send("no such playlist");
 		}
+	});
+};
+}
+
+//authenticate for editing a playlist
+exports.auth = function(req, res, next){	
+	console.log("body parsing", req.body);
+	res.render("playlist",{
+		name : name,
+		client : client,
+		host: host,
+		port: port,
+		auth: true
 	});
 };
 

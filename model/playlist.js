@@ -16,8 +16,6 @@ var playlistSchema = new mongoose.Schema({
 	locked: String
 });
 
-
-
 //add playlist schema to db
 var Playlist = mongoose.model("Playlists", playlistSchema);
 
@@ -94,10 +92,10 @@ var encrypt = function(password, callback){
 };
 
 //compare a passwords
-var comparePasswords = function(candidatePassword, password) {
-    bcrypt.compare(candidatePassword, password, function(err, isMatch) {
+exports.verifyPassword = function(candidatePassword, password, callback) {
+	bcrypt.compare(candidatePassword, password, function(err, isMatch) {
         if (err) throw err;
-		else return isMatch;
+		else callback(isMatch);
     });
 };
 

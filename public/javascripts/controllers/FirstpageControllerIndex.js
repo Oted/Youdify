@@ -3,7 +3,7 @@
 	//the first to run when document is ready
     $(function(){
 		$("#main-sidebar").toggle().toggle();	
-		new FirstpageControllerIndex();	
+		new FirstpageControllerIndex();
 	});
 	
 	//constructor for firstpage controller

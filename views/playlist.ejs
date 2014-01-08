@@ -1,6 +1,7 @@
 <%- include partials/header.ejs %>
 <script src="/socket.io/socket.io.js"></script>	
 <script src="/PlaylistScript.js"></script>
+<script> var isAuthenticated = <%=auth%>;</script>
 	<body>
 		<input type="hidden" id="name-div" value="<%=name %>"/>
 		<input type="hidden" id="client-div" value="<%=client %>"/>
@@ -14,14 +15,15 @@
           <header id="main-header" class="grid-container">
     		<div class="message text-center grid-12" id="navigation-board">
 				<a id="home" class="grid-4 fontawesome-home" > Home</a>
+				<a id="claim" class="grid-2 fontawesome-lock" > Claim ownership</a>
 				<a id="show-queue" style="display:none" href="#" class="grid-2" ></a>
 				<a id="show-chat"  style="display:none" href="#" class="grid-2" ></a><br>
 				<div style="display:none" id="queue-toggle">
           			<a id="empty-queue" class="fontawesome-trash options"></a>
 				</div>	
 			</div><br>
-              <a id="add-video" class="icon-button grid-4 playlist-handlers">Add new video </a>
               <img class="grid-4" src="/images/Youdify-logo.png"></img>
+              <a id="add-video" class="icon-button grid-4 playlist-handlers">Add new video </a>
             </div>
           </header>
         </div>
