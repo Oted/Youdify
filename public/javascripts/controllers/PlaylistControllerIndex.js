@@ -12,8 +12,6 @@
 	
 	//contructor of PlaylistController
 	var PlaylistControllerIndex = function(){
-		console.log("Auth : " + isAuthenticated);	
-		
 		this.playlistName 	= doc.getElementById("name-div").value;
 		this.Mediator = require("../Mediator.js").Mediator;
 		
@@ -134,7 +132,12 @@
 	};
 
 	PlaylistControllerIndex.prototype.authenticated = function(){
-		isAuthenticated = true;	
+		isAuthenticated = true;
+		this.Mediator.write("temporaryMessage", "You are now authenticated :)");
+
+		$(".hide-video").text("Delete");
+		$("#claim").hide();
+		$("#settings").show();
 	};
 
 	//start the chat!
@@ -184,7 +187,6 @@
 
 	//received chatmessage from the socket
 	PlaylistControllerIndex.prototype.newChatEntry = function(obj){
-		console.log(obj);
 		if (obj.message){
 			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
 										obj.nickName + " says : " + obj.message + "</p></div>");
@@ -255,7 +257,6 @@
 		this.overlayed = !this.overlayed;
 		if (!this.overlayed){
 			this.overlayEl.attr("src", "");
-			console.log("Iframe unloaded");
 			$("#overlay-wrapper").toggle(400);	
 			$("#main-sidebar").toggle();
     		$("#player").toggle();
@@ -326,7 +327,6 @@
 				$(this.playEl).removeClass("active");
 				break;
 			case 3:
-				console.log("Video is buffering");
 				break;
 		}
 	}
@@ -405,7 +405,7 @@
 		});
 
 
-		//add action for remove (hide)
+		//add action for remove (hide/remove)
 		$(element).find(".hide-video").on("click", function(){
 			var obj = {
 				"id":video.id,
@@ -413,6 +413,7 @@
 			}
 			if (isAuthenticated){
 				that.Mediator.write("deleteVideo", obj);
+				$(element).hide(100);
 			}
 			else{
 				$(element).hide(100);
@@ -446,7 +447,6 @@
 		.appendTo(preview);
 
 		$(preview).on("click", function(){
-			console.log("lol remove")
 			that.Mediator.write("removeVideoFromQueue", video);
 		});
 

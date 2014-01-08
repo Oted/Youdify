@@ -1,38 +1,20 @@
 var dbHandler = require("../model/playlist.js"),
-	LocalStrategy = require("passport-local").Strategy,
-	passport = require("passport"),
-	socket = require("../socket.js");
-
-//init passport local strategy
-passport.use(new LocalStrategy(
-		function(username, password, done){
-		dbHandler.checkIfExist(username, function(obj){
-			var playlist = obj.doc;
-			if (!obj.found) {
-				return done(null, false);
-			} 
-			if (!obj.doc){
-				return done(null, false);
-			}
-			dbHandler.verifyPassword(password, playlist.password, function(isMatch){
-				console.log(isMatch);
-				if (!isMatch){
-					return done(null, false);
-				}
-				else{
-					return done(null, playlist);
-				}
-			});
-		});
-	}
-));
+	socket = require("../socket.js"),
+	authenticator = require("../authenticator.js");
 
 //delete a video from the list
 exports.deleteVideo = function(req, res){
 	var name = req.query.name.replace("+"," "),
-		id = req.query.id;
-	
-	dbHandler.deleteVideo(name, id);
+		id = req.query.id,
+		sID = req.sessionID;
+
+	if (authenticator.isAuthenticated(sID, name)){
+		dbHandler.deleteVideo(name, id);
+		res.jsonp({});
+	}else{
+		res.jsonp({});
+	}
+
 };
 
 //render view for local playlist
@@ -54,12 +36,13 @@ exports.add = function(req, res){
 exports.playlist = function(auth){
 	return function(req, res){
 		var client = req.ip, name;
-
 		if (req.params[0]) name = req.params[0].replace("+"," ");
 		else name = req.body.username;
-		console.log(name);
+
 		dbHandler.checkIfExist(name, function(data){
 			if (data.found){
+				if (auth) {
+				};
 				res.render("playlist",{
 					name : name,
 					client : client,
@@ -74,18 +57,6 @@ exports.playlist = function(auth){
 			}
 		});
 	};
-};
-
-//authenticate for editing a playlist
-exports.auth = function(req, res, next){	
-	console.log("body parsing", req.body);
-	res.render("playlist",{
-		name : name,
-		client : client,
-		host: host,
-		port: port,
-		auth: true
-	});
 };
 
 //Api-call for checking if playlist exists
@@ -149,3 +120,5 @@ exports.getPlaylists = function(req, res){
 		res.jsonp({"data" : ""});
 	}
 };
+
+

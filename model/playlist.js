@@ -21,7 +21,6 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 
 //checks if a playlist with as given name exists, if it does the ducument is returned
 exports.checkIfExist = function(name, callback){
-	console.log("Checking if playlist " + name + " exists..");
 	Playlist.findOne({"name" : name}, function(error, doc){
 		if (doc){
 			console.log(name + " was found");
@@ -158,8 +157,6 @@ exports.deleteVideo = function(name, videoId){
 			}
 	});	
 };
-
-
 
 //gets a playlist with a given name (uses check if exists)
 exports.get = function(name, callback){

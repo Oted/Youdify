@@ -11,6 +11,7 @@ var express = require("express"),
 	db = mongoose.connection,
 	io = require("socket.io").listen(app.listen(port)),
 	passport = require("passport"),
+	authenticator = require("./authenticator.js");
 	socket = require("./socket.js").init(io);
 
 httpProxy.createServer(port, "localhost").listen(80);
@@ -29,7 +30,9 @@ db.once('open', function callback(){
 	app.enable('trust proxy');
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
-	app.use(express.session({secret: "william"}));
+	app.use(express.session({secret: "william",
+							 cookie : {maxAge: 360000000}
+	}));
 	app.use(express.bodyParser());
 	app.use(flash());
 	app.use(passport.initialize());
@@ -45,6 +48,10 @@ db.once('open', function callback(){
 	//authentication rendering of playlist
 	app.post("/auth", passport.authenticate("local", { failureFlash: "Invalid passoword :("}),
 	function(req, res) {
+		var sId = req.sessionID,
+			playlistName = req.body.username;
+
+		authenticator.add(sId, playlistName);
 		res.send({"auth":true})
 	});
 	
@@ -54,19 +61,6 @@ db.once('open', function callback(){
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
 	app.get("/push/*", routes.push);
 	app.get("/deleteVideo/*", routes.deleteVideo);
-	
-});
-
-
-passport.serializeUser(function(user, done) {
-	console.log('Serialize user called.');
-	
-	done(null, user.name);
-});
-
-passport.deserializeUser(function(id, done) {
-	console.log('Deserialize user called.');
-	return done(null, {name: 'Oliver'});
 });
 
 //on exit, close database
