@@ -22,6 +22,14 @@
 		socket.on("push",function(obj){
 			var video = Mediator.write("videoPushed", obj.video);
 		});
+		
+		//the name has changed, redirect all users
+		socket.on("playlistnamechanged", function(obj){
+			var url;
+			Mediator.write("warningMessage","Authenticated user has changed the name of this playlist, you will be redirected there");
+			url = "http://" + doc.domain + ":" + location.port + "/playlists/" + obj.newname;
+			win.location = url;
+		});
 
 		//quick! tell the others im here ! :3	
 		socket.on("newClient",function(obj){

@@ -30,9 +30,7 @@ db.once('open', function callback(){
 	app.enable('trust proxy');
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
-	app.use(express.session({secret: "william",
-							 cookie : {maxAge: 360000000}
-	}));
+	app.use(express.session({secret: "william",cookie : {maxAge: 360000000}}));
 	app.use(express.bodyParser());
 	app.use(flash());
 	app.use(passport.initialize());
@@ -47,20 +45,32 @@ db.once('open', function callback(){
 
 	//authentication rendering of playlist
 	app.post("/auth", passport.authenticate("local", { failureFlash: "Invalid passoword :("}),
+	
+	//on auth success
 	function(req, res) {
 		var sId = req.sessionID,
-			playlistName = req.body.username;
+			playlistName = req.body.username,
+			doc = {};
 
 		authenticator.add(sId, playlistName);
-		res.send({"auth":true})
+		
+		doc.name = req.user.name;
+		doc.description = req.user.description;
+		doc.freetag = req.user.freetag;
+		doc.category = req.user.category;
+		doc.locked = req.user.locked;
+
+		console.log(req.user);
+		res.send({"auth":true,"doc":doc})
 	});
 	
 	//Api calls
 	app.get("/checkifexist/*", routes.checkIfExist);
-	app.get("/getPlaylists/*", routes.getPlaylists);
+	app.get("/getplaylists/*", routes.getPlaylists);
 	app.get("/createnewplaylist/*", routes.createNewPlaylist);
+	app.get("/updateplaylist/*", routes.updatePlaylist);
 	app.get("/push/*", routes.push);
-	app.get("/deleteVideo/*", routes.deleteVideo);
+	app.get("/deletevideo/*", routes.deleteVideo);
 });
 
 //on exit, close database

@@ -53,7 +53,7 @@ exports.message = function(name, message, client){
 //push one new video to all clients in the same room (attached to the same playlist)
 exports.pushOne = function(video, name){
 	that.io.sockets.in(name).emit("push", {video: video});
-}
+};
 
 //push all videos in a playlist to a client (used when a new client connect)
 exports.pushAll = function(socket, name, client){
@@ -62,4 +62,9 @@ exports.pushAll = function(socket, name, client){
 			socket.emit("push", {video: video});
 		});
 	});
+};
+
+//need to redirect when playlist is updated by authenticated users
+exports.playlistChange = function(obj){
+	that.io.sockets.in(obj.oldname).emit("playlistnamechanged", {newname: obj.name});
 };

@@ -34,7 +34,11 @@ passport.serializeUser(function(playlist, done) {
 //deserialize the session for the user
 passport.deserializeUser(function(name, done) {
 	dbHandler.checkIfExist(name, function(obj) {
-		done(null, obj.doc);
+		if (obj.doc){
+			done(null, obj.doc);
+		}else{
+			done(null, false);
+		}
 	});
 });
 

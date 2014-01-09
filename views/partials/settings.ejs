@@ -1,0 +1,18 @@
+	<form id="edit-playlist-div" class="edit-playlist" style="display:none">
+		<h3 style="color:white">Edit the form and press submit, if you want to remove specific videos the "hide" option has now changed to delete.</h3>
+		<input class="grid-3 omega search-field" placeholder="Playlist name" id="pname"/>
+		<input class="grid-3 omega search-field" placeholder="Description..." id="pdescription"/>
+		<select id="tag-select" class="search-field grid-3">
+			<option value="music" selected="selected">Music</option>
+			<option value="knowledge">Knowledge</option>
+			<option value="movies">Movies</option>
+			<option value="comedy">For the lulz</option>
+			<option value="other">Other</option>
+		</select>	
+		<input class="grid-3 omega search-field" placeholder="Freetag" id="pfreetag"/>
+		<div class="grid-9">
+			<input id="unlock" type="radio" name="lock"/><span style="color:white">Unlocked playlist</span>
+			<input id="lock" type="radio" name="lock"/><span style="color:white">Locked playlist</span>
+		</div>
+		<a class="icon-button grid-2 omega" id="submit">Submit</a>
+	</form>

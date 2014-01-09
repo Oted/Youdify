@@ -178,12 +178,14 @@ exports.getAll = function(callback){
 	});
 };
 
+//update the values of timesvisited and lastvisited, called each time a playlist is visited
 exports.update = function(name){
 	Playlist.update({"name": name}, {$inc: {"timesvisited" : 1}, $set: {"lastvisited":new Date()}},  function(err){
 		if (err) console.log("Error in database update : \n" + err);	
 	});
 };
 
+//returns the playlist with largest timesvisited value
 exports.getMostViewed = function(count, callback){
 	Playlist.find().sort({"timesvisited": -1}).limit(count).exec(function(err, doc) {
 		if (!err){
@@ -199,6 +201,7 @@ exports.getMostViewed = function(count, callback){
 	});
 }
 
+//get the platylist with latest visit date
 exports.getLastVisited = function(count, callback){
 	Playlist.find().sort({"lastvisited": -1}).limit(count).exec(function(err, doc) {
 		if (!err){
@@ -215,6 +218,7 @@ exports.getLastVisited = function(count, callback){
 	});
 }
 
+//get the "newest" playlists
 exports.getNewest = function(count, callback){
 	Playlist.find().sort({"date": -1}).limit(count).exec(function(err, doc) {
 		if (!err){
@@ -231,6 +235,7 @@ exports.getNewest = function(count, callback){
 	});
 }
 
+//returns all playlists created with a specoific ip-address
 exports.getMine = function(client, callback){
 	Playlist.find({creator: client}, function(err, doc){
 		if (!err){
@@ -246,3 +251,27 @@ exports.getMine = function(client, callback){
 		}
 	});	
 };
+
+//updates the given values in the playlists
+exports.updatePlaylist = function(obj, callback){
+	console.log("in update playlist with oldname : " + obj.oldname);
+	Playlist.update({"name": obj.oldname}, 
+	{$set: {
+			"name":obj.name, 
+			"description":obj.desc, 
+			"freetag":obj.freetag, 
+			"locked":obj.locked,
+			"category":obj.tag
+	}}, 
+	function(err){
+		if (err){ 
+			console.log("Error in database update : \n" + err);	
+			callback(false);
+		}
+		else {
+			callback(true);
+		}
+	});
+};
+
+

@@ -17,7 +17,7 @@
 	//delete the video all together from the database
 	APIHandler.prototype.deleteVideo = function(obj){
 		$.ajax({
-			url: "/deleteVideo/?name=" + obj.name + "&id=" + obj.id +"&callback=?",
+			url: "/deletevideo/?name=" + obj.name + "&id=" + obj.id +"&callback=?",
 			dataType:"jsonp",
 			beforesend: function(){
 				console.log("Delete video " + obj.id);
@@ -40,7 +40,7 @@
 			},
 			success: function(obj){
 				if (obj.auth===true){
-					that.Mediator.write("authenticated");
+					that.Mediator.write("authenticated", obj.doc);
 				}
 			}
 		});
@@ -50,7 +50,7 @@
 	//get a collection of playlists from the database
 	APIHandler.prototype.getPlaylists = function(obj){
 		$.ajax({
-			url: "/getPlaylists/?type=" + obj.type + "&count=" + obj.count +"&callback=?",
+			url: "/getplaylists/?type=" + obj.type + "&count=" + obj.count +"&callback=?",
 			dataType:"jsonp",
 			beforesend: function(){
 				console.log("Getting " + obj.type +  " from server");
@@ -65,10 +65,10 @@
 	APIHandler.prototype.submitPlaylist = function(prop){
 		var that = this,
 			url;
-
+		
 		if (validProperties(prop)){
 			checkIfExist(prop.name,function(found){
-				if (!found){
+				if (!found && !prop.isAuthenticated){
 					that.createNewDocument(prop,function(created){
 						if (created){
 							url = "http://" + doc.domain + ":" + location.port + "/playlists/" + prop.name;
@@ -79,8 +79,35 @@
 						}	
 					});
 				}
+				else if (prop.isAuthenticated){
+					if (prop.name !== prop.oldName){
+						checkIfExist(prop.name,function(found){
+							if (!found){
+								updateDocument(prop, function(data){
+									//code goes here!!
+								
+								
+								
+								});
+							}
+							else{
+								alert("A playlist with your new name does already exist, pick another");
+							}
+						});
+					}	
+					else{	
+						updateDocument(prop, function(data){
+							//code goes here!!
+						});
+					}
+				}
 				else{
-					alert("Playlist with that name already exist");
+					if (prop.isAuthenticated === false){
+						alert("You are not allowed to do this");
+					}
+					else{
+						alert("Playlist with that name already exist");
+					}
 				}
 			});
 		}
@@ -88,7 +115,7 @@
 
 	//check if playlist properties are ok to send
 	var validProperties = function(prop){
-		if (prop.name && prop.name.length >= 3 && prop.name.length <= 20){	
+		if (prop.name && prop.name.length >= 3 && prop.name.length <= 30){	
 			prop.name = replaceChars(prop.name);
 			if (prop.desc && prop.desc.length >= 5 && prop.desc.length <= 120){
 				prop.desc = replaceChars(prop.desc);
@@ -154,6 +181,27 @@
 		});
 	};	
 	
+	//calls server and update the playlist
+	var updateDocument = function(prop, callback){
+		var url;
+		$.ajax({
+			url: "/updateplaylist/?name=" + prop.name + 
+									"&oldname=" + prop.oldName + 
+									"&desc=" + prop.desc + 
+									"&tag=" + prop.tag + 
+									"&freetag=" + prop.freetag + 
+									"&locked=" + prop.locked +
+									"&callback=?",
+			dataType:"jsonp",
+			beforeSend: function(){
+				console.log("Updating playlist...");
+			},
+			success: function(data){
+				console.log(data);
+			}
+		});
+	};	
+
 	//push videoids to server
 	APIHandler.prototype.pushVideo = function(video){
 		var that = this;

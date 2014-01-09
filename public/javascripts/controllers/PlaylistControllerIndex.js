@@ -56,13 +56,14 @@
 	//bind and set attr on UI controls
 	PlaylistControllerIndex.prototype.initUI = function(){
 		var that = this;
-		this.overlayEl 		= $("#overlay-wrapper");
-		this.resultEl       = $("#video-list");
-		this.navToggleEl	= $("#navigation-toggle");
-		this.queueToggleEl 	= $("#queue-toggle");
-		this.chatToggleEl 	= $("#chat-toggle");
-		this.iframeSrc 		= $("#overlay-wrapper").attr("src");
-		this.chatClient 	= undefined;
+		this.overlayEl 			= $("#overlay-wrapper");
+		this.resultEl       	= $("#video-list");
+		this.navToggleEl		= $("#navigation-toggle");
+		this.queueToggleEl 		= $("#queue-toggle");
+		this.settingsToggleEl 	= $("#edit-playlist-div");
+		this.chatToggleEl 		= $("#chat-toggle");
+		this.iframeSrc 			= $("#overlay-wrapper").attr("src");
+		this.chatClient 		= undefined;
 
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
@@ -85,6 +86,10 @@
 
 		$("#message-send")
 		.on("click", this.sendMessage.bind(this)); 
+	
+		$("#submit")
+		.on("click", this.submitPlaylist.bind(this))
+		.attr("title","Save and submit the playlist");
 
 		$("#add-video")
 		.on("click", this.toggleAddVideo.bind(this))
@@ -107,6 +112,9 @@
 		$("#show-queue")
 		.on("click", this.showQueue.bind(this));
 
+		$("#show-settings")
+		.on("click", this.showSettings.bind(this));
+		
 		$("#show-chat")
 		.on("click", this.showChat.bind(this));
 
@@ -130,14 +138,40 @@
 		.on("click", this.toggleRepeat.bind(this))
 		.attr("title","Toggle repeat one");
 	};
+	
+	//submits the new playlist to the APIHandler to verify it
+	PlaylistControllerIndex.prototype.submitPlaylist = function(){
+		var selectTagEl = doc.getElementById("tag-select"),
+			prop = {};
+		
+		prop.oldName = this.playlistName;
+		prop.isAuthenticated = isAuthenticated;
+		prop.name = doc.getElementById("pname").value;
+		prop.desc = doc.getElementById("pdescription").value;
+		prop.freetag = doc.getElementById("pfreetag").value.replace("#","");
+		prop.tag = selectTagEl.options[selectTagEl.selectedIndex].value;
+		prop.locked = $("#lock").prop("checked");
 
-	PlaylistControllerIndex.prototype.authenticated = function(){
+		this.Mediator.write("submitPlaylist", prop);
+	};
+
+	//called from APIhandler when server authenticated this session
+	PlaylistControllerIndex.prototype.authenticated = function(obj){
 		isAuthenticated = true;
 		this.Mediator.write("temporaryMessage", "You are now authenticated :)");
 
 		$(".hide-video").text("Delete");
 		$("#claim").hide();
-		$("#settings").show();
+	
+		//pre-settings for editing playlist
+		$("#pname").val(obj.name);
+		$("#pdescription").val(obj.description);
+		$("#pfreetag").val(obj.freetag);
+		$("#tag-select").val(obj.category);
+		if (obj.locked){$("#unlock").prop("checked", true);}
+		else {$("#lock").prop("checked",true)};
+
+		$("#show-settings").show();
 	};
 
 	//start the chat!
@@ -178,6 +212,12 @@
 		}
 	};
 
+	//show settings
+	PlaylistControllerIndex.prototype.showSettings = function(){
+		this.settingsToggleEl.toggle(200);
+	};
+
+	//show the queue
 	PlaylistControllerIndex.prototype.showQueue = function(){
 		var	number = $(this.queueToggleEl).find(".preview").length;
 		if (number>0){

@@ -95,6 +95,7 @@
 		$(this.createFormEl).toggle(100);
 	};
 
+	//submits the new playlist to the APIHandler to verify it
 	FirstpageControllerIndex.prototype.submitPlaylist = function(){
 		var selectTagEl = doc.getElementById("tag-select"),
 			prop = {};
@@ -103,7 +104,7 @@
 		prop.password = doc.getElementById("ppassword").value;
 		prop.desc = doc.getElementById("pdescription").value;
 		prop.freetag = doc.getElementById("pfreetag").value.replace("#","");
-		prop.tag = selectTagEl.options[selectTagEl.selectedIndex].id
+		prop.tag = selectTagEl.options[selectTagEl.selectedIndex].id;
 
 		this.Mediator.write("submitPlaylist", prop);
 	};

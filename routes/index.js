@@ -2,21 +2,6 @@ var dbHandler = require("../model/playlist.js"),
 	socket = require("../socket.js"),
 	authenticator = require("../authenticator.js");
 
-//delete a video from the list
-exports.deleteVideo = function(req, res){
-	var name = req.query.name.replace("+"," "),
-		id = req.query.id,
-		sID = req.sessionID;
-
-	if (authenticator.isAuthenticated(sID, name)){
-		dbHandler.deleteVideo(name, id);
-		res.jsonp({});
-	}else{
-		res.jsonp({});
-	}
-
-};
-
 //render view for local playlist
 exports.index = function(req, res){
 	console.log("Rendering index for " + req.ip);
@@ -41,19 +26,21 @@ exports.playlist = function(auth){
 
 		dbHandler.checkIfExist(name, function(data){
 			if (data.found){
-				if (auth) {
-				};
 				res.render("playlist",{
 					name : name,
 					client : client,
 					host: host,
 					port: port,
-					auth: auth
+					auth: auth,
+					locked: data.doc.locked,
+					descrption: data.doc.description,
+					category: data.doc.category,
+					videos: data.doc.videos.length
 				});
 				dbHandler.update(name);
 			}
 			else {
-				res.send("no such playlist");
+				res.send("no such playlist :(");
 			}
 		});
 	};
@@ -121,4 +108,45 @@ exports.getPlaylists = function(req, res){
 	}
 };
 
+//delete a video from the list
+exports.deleteVideo = function(req, res){
+	var name = req.query.name.replace("+"," "),
+		id = req.query.id,
+		sID = req.sessionID;
 
+	if (authenticator.isAuthenticated(sID, name)){
+		dbHandler.deleteVideo(name, id);
+		res.jsonp({});
+	}else{
+		res.jsonp({});
+	}
+
+};
+
+//update a playlists properties
+exports.updatePlaylist = function(req, res){	
+	var obj = {
+		"oldname" : req.query.oldname.replace("+"," "),
+		"name" : req.query.name.replace("+"," "),
+		"desc" : req.query.desc.replace("+"," "),
+		"tag" : req.query.tag.replace("+"," "),
+		"locked" : req.query.locked.replace("+"," "),
+		"freetag" : req.query.freetag.replace("+"," ")
+	},
+	name = req.query.oldname.replace("+"," "),
+	sID = req.sessionID;
+
+	if (authenticator.isAuthenticated(sID, name)){
+		dbHandler.updatePlaylist(obj,function(updated){
+			if (updated){
+				res.jsonp({"updated":"false"});
+				socket.playlistChange(obj);
+			}
+			else{
+				res.jsonp({"updated":"false"});
+			}		
+		});
+	}else{
+		res.jsonp({"updated":"false"});
+	}	
+};
