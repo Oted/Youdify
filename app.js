@@ -12,7 +12,8 @@ var express = require("express"),
 	io = require("socket.io").listen(app.listen(port)),
 	passport = require("passport"),
 	authenticator = require("./authenticator.js");
-	socket = require("./socket.js").init(io);
+	socket = require("./socket.js").init(io),
+	throttler = require("./throttler.js");
 
 httpProxy.createServer(port, "localhost").listen(80);
 
@@ -20,10 +21,13 @@ httpProxy.createServer(port, "localhost").listen(80);
 mongoose.connect("mongodb://" + host + "/" + dbName);
 db.on('error', console.error.bind(console, 'connection error:'));
 
+
 //opens database, on success set express configurations
 db.once('open', function callback(){
 	console.log("Database successfuly opened\nExpress and socket is now listening on port "+ host + ":" + port);
 
+	//set up app configurations
+	app.get("*", throttler());
 	app.use(express.favicon(__dirname + '/public/images/favicon.ico')); 
 	app.set("view engine", "ejs");	
 	app.use(express.static(__dirname + '/public'));
@@ -36,7 +40,7 @@ db.once('open', function callback(){
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(app.router);
-
+	
 	//Rendering calls
 	app.get("/", routes.index);
 	app.get("/add/*", routes.add);
@@ -44,7 +48,7 @@ db.once('open', function callback(){
 	app.get("/playlists/*", routes.playlist(false));
 
 	//authentication rendering of playlist
-	app.post("/auth", passport.authenticate("local", { failureFlash: "Invalid passoword :("}),
+	app.post("/auth", throttler(), passport.authenticate("local", { failureFlash: "Invalid passoword :("}),
 	
 	//on auth success
 	function(req, res) {
