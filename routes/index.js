@@ -79,7 +79,7 @@ exports.push = function(req, res){
 
 	dbHandler.checkIfExist(name, function(data){
 		if (data.found){
-			if (authenticator.isAuthenticated(sID, name) || !data.doc.locked){
+			if (authenticator.isAuthenticated(sID, name) || (data.doc.locked==="false")){
 				res.jsonp({"pushed":true});
 				dbHandler.push(data.doc, client, video, function(){
 					socket.pushOne(video, name);

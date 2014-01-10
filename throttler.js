@@ -1,6 +1,6 @@
 module.exports = function(){
 	var RateLimiter = require('limiter').RateLimiter,
-		limiter = new RateLimiter(30, "minute", true);
+		limiter = new RateLimiter(60, "minute", true);
 
 	return function(req, res, next){
 		console.log("lol");

@@ -238,7 +238,7 @@
 	//called when chat state changes
 	PlaylistControllerIndex.prototype.numberOfClientsChanged = function(obj){
 		var toggleEl = $("#show-chat");
-		toggleEl.html("Chat (" + obj.clients + ")");
+		$("#number-of-users").text("(" + obj.clients + ")");
 
 		if (obj.clients < 2){
 			this.chatToggleEl.hide(200);
@@ -286,7 +286,6 @@
 					}	
 				}	
 			}
-			
 		this.Mediator.write("getVideoFromId", object);
 	};
 
@@ -544,6 +543,8 @@
 	
 	//update results when it changes
 	var resultsChange = function(results){
+		console.log(results.length);
+		$("#number-of-videos").text("(" + results.length + ")");
 		this.results = results;
 	};
 
