@@ -26,7 +26,7 @@
 		//the name has changed, redirect all users
 		socket.on("playlistnamechanged", function(obj){
 			var url;
-			Mediator.write("warningMessage","Authenticated user has changed the name of this playlist, you will be redirected there");
+			Mediator.write("warningMessage","An authenticated user has changed this playlist, you will be redirected there");
 			url = "http://" + doc.domain + ":" + location.port + "/playlists/" + obj.newname;
 			win.location = url;
 		});

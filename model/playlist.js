@@ -99,10 +99,10 @@ exports.verifyPassword = function(candidatePassword, password, callback) {
 };
 
 //push a video to a given playlist
-exports.push = function(name, client, videoId, callback){	
-	this.checkForVideo(name, videoId, function(found){
+exports.push = function(doc, client, videoId, callback){	
+	this.checkForVideo(doc.videos, videoId, function(found){
 		if (!found){
-			Playlist.findOneAndUpdate({"name": name},
+			Playlist.findOneAndUpdate({"name": doc.name},
 				{$push: {"videos": videoId}},
 				{safe: true, upsert: true},
 				function(err, model) {
@@ -119,25 +119,17 @@ exports.push = function(name, client, videoId, callback){
 };
 
 //chekck if a video exist in a playlist
-exports.checkForVideo = function(name, videoId, callback){
-	var videos, found, vid;
-	console.log("in check for video : " + videoId);
-	this.checkIfExist(name,function(data){
-		if (data.found){
-			videos = data.doc.videos;
-			found = false;
-			for (var i = 0; i < videos.length; i++){
-				if (videoId === videos[i]){
-					found = true;
-				}
-			}
-			callback(found);
+exports.checkForVideo = function(videos, videoId, callback){
+	var found = false,
+		vid;
+	
+	for (var i = 0; i < videos.length; i++){
+		if (videoId === videos[i]){
+			found = true;
 		}
-		else{
-			callback(false);
-		}	
-	});	
-}
+	}
+	callback(found);
+};
 
 //delete a video from the playlist
 exports.deleteVideo = function(name, videoId){

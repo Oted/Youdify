@@ -212,8 +212,8 @@
 				beforeSend: function(){
 					console.log("Pushing " + video.title);
 				},
-				success: function(id){
-					console.log("Success!")
+				success: function(data){
+					console.log(data.pushed);
 				}
 			})
 		}

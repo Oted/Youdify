@@ -33,8 +33,9 @@ exports.playlist = function(auth){
 					port: port,
 					auth: auth,
 					locked: data.doc.locked,
-					descrption: data.doc.description,
+					description: data.doc.description,
 					category: data.doc.category,
+					freetag: data.doc.freetag,
 					videos: data.doc.videos.length
 				});
 				dbHandler.update(name);
@@ -68,15 +69,25 @@ exports.createNewPlaylist = function(req, res){
 	});
 };
 
-//Api-call for pushing new videos to playlist
+//Api-call for pushing new videos to a playlist
 exports.push = function(req, res){
 	var client = req.ip,
 		name = req.query.name.replace("+"," "),
-		video = req.query.video;
+		video = req.query.video,
+		id = req.query.id,
+		sID = req.sessionID;
 
-	res.jsonp({});
-	dbHandler.push(name, client, video, function(){
-		socket.pushOne(video, name);
+	dbHandler.checkIfExist(name, function(data){
+		if (data.found){
+			if (authenticator.isAuthenticated(sID, name) || !data.doc.locked){
+				res.jsonp({"pushed":true});
+				dbHandler.push(data.doc, client, video, function(){
+					socket.pushOne(video, name);
+				});
+			}else{
+				res.jsonp({"pushed":false});
+			}
+		}
 	});
 };
 

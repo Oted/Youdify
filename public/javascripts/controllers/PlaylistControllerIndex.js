@@ -5,7 +5,7 @@
 	//the first to run when document is ready
 	$(function(){
 		$("#main-sidebar").toggle().toggle();
-
+		
 		//Create new PlaylistController
 		new PlaylistControllerIndex();	
 	});
@@ -40,7 +40,6 @@
 		//mediator calls for handle chat	
 		this.Mediator.subscribe("clientLeave", this.numberOfClientsChanged.bind(this));
 		this.Mediator.subscribe("newClient", this.numberOfClientsChanged.bind(this));		
-		
 		//this.Mediator.subscribe("chatLeave", this.newChatEntry.bind(this));
 		this.Mediator.subscribe("chatJoin", this.newChatEntry.bind(this));
 		this.Mediator.subscribe("chatMessage", this.newChatEntry.bind(this));
@@ -64,10 +63,9 @@
 		this.chatToggleEl 		= $("#chat-toggle");
 		this.iframeSrc 			= $("#overlay-wrapper").attr("src");
 		this.chatClient 		= undefined;
-
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
-	
+
 		$("#home").attr("href", "http://" + doc.domain);
 		
 		$("#claim").attr("href", "#").on("click", function(){
@@ -168,8 +166,8 @@
 		$("#pdescription").val(obj.description);
 		$("#pfreetag").val(obj.freetag);
 		$("#tag-select").val(obj.category);
-		if (obj.locked){$("#unlock").prop("checked", true);}
-		else {$("#lock").prop("checked",true)};
+		if (obj.locked){$("#lock").prop("checked", true);}
+		else {$("#unlock").prop("checked",true)};
 
 		$("#show-settings").show();
 	};
@@ -294,29 +292,34 @@
 
 	//back and forth between adding videos and playlist
 	PlaylistControllerIndex.prototype.toggleAddVideo = function(){
-		this.overlayed = !this.overlayed;
-		if (!this.overlayed){
-			this.overlayEl.attr("src", "");
-			$("#overlay-wrapper").toggle(400);	
-			$("#main-sidebar").toggle();
-    		$("#player").toggle();
-    		this.overlayBEl.toggle(100);
-    		$("body").toggleClass('no-scrolling');
+		if (!isLocked || isAuthenticated){
+			this.overlayed = !this.overlayed;
+			if (!this.overlayed){
+				this.overlayEl.attr("src", "");
+				$("#overlay-wrapper").toggle(400);	
+				$("#main-sidebar").toggle();
+    			$("#player").toggle();
+    			this.overlayBEl.toggle(100);
+    			$("body").toggleClass('no-scrolling');
+			}
+			else{
+				if (this.overlayEl.attr("src")!==this.iframeSrc){
+					this.overlayEl.attr("src", this.iframeSrc);
+				}
+	
+				this.overlayEl.load(function(){
+					console.log("Iframe loaded");	
+				});	
+			
+				this.overlayEl.toggle(800);	
+				$("#main-sidebar").toggle();
+    			$("#player").toggle();
+    			this.overlayBEl.toggle(100);
+    			$("body").toggleClass('no-scrolling');	
+			}
 		}
 		else{
-			if (this.overlayEl.attr("src")!==this.iframeSrc){
-				this.overlayEl.attr("src", this.iframeSrc);
-			}
-
-			this.overlayEl.load(function(){
-				console.log("Iframe loaded");	
-			});	
-			
-			this.overlayEl.toggle(800);	
-			$("#main-sidebar").toggle();
-    		$("#player").toggle();
-    		this.overlayBEl.toggle(100);
-    		$("body").toggleClass('no-scrolling');	
+			this.Mediator.write("warningMessage", "This playlist is locked, only authenticated users may add or unlock it.");
 		}
 	};
 
