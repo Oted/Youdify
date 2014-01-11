@@ -35,9 +35,6 @@
 			url: "/auth",
 			type:"POST",
 			data: {"username":obj.playlist,"password":obj.password},
-			beforesend: function(){
-				console.log("Authenticating...");
-			},
 			success: function(obj){
 				if (obj.auth===true){
 					that.Mediator.write("authenticated", obj.doc);

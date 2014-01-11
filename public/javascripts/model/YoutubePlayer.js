@@ -14,8 +14,8 @@
 		this.Mediator.subscribe("playNext", this.playNext.bind(this));
 		this.Mediator.subscribe("playPrev", playPrev.bind(this));
 
-		this.Mediator.subscribe("queueVideoFirst", queueVideoFirst.bind(this));
-		this.Mediator.subscribe("queueVideoLast", queueVideoLast.bind(this));
+		this.Mediator.subscribe("queueVideoFirst", this.queueVideoFirst.bind(this));
+		this.Mediator.subscribe("queueVideoLast", this.queueVideoLast.bind(this));
 		this.Mediator.subscribe("removeVideoFromQueue", removeVideoFromQueue.bind(this));
 		
 		this.Mediator.subscribe("toggleShuffle", toggleShuffle.bind(this));
@@ -156,6 +156,7 @@
 		
 		if (code == 101 || code == 150 || code == 100 || code == 0){
 			this.playNext();
+			console.log("Error code : " + code);
 			this.Mediator.write("removeVideo", video); 	
 		}	
 	};
@@ -191,11 +192,14 @@
 	};
 
 	//add videos last to queue
-	var queueVideoLast = function(video){
+	YoutubePlayer.prototype.queueVideoLast = function(video){
 		if(this.queue.indexOf(video)===-1){
 			this.queue.push(video);
 			this.Mediator.write("temporaryMessage", video.title + " queued last");
 			this.Mediator.write("queueChanged", this.queue);
+			if (!this.autoplay && this.queue.length==1 && !this.isPlaying()){
+				this.playNext();
+			}
 		}
 		else{
 			this.Mediator.write("temporaryMessage", video.title + " is already in the queue");
@@ -203,11 +207,14 @@
 	};
 	
 	//add videos first to queue
-	var queueVideoFirst = function(video){
+	YoutubePlayer.prototype.queueVideoFirst = function(video){
 		if(this.queue.indexOf(video)===-1){
 			this.queue.unshift(video);
 			this.Mediator.write("temporaryMessage", video.title + " queued first");
 			this.Mediator.write("queueChanged", this.queue);
+			if (!this.autoplay && this.queue.length==1 && !this.isPlaying()){
+				this.playNext();
+			}
 		}
 		else{
 			this.Mediator.write("temporaryMessage", video.title + " is already in the queue");
@@ -275,7 +282,6 @@
 			};
 
 			//if the video element is hidden we want to generate a new one else we are done
-			console.log(video.element.style.display);
 			if (video.element.style.display !== "none") {
 				callback(video);
 			}

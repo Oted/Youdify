@@ -178,6 +178,7 @@
 			r = Math.floor(Math.random()*colors.length),
 			tempNick;
 		
+		$("#new-message").hide(200);
 		if (!this.chatClient){
 			tempNick = prompt("Please enter your nickname");
 			if (tempNick){
@@ -194,6 +195,7 @@
 		}
 	};
 
+	//sends a message to other clients
 	PlaylistControllerIndex.prototype.sendMessage = function(){
 		var message = doc.getElementById("message-input").value,
 			obj = this.chatClient;
@@ -217,10 +219,7 @@
 
 	//show the queue
 	PlaylistControllerIndex.prototype.showQueue = function(){
-		var	number = $(this.queueToggleEl).find(".preview").length;
-		if (number>0){
-			this.queueToggleEl.toggle(200);
-		}
+		this.queueToggleEl.toggle(200);
 	};
 
 	//received chatmessage from the socket
@@ -228,6 +227,9 @@
 		if (obj.message){
 			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
 										obj.nickName + " says : " + obj.message + "</p></div>");
+			if (this.chatToggleEl[0].style.display === "none") {
+				$("#new-message").show(200);
+			}
 		}else{
 			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
 										obj.nickName + " has joined the playlist" + "</p></div>");
@@ -253,17 +255,11 @@
 	PlaylistControllerIndex.prototype.queueChanged = function(newQueue){
 		var toggleEl = $("#show-queue");
 		toggleEl.html("Queue (" + newQueue.length + ")");
-
+		
 		this.queueToggleEl.find(".preview").remove();
-		if (newQueue.length === 0){
-			this.queueToggleEl.hide(200);
-			toggleEl.hide(400);
-		}
-		else{
-			toggleEl.show(400);
-			for (var i=0; i < newQueue.length; ++i){
-				this.queueToggleEl.append(newQueue[i].preview);
-			}
+		toggleEl.show(400);
+		for (var i=0; i < newQueue.length; ++i){
+			this.queueToggleEl.append(newQueue[i].preview);
 		}
 	};
 	
@@ -502,13 +498,6 @@
 		video.preview = preview;
 		video.element = element;
 		this.resultEl.append(element);
-		
-		if (this.addNewToQue){
-			this.Mediator.write("queueVideo", video);	
-			if (!this.isPlaying){
-				this.Mediator.write("playNext");
-			}
-		}
 	};
 
 	//check if a specific videoId exist in results array
