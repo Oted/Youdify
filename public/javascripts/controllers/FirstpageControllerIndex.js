@@ -22,7 +22,10 @@
 		var that = this;
 		this.createFormEl 	= doc.getElementById("create-new-playlist-div");
 		this.resultEl 		= doc.getElementById("search-results");
-			
+
+		this.searchEl		= $("#search-playlists")
+		.on("keypress", this.searchPlaylists.bind(this));
+
 		$("#create-playlist")
 		.on("click", this.toggleCreatePlaylistForm.bind(this))
 		.attr("title","Create a new playlist");
@@ -44,12 +47,20 @@
 		this.getPlaylists("new");
 	};
 
+	//searches for playlists with given query
+	FirstpageControllerIndex.prototype.searchPlaylists = function(event){
+		var query = this.searchEl.val();
+		if (event.which == 13 && query.length>0) {
+			console.log("sdsdsdsd" + query);
+		}
+	};
+			
 	//get a collection of playlists
 	FirstpageControllerIndex.prototype.getPlaylists = function(type){
 		var that = this,
 			obj = {
 				type : type,
-				count : 5,
+				count : 10,
 				callback : function(playlists){
 					for (var i = 0; i < playlists.length; ++i){
 						that.generateResultDiv(playlists[i]);

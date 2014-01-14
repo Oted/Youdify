@@ -8,8 +8,9 @@
           <header id="main-header" class="grid-container">
 			<div class="message text-center" id="navigation-board">
 				<a id="home" class="grid-4 fontawesome-home sort"> Home</a>
-				<a id="create-playlist" class="grid-4 sort">New playlist</a>
-				<a id="halp" class="grid-4 sort">Halp</a>
+				<a id="create-playlist" class="grid-2 sort fontawesome-file"> New playlist</a>
+				<a id="direct-play" class="grid-4 sort fontawesome-bolt"> Direct play</a>
+				<a id="halp" class="grid-2 fontawesome-question-sign sort"> Halp</a>
 			</div>
 			  	<img class="grid-5 alpha" src="images/Youdify-logo.png"></img>
 			  <%- include partials/newPlaylist.ejs %>				
@@ -19,7 +20,7 @@
           <div class="grid-4" id="main-sidebar">
           </div>
 			  <div class="grid-12">
-		  	  	<input class="omega search-field" placeholder="Search"/>
+		  	  	<input id="search-playlists" class="omega search-field" placeholder="Search"/>
               </div>
 			  <a id="new" class="icon-button grid-2 request-button">New</a>
               <a id="viewed" class="icon-button grid-3 request-button">Most viewed</a>

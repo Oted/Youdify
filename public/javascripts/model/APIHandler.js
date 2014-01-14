@@ -112,35 +112,40 @@
 
 	//check if playlist properties are ok to send
 	var validProperties = function(prop){
-		if (prop.name && prop.name.length >= 3 && prop.name.length <= 30){	
-			prop.name = replaceChars(prop.name);
-			if (prop.desc && prop.desc.length >= 5 && prop.desc.length <= 120){
-				prop.desc = replaceChars(prop.desc);
-				if (prop.tag){
-					if (prop.freetag.length < 12 && prop.freetag.indexOf(" ")==-1){
-						prop.freetag = replaceChars(prop.freetag);
-						return true;
+		if (prop.password.length != 0){
+			if (prop.name && prop.name.length >= 3 && prop.name.length <= 30){	
+				prop.name = replaceChars(prop.name);
+				if (prop.desc && prop.desc.length >= 5 && prop.desc.length <= 120){
+					prop.desc = replaceChars(prop.desc);
+					if (prop.tag){
+						if (prop.freetag.length < 12 && prop.freetag.indexOf(" ")==-1){
+							prop.freetag = replaceChars(prop.freetag);
+							return true;
+						}
+						else{
+							alert("Invalid freetag, freetags may not cantain any spaces and must be less than 12 characters")
+							return false;
+						}					
 					}
 					else{
-						alert("Invalid freetag, freetags may not cantain any spaces and must be less than 12 characters")
+						alert("No tag selected :O");
 						return false;
 					}
-						
 				}
 				else{
-					alert("No tag selected :O");
+					alert("You must type a description between 5 and 120 characters");
 					return false;
-				}
+				}	
 			}
 			else{
-				alert("You must type a description between 5 and 120 characters");
-				return false;
-			}	
+				alert("Invalid name, must be between 3 and 30 characters long");
+				return false; 
+			}
 		}
 		else{
-			alert("Invalid name property, must be between 3 and 20 characters long");
+			alert("You must set a password, a playlist must have its owner who can delete videos");
 			return false; 
-		}
+		};
 	};
 
 	//call server to see if a playlist exists

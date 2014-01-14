@@ -532,7 +532,6 @@
 	
 	//update results when it changes
 	var resultsChange = function(results){
-		console.log(results.length);
 		$("#number-of-videos").text("(" + results.length + ")");
 		this.results = results;
 	};

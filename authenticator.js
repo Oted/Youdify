@@ -7,6 +7,7 @@ var LocalStrategy = require("passport-local").Strategy,
 passport.use(new LocalStrategy(
 		function(username, password, done){
 		dbHandler.checkIfExist(username, function(obj){
+			console.log("password : " + password);
 			var playlist = obj.doc;
 			if (!obj.found) {
 				return done(null, false);
