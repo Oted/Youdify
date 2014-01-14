@@ -4,6 +4,7 @@ var mongoose = require("mongoose"),
 //playlist schema
 var playlistSchema = new mongoose.Schema({
     name: { type: String, required: true, index: { unique: true } },
+    name_lowercase: { type: String, required: true,},
 	password : String,
 	creator: String,
 	category: String,
@@ -21,7 +22,7 @@ var Playlist = mongoose.model("Playlists", playlistSchema);
 
 //checks if a playlist with as given name exists, if it does the ducument is returned
 exports.checkIfExist = function(name, callback){
-	Playlist.findOne({"name" : name}, function(error, doc){
+	Playlist.findOne({"name_lowercase" : name.toLowerCase()}, function(error, doc){
 		if (doc){
 			console.log(name + " was found");
 			callback({
@@ -44,6 +45,7 @@ exports.createNewPlaylist = function(name, password, client, description, tag, f
 			encrypt(password, function(hashPassword){
 				var newPlaylist = new Playlist({
 					"name"   : name,
+					"name_lowercase"   : name.toLowerCase(),
 					"password": hashPassword,
 					"creator": client,
 					"category": tag,
@@ -250,6 +252,7 @@ exports.updatePlaylist = function(obj, callback){
 	Playlist.update({"name": obj.oldname}, 
 	{$set: {
 			"name":obj.name, 
+			"name_lowercase":obj.name.toLowerCase(),
 			"description":obj.desc, 
 			"freetag":obj.freetag, 
 			"locked":obj.locked,
@@ -265,5 +268,20 @@ exports.updatePlaylist = function(obj, callback){
 		}
 	});
 };
-
+//get playlists containing the query in their names
+exports.getMine = function(query, callback){
+	Playlist.find({name: "/" + query + "/" }, function(err, doc){
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+				doc[i].creator = "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getMine: \n" + err)
+		}
+	});	
+};
 

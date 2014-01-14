@@ -75,6 +75,7 @@ db.once('open', function callback(){
 	app.get("/updateplaylist/*", throttler(), routes.updatePlaylist);
 	app.get("/push/*", throttler(), routes.push);
 	app.get("/deletevideo/*", routes.deleteVideo);
+	app.get("/searchplaylistsbyname/*", throttler(), routes.searchPlaylistsByName);
 });
 
 //on exit, close database

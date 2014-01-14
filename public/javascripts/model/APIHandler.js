@@ -12,6 +12,22 @@
 		this.Mediator.subscribe("getPlaylists", this.getPlaylists.bind(this));	
 		this.Mediator.subscribe("authenticate", this.authenticate.bind(this));	
 		this.Mediator.subscribe("deleteVideo", this.deleteVideo.bind(this));	
+		this.Mediator.subscribe("searchPlaylistsByName", this.searchPlaylistsByName.bind(this));	
+	};
+
+	//searches for playlists by name and callback
+	APIHandler.prototype.searchPlaylistsByName = function(obj){	
+		console.log("Search for names with quey " + obj.query);
+		$.ajax({
+			url: "/searchplaylistbyname/?query=" + obj.query + "&callback=?",
+			dataType:"jsonp",
+			beforesend: function(){
+				console.log("Search for playlists with query " + obj.query);
+			},
+			success: function(data){
+				console.log("Success!!");
+			}
+		});
 	};
 
 	//delete the video all together from the database
@@ -112,7 +128,7 @@
 
 	//check if playlist properties are ok to send
 	var validProperties = function(prop){
-		if (prop.password.length != 0){
+		if (!prop.password || prop.password.length != 0){
 			if (prop.name && prop.name.length >= 3 && prop.name.length <= 30){	
 				prop.name = replaceChars(prop.name);
 				if (prop.desc && prop.desc.length >= 5 && prop.desc.length <= 120){

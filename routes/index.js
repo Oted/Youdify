@@ -161,3 +161,12 @@ exports.updatePlaylist = function(req, res){
 		res.jsonp({"updated":"false"});
 	}	
 };
+
+//search for the playlists with names :)
+exports.searchPlaylistsByName = function(req, res){
+	var query = req.query.query.replace("+", " ");
+
+	dbHandler.getPlaylistsWithName(count, function(data){
+		res.jsonp({"data" : data});
+	});
+}

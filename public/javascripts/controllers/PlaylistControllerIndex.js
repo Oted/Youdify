@@ -166,8 +166,13 @@
 		$("#pdescription").val(obj.description);
 		$("#pfreetag").val(obj.freetag);
 		$("#tag-select").val(obj.category);
-		if (obj.locked){$("#lock").prop("checked", true);}
-		else {$("#unlock").prop("checked",true)};
+
+		if (obj.locked === "true"){
+			$("#lock").prop("checked", "true");
+		}
+		else {
+			$("#unlock").prop("checked", "true")
+		};
 
 		$("#show-settings").show();
 	};

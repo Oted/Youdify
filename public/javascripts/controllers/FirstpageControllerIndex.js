@@ -49,9 +49,27 @@
 
 	//searches for playlists with given query
 	FirstpageControllerIndex.prototype.searchPlaylists = function(event){
-		var query = this.searchEl.val();
+		var query = this.searchEl.val(),
+			that = this,
+			obj; 
+
 		if (event.which == 13 && query.length>0) {
-			console.log("sdsdsdsd" + query);
+			//set obj to send to mediator
+			obj = {
+				"query" : query,
+				"callback" : function(playlists){
+					that.clear();
+					for (var i = 0; i < playlists.length; ++i){
+						that.generateResultDiv(playlists[i]);
+					}	
+				}
+			};
+	
+			if (query.indexOf("#")!==0){
+				this.Mediator.write("searchPlaylistsByName", obj);
+			}else{
+				console.log("Search for freetags");
+			}
 		}
 	};
 			
