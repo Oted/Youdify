@@ -19,13 +19,14 @@
 	APIHandler.prototype.searchPlaylistsByName = function(obj){	
 		console.log("Search for names with quey " + obj.query);
 		$.ajax({
-			url: "/searchplaylistbyname/?query=" + obj.query + "&callback=?",
+			url: "/searchplaylistsbyname/?query=" + obj.query + "&callback=?",
 			dataType:"jsonp",
 			beforesend: function(){
 				console.log("Search for playlists with query " + obj.query);
 			},
 			success: function(data){
 				console.log("Success!!");
+				obj.callback(data.data)
 			}
 		});
 	};

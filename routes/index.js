@@ -165,8 +165,11 @@ exports.updatePlaylist = function(req, res){
 //search for the playlists with names :)
 exports.searchPlaylistsByName = function(req, res){
 	var query = req.query.query.replace("+", " ");
-
-	dbHandler.getPlaylistsWithName(count, function(data){
-		res.jsonp({"data" : data});
-	});
+	if (query.length > 2){
+		dbHandler.getPlaylistsWithName(query, function(data){
+			res.jsonp({"data" : data});
+		});
+	}else{
+		res.jsonp({"data" : {}});
+	}
 }

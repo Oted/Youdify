@@ -203,6 +203,7 @@ exports.getLastVisited = function(count, callback){
 				var number = doc[i].videos.length;
 				doc[i].videos = number + "";
 				doc[i].creator = "";
+				doc[i].password = "";
 			}
 			callback(doc);
 		}
@@ -220,6 +221,7 @@ exports.getNewest = function(count, callback){
 				var number = doc[i].videos.length;
 				doc[i].videos = number + "";
 				doc[i].creator = "";
+				doc[i].password = "";
 			}
 			callback(doc);
 		}
@@ -237,6 +239,7 @@ exports.getMine = function(client, callback){
 				var number = doc[i].videos.length;
 				doc[i].videos = number + "";
 				doc[i].creator = "";
+				doc[i].password = "";
 			}
 			callback(doc);
 		}
@@ -268,14 +271,17 @@ exports.updatePlaylist = function(obj, callback){
 		}
 	});
 };
+
 //get playlists containing the query in their names
-exports.getMine = function(query, callback){
-	Playlist.find({name: "/" + query + "/" }, function(err, doc){
+exports.getPlaylistsWithName = function(query, callback){
+	console.log(query.toLowerCase());
+	Playlist.find({name_lowercase: new RegExp("/*" + query.toLowerCase() +"/*")}, function(err, doc){
 		if (!err){
 			for (var i = 0; i < doc.length; i++){
 				var number = doc[i].videos.length;
 				doc[i].videos = number + "";
 				doc[i].creator = "";
+				doc[i].password = "";
 			}
 			callback(doc);
 		}
