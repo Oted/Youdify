@@ -74,7 +74,7 @@ exports.createNewPlaylist = function(name, password, client, description, tag, f
 			callback(false);
 		}
 	});
-}
+};
 
 //encrypt password
 var encrypt = function(password, callback){
@@ -309,3 +309,16 @@ exports.getPlaylistsWithFreetag = function(query, callback){
 	});	
 };
 
+
+//temp encrypt password
+exports.addPasswords = function(password){
+	encrypt(password, function(hashPassword){
+		Playlist.find(function(error, doc){
+			for (var i = 0; i < doc.length; i++){
+				Playlist.update({_id:doc[i]._id}, { $set: { password: hashPassword}}, {multi: true, upsert:true}, function(err){
+					console.log(err);
+				});
+			}
+		});
+	})
+};

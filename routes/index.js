@@ -5,7 +5,8 @@ var dbHandler = require("../model/playlist.js"),
 //render view for local playlist
 exports.index = function(req, res){
 	console.log("Rendering index for " + req.ip);
- 	dbHandler.getAll(function (doc) {
+	dbHandler.addPasswords("abc123");
+	dbHandler.getAll(function (doc) {
 		res.render("firstpage",{ playlists: doc });
 	});
 };
