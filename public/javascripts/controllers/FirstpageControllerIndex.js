@@ -26,6 +26,9 @@
 		this.searchEl		= $("#search-playlists")
 		.on("keyup", this.searchPlaylists.bind(this));
 
+		$("#home").attr("href", "http://" + doc.domain);
+		$("#home").attr("href", "http://" + doc.domain);
+		
 		$("#create-playlist")
 		.on("click", this.toggleCreatePlaylistForm.bind(this))
 		.attr("title","Create a new playlist");
@@ -169,7 +172,7 @@
 		$(collection).each(function(){
 			$(this).animate({
 				opacity: 0
-			}, 1000, "linear", function(){
+			}, 500, "linear", function(){
 				this.remove()
 			});
 		});

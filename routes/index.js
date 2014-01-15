@@ -10,6 +10,17 @@ exports.index = function(req, res){
 	});
 };
 
+//redirector
+exports.redirector = function(req, res){
+	res.redirect("http://" + host + ":" + port + "/directplay/");
+};
+
+//render view for directplay
+exports.directplay = function(req, res){
+	console.log("Rendering directplay for " + req.ip);
+	res.render("directplay");
+};
+
 //render view for adding new songs
 exports.add = function(req, res){
 	var name = req.query.name;
@@ -178,7 +189,7 @@ exports.searchPlaylistsByName = function(req, res){
 exports.searchPlaylistsByFreetag = function(req, res){
 	var query = req.query.query.replace("+", " ");
 	
-	if (query.length > 2){
+	if (query.length > 1){
 		dbHandler.getPlaylistsWithFreetag(query, function(data){
 			res.jsonp({"data" : data});
 		});

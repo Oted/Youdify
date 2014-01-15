@@ -44,6 +44,8 @@ db.once('open', function callback(){
 	app.get("/", throttler(), routes.index);
 	app.get("/add/*", throttler(), routes.add);
 	app.get("/index.html", throttler(), routes.index);
+	app.get("/directplay/*", throttler(), routes.directplay);
+	app.get("/redirector/*", throttler(), routes.redirector);
 	app.get("/playlists/*", throttler(), routes.playlist(false));
 
 	//authentication rendering of playlist

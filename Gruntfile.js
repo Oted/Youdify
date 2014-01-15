@@ -12,7 +12,8 @@ module.exports = function(grunt){
 				files : {
 					"public/FirstpageScript.js" : 	["public/javascripts/controllers/FirstpageControllerIndex.js"],
 					"public/AddVideoScript.js" : 	["public/javascripts/controllers/AddVideoControllerIndex.js"],
-					"public/PlaylistScript.js" : 	["public/javascripts/controllers/PlaylistControllerIndex.js"]
+					"public/PlaylistScript.js" : 	["public/javascripts/controllers/PlaylistControllerIndex.js"],
+					"public/DirectPlay.js" : 		["public/javascripts/controllers/DirectPlayControllerIndex.js"]
 				}	
 			}
 		},

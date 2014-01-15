@@ -7,13 +7,14 @@
         <div class="fixed-top">
           <header id="main-header" class="grid-container">
 			<div class="message text-center" id="navigation-board">
-				<a id="home" class="grid-4 fontawesome-home sort"> Home</a>
+				<a id="home" href="/" class="grid-4 fontawesome-home sort"> Home</a>
 				<a id="create-playlist" class="grid-2 sort fontawesome-file"> New playlist</a>
-				<a id="direct-play" class="grid-4 sort fontawesome-bolt"> Direct play</a>
+				<a id="direct-play" href="/redirector/" class="grid-4 sort fontawesome-bolt"> Direct play</a>
 				<a id="halp" class="grid-2 fontawesome-question-sign sort"> Halp</a>
 			</div>
 			  	<img class="grid-5 alpha" src="images/Youdify-logo.png"></img>
-				<input id="search-playlists" class="omega search-field grid-4 omega" style="float:right;margin-top:25px" placeholder="Search"/>
+				<input id="search-playlists" class="omega search-field grid-4 omega" 
+				style="float:right;margin-top:25px" placeholder="Search, add # for freetags"/>
 			  <%- include partials/newPlaylist.ejs %>				
           </header>
         </div>

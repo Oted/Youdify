@@ -63,6 +63,7 @@
 		this.chatToggleEl 		= $("#chat-toggle");
 		this.iframeSrc 			= $("#overlay-wrapper").attr("src");
 		this.chatClient 		= undefined;
+
 		this.overlayBEl 	= $("#overlay-background")
 		.on("click", this.toggleAddVideo.bind(this));
 
