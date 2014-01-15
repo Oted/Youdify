@@ -1,4 +1,4 @@
-var dbHandler = require("./model/playlist.js");
+var dbHandler = require("../model/playlist.js");
 var that = this;
 
 //init

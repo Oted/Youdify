@@ -49,7 +49,7 @@ exports.createNewPlaylist = function(name, password, client, description, tag, f
 					"password": hashPassword,
 					"creator": client,
 					"category": tag,
-					"freetag" : freetag,
+					"freetag" : freetag.toLowerCase(),
 					"description": description,
 					"date" 	 : new Date(),
 					"lastvisited" : new Date(),
@@ -257,7 +257,7 @@ exports.updatePlaylist = function(obj, callback){
 			"name":obj.name, 
 			"name_lowercase":obj.name.toLowerCase(),
 			"description":obj.desc, 
-			"freetag":obj.freetag, 
+			"freetag":obj.freetag.toLowerCase(), 
 			"locked":obj.locked,
 			"category":obj.tag
 	}}, 
@@ -276,6 +276,24 @@ exports.updatePlaylist = function(obj, callback){
 exports.getPlaylistsWithName = function(query, callback){
 	console.log(query.toLowerCase());
 	Playlist.find({name_lowercase: new RegExp("/*" + query.toLowerCase() +"/*")}, function(err, doc){
+		if (!err){
+			for (var i = 0; i < doc.length; i++){
+				var number = doc[i].videos.length;
+				doc[i].videos = number + "";
+				doc[i].creator = "";
+				doc[i].password = "";
+			}
+			callback(doc);
+		}
+		else{
+			console.log("Error in getMine: \n" + err)
+		}
+	});	
+};
+
+//get playlists containing the query in their freetag
+exports.getPlaylistsWithFreetag = function(query, callback){
+	Playlist.find({freetag: new RegExp("/*" + query.toLowerCase() +"/*")}, function(err, doc){
 		if (!err){
 			for (var i = 0; i < doc.length; i++){
 				var number = doc[i].videos.length;

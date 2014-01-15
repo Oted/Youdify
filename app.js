@@ -11,9 +11,9 @@ var express = require("express"),
 	db = mongoose.connection,
 	io = require("socket.io").listen(app.listen(port)),
 	passport = require("passport"),
-	authenticator = require("./authenticator.js");
-	socket = require("./socket.js").init(io),
-	throttler = require("./throttler.js");
+	authenticator = require("./my_modules/authenticator.js");
+	socket = require("./my_modules/socket.js").init(io),
+	throttler = require("./my_modules/throttler.js");
 
 httpProxy.createServer(port, "localhost").listen(80);
 
@@ -76,6 +76,7 @@ db.once('open', function callback(){
 	app.get("/push/*", throttler(), routes.push);
 	app.get("/deletevideo/*", routes.deleteVideo);
 	app.get("/searchplaylistsbyname/*", throttler(), routes.searchPlaylistsByName);
+	app.get("/searchplaylistsbyfreetag/*", throttler(), routes.searchPlaylistsByFreetag);
 });
 
 //on exit, close database

@@ -13,11 +13,27 @@
 		this.Mediator.subscribe("authenticate", this.authenticate.bind(this));	
 		this.Mediator.subscribe("deleteVideo", this.deleteVideo.bind(this));	
 		this.Mediator.subscribe("searchPlaylistsByName", this.searchPlaylistsByName.bind(this));	
+		this.Mediator.subscribe("searchPlaylistsByFreetag", this.searchPlaylistsByFreetag.bind(this));	
 	};
 
-	//searches for playlists by name and callback
+	//searches for playlists by freetag
+	APIHandler.prototype.searchPlaylistsByFreetag = function(obj){	
+		console.log(obj);
+		$.ajax({
+			url: "/searchplaylistsbyfreetag/?query=" + obj.query + "&callback=?",
+			dataType:"jsonp",
+			beforesend: function(){
+				console.log("Search for playlists with query " + obj.query);
+			},
+			success: function(data){
+				console.log("Success!!");
+				obj.callback(data.data)
+			}
+		});
+	};
+
+	//searches for playlists by name
 	APIHandler.prototype.searchPlaylistsByName = function(obj){	
-		console.log("Search for names with quey " + obj.query);
 		$.ajax({
 			url: "/searchplaylistsbyname/?query=" + obj.query + "&callback=?",
 			dataType:"jsonp",
@@ -96,16 +112,8 @@
 				else if (prop.isAuthenticated){
 					if (prop.name !== prop.oldName){
 						checkIfExist(prop.name,function(found){
-							if (!found){
-								updateDocument(prop, function(data){
-									//code goes here!!
-								
-								
-								
-								});
-							}
-							else{
-								alert("A playlist with your new name does already exist, pick another");
+							if (found){
+								this.Mediator.write("temporaryMessage", "A Playlist with that name already exist, try another");
 							}
 						});
 					}	

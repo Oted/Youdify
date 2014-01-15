@@ -24,7 +24,7 @@
 		this.resultEl 		= doc.getElementById("search-results");
 
 		this.searchEl		= $("#search-playlists")
-		.on("keypress", this.searchPlaylists.bind(this));
+		.on("keyup", this.searchPlaylists.bind(this));
 
 		$("#create-playlist")
 		.on("click", this.toggleCreatePlaylistForm.bind(this))
@@ -51,7 +51,7 @@
 	FirstpageControllerIndex.prototype.searchPlaylists = function(event){
 		var query = this.searchEl.val(),
 			that = this,
-			obj; 
+			obj;
 
 		if (event.which == 13 && query.length>0) {
 			//set obj to send to mediator
@@ -68,7 +68,8 @@
 			if (query.indexOf("#")!==0){
 				this.Mediator.write("searchPlaylistsByName", obj);
 			}else{
-				console.log("Search for freetags");
+				obj.query = obj.query.replace("#", "");
+				this.Mediator.write("searchPlaylistsByFreetag", obj);
 			}
 		}
 	};
@@ -142,7 +143,7 @@
 	FirstpageControllerIndex.prototype.generateResultDiv = function(playlist){
 		var that = this,
 			element = $(".list-item").clone()[0];
-		
+	
 		element.className = "";
 		element.className = "list-item playlist";
 		element.setAttribute("href", "/playlists/" + playlist.name);		
@@ -159,14 +160,32 @@
 		this.resultEl.appendChild(element);
 	};
 
-	FirstpageControllerIndex.prototype.clear = function(){
-		var elements = doc.getElementsByClassName("active");
+	//fades out and removes current divs
+	FirstpageControllerIndex.prototype.clear = function(callback){
+		var elements = doc.getElementsByClassName("active"),
+			that = this,
+			collection = doc.getElementsByClassName("playlist");
+	
+		$(collection).each(function(){
+			$(this).animate({
+				opacity: 0
+			}, 1000, "linear", function(){
+				this.remove()
+			});
+		});
+		
 		for(var i = 0; i < elements.length; ++i){
 			elements[i].className = elements[i].className.replace("active", "");
 		};
 
-		this.resultEl.innerHTML = "";
 		this.results = [];
+	};
+
+	var toggleResult = function(div){
+		div.animate({opacity:'0'},"slow", function(){
+			div.innerHTML = "";
+    		div.animate({opacity:'1'},"slow");
+		});
 	};
 	
 })(window, document, jQuery);

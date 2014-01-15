@@ -1,5 +1,5 @@
 var LocalStrategy = require("passport-local").Strategy,
-	dbHandler = require("./model/playlist.js"),
+	dbHandler = require("../model/playlist.js"),
 	passport = require("passport"),
 	authu = [];
 

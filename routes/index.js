@@ -1,6 +1,6 @@
 var dbHandler = require("../model/playlist.js"),
-	socket = require("../socket.js"),
-	authenticator = require("../authenticator.js");
+	socket = require("../my_modules/socket.js"),
+	authenticator = require("../my_modules/authenticator.js");
 
 //render view for local playlist
 exports.index = function(req, res){
@@ -172,4 +172,17 @@ exports.searchPlaylistsByName = function(req, res){
 	}else{
 		res.jsonp({"data" : {}});
 	}
-}
+};
+
+//search for the playlists with the freetag
+exports.searchPlaylistsByFreetag = function(req, res){
+	var query = req.query.query.replace("+", " ");
+	
+	if (query.length > 2){
+		dbHandler.getPlaylistsWithFreetag(query, function(data){
+			res.jsonp({"data" : data});
+		});
+	}else{
+		res.jsonp({"data" : {}});
+	}
+};
