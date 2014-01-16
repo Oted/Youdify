@@ -423,7 +423,7 @@
 		this.results.push(video);
 		this.Mediator.write("resultsChange", this.results);
 		
-		var element = $("#video-tempelate").clone().show().attr("id","")[0];
+		var element = $("#video-tempelate").clone().attr("id","")[0];
 
         $(element).find(".title")
 		.html(video.title).on("click", function(){
@@ -503,7 +503,10 @@
 
 		video.preview = preview;
 		video.element = element;
+		
 		this.resultEl.append(element);
+		$(element).animate({opacity: "toggle"}, 1300, function() {
+		});
 	};
 
 	//check if a specific videoId exist in results array

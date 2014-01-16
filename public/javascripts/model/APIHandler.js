@@ -115,6 +115,11 @@
 							if (found){
 								this.Mediator.write("temporaryMessage", "A Playlist with that name already exist, try another");
 							}
+							else{
+								updateDocument(prop, function(data){
+									//code goes here!!
+								});
+							}
 						});
 					}	
 					else{	

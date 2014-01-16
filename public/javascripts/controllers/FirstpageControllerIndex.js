@@ -46,8 +46,10 @@
 		.on("click", function(){
 			that.sortOnCategory(1);
 		});
-
-		this.getPlaylists("new");
+		
+		$("#logo").animate({opacity: "toggle", height: "toggle"}, 1500, function() {
+			that.getPlaylists("new");
+		});
 	};
 
 	//searches for playlists with given query

@@ -274,7 +274,6 @@ exports.updatePlaylist = function(obj, callback){
 
 //get playlists containing the query in their names
 exports.getPlaylistsWithName = function(query, callback){
-	console.log(query.toLowerCase());
 	Playlist.find({name_lowercase: new RegExp("/*" + query.toLowerCase() +"/*")}, function(err, doc){
 		if (!err){
 			for (var i = 0; i < doc.length; i++){

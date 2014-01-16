@@ -27,8 +27,10 @@ $overlay-height: 420px;
   margin-top: -$overlay-height/2;
   z-index: 30;
   @include border-radius(2px);
-  @include box-shadow(0 2px 4px rgba(0,0,0,0.8));
+  @include box-shadow(0 30px 65px rgba(35,0,120,0.7));
   padding: 10px;
+  border-style:solid;
+  border-width:1px;
 }
 
 #overlay-inner-wrapper{

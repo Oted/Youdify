@@ -1,4 +1,4 @@
-	<form id="edit-playlist-div" class="edit-playlist" style="display:none">
+	<form id="edit-playlist-div" class="edit-playlist grid-12" style="display:none">
 		<h3 style="color:white">Edit the form and press submit, if you want to remove specific videos the "hide" option has now changed to delete.</h3>
 		<input class="grid-3 omega search-field" placeholder="Playlist name" id="pname"/>
 		<input class="grid-3 omega search-field" placeholder="Description..." id="pdescription"/>
@@ -9,10 +9,10 @@
 			<option value="comedy">For the lulz</option>
 			<option value="other">Other</option>
 		</select>	
-		<input class="grid-3 omega search-field" placeholder="Freetag" id="pfreetag"/>
-		<div class="grid-9">
+		<input class="grid-2 search-field" placeholder="Freetag" id="pfreetag"/>
+		<div class="grid-10">
 			<input id="unlock" type="radio" name="lock"/><span style="color:white">Unlocked</span>
 			<input id="lock" type="radio" name="lock"/><span style="color:white">Locked</span>
 		</div>
-		<a class="icon-button grid-2 omega" id="submit">Save</a>
+		<a class="icon-button grid-4 omega" id="submit" style="float:right">Save</a>
 	</form>

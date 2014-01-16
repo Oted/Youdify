@@ -161,7 +161,7 @@ exports.updatePlaylist = function(req, res){
 	if (authenticator.isAuthenticated(sID, name)){
 		dbHandler.updatePlaylist(obj,function(updated){
 			if (updated){
-				res.jsonp({"updated":"false"});
+				res.jsonp({"updated":"true"});
 				socket.playlistChange(obj);
 			}
 			else{

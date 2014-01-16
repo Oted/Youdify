@@ -7,7 +7,6 @@ var LocalStrategy = require("passport-local").Strategy,
 passport.use(new LocalStrategy(
 		function(username, password, done){
 		dbHandler.checkIfExist(username, function(obj){
-			console.log("password : " + password);
 			var playlist = obj.doc;
 			if (!obj.found) {
 				return done(null, false);
@@ -53,7 +52,7 @@ exports.add = function(sessionId, playlistName){
 exports.isAuthenticated = function(session, name){
 	var auth = false, 
 		obj;
-
+	
 	for (var i = 0; i < authu.length; i++){
 		obj = authu[i];
 		if (obj.sessionId === session && obj.playlistName===name){
