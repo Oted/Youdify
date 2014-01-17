@@ -228,21 +228,6 @@
 		this.queueToggleEl.toggle(200);
 	};
 
-	//received chatmessage from the socket
-	PlaylistControllerIndex.prototype.newChatEntry = function(obj){
-		if (obj.message){
-			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
-										obj.nickName + " says : " + obj.message + "</p></div>");
-			if (this.chatToggleEl[0].style.display === "none") {
-				$("#new-message").show(200);
-			}
-		}else{
-			$("#chat-entries").append("<div class='chat-message'><p style='color:" + obj.color + "'>"+ 
-										obj.nickName + " has joined the playlist" + "</p></div>");
-		}
-		doc.getElementById("chat-entries").scrollTop = 9999999999;
-	};
-
 	//called when chat state changes
 	PlaylistControllerIndex.prototype.numberOfClientsChanged = function(obj){
 		var toggleEl = $("#show-chat");

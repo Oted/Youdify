@@ -7,7 +7,6 @@
 
 		this.Mediator = Mediator;	
 		this.Mediator.subscribe("submitPlaylist", this.submitPlaylist.bind(this));	
-		//this.Mediator.subscribe("sendMessage", this.sendMessage.bind(this));	
 		this.Mediator.subscribe("pushVideo", this.pushVideo.bind(this));	
 		this.Mediator.subscribe("getPlaylists", this.getPlaylists.bind(this));	
 		this.Mediator.subscribe("authenticate", this.authenticate.bind(this));	

@@ -20,6 +20,9 @@
 		var SearchMachine 	= require("../model/SearchMachine.js").SearchMachine;
 		new SearchMachine(this.Mediator);
 
+		var MessageBoard	= require("../model/MessageBoard.js").MessageBoard;	
+		new MessageBoard(this.Mediator);
+		
 		this.Mediator.subscribe("resultsChange", resultsChange.bind(this));
 		this.results 		= [];
 
