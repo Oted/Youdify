@@ -34,3 +34,4 @@ public/stylesheets/*.css
 public/AddVideoScript.js
 public/FirstpageScript.js
 public/PlaylistScript.js
+public/DirectPlay.js
