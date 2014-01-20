@@ -27,12 +27,16 @@
 		.on("keyup", this.searchPlaylists.bind(this));
 
 		$("#home").attr("href", "http://" + doc.domain);
-		$("#home").attr("href", "http://" + doc.domain);
 		
 		$("#create-playlist")
 		.on("click", this.toggleCreatePlaylistForm.bind(this))
 		.attr("title","Create a new playlist");
 	
+		$("#halp")
+		.on("click", this.toggleShowHelp.bind(this))
+		.attr("title","Show information about youdify.com");
+	
+
 		$("#submit")
 		.on("click", this.submitPlaylist.bind(this))
 		.attr("title","Save and submit the playlist");
@@ -47,9 +51,13 @@
 			that.sortOnCategory(1);
 		});
 		
-		$("#logo").animate({opacity: "toggle", height: "toggle"}, 1500, function() {
+		$("#logo").animate({opacity: "toggle", height: "toggle"}, 700, function() {
 			that.getPlaylists("new");
 		});
+	};
+
+	FirstpageControllerIndex.prototype.toggleShowHelp = function(){
+		$("#overlay-wrapper").toggle(400);
 	};
 
 	//searches for playlists with given query

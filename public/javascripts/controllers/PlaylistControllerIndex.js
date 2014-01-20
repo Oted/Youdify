@@ -180,7 +180,7 @@
 
 	//start the chat!
 	PlaylistControllerIndex.prototype.showChat = function(){
-		var colors = ["chocolate","indigo", "tomato", "sienna", "blue", "crimson", "darkgreen", "dimgray", "yellow", "springgreen"],
+		var colors = ["chocolate","indigo", "tomato", "sienna", "blue", "crimson", "darkgreen", "dimgray", "black", "springgreen", "coral", "firebrick", "fuchsia", "greenyellow", "mediumblue", "orangered"],
 			r = Math.floor(Math.random()*colors.length),
 			tempNick;
 		

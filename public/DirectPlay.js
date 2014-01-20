@@ -75,7 +75,7 @@
 	//bind and set attr on UI controls
 	DirectPlayControllerIndex.prototype.initUI = function(){
 		var that = this;
-		this.resultEl       = $("#video-list");
+		this.resultEl       	= $("#video-list");
 		this.queueToggleEl 		= $("#queue-toggle");
 
 		this.searchEl       = $("#search")
@@ -103,7 +103,7 @@
 			that.sortOnCategory(3);
 		});
 
-		$("#home").attr("href", "http://" + doc.domain);
+		$("#home").attr("href", "http://www.youdify.com");
 		
 		$("#empty-queue")
 		.on("click", function(){
