@@ -18,16 +18,15 @@ exports.init = function(io){
 			
 			//push all videos
 			that.pushAll(socket, name, client);
-			
 			//tell the others that client has joined
 			that.io.sockets.in(name).emit("newClient", {client: data.client, 
-													   clients: io.sockets.clients(name).length
+													   clients: io.sockets.server.eio.clientsCount
 			});
 			
 			//on disconnect, tell the others
 			socket.on("disconnect", function(){
 				that.io.sockets.in(name).emit("clientLeave", {client: data.client,
-														clients: io.sockets.clients(name).length-1
+													   clients: io.sockets.server.eio.clientsCount
 				});
 			});
 		

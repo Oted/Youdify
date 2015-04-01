@@ -1,9 +1,10 @@
 port = 3000;
-host = "0.0.0.0";
+host = "82.196.12.214";
 dbName = "test";
 
 var express = require("express"),
 	httpProxy = require("http-proxy"),
+    http  = require('http'),
 	app = express(),
 	flash = require('connect-flash'),
 	routes = require("./routes/index"),
@@ -15,7 +16,23 @@ var express = require("express"),
 	socket = require("./my_modules/socket.js").init(io),
 	throttler = require("./my_modules/throttler.js");
 
-httpProxy.createServer(port, "localhost").listen(80);
+var proxy = httpProxy.createServer({});
+
+http.createServer(function(req, res) {
+    proxy.web(req, res, {target : 'http://localhost:' + port});
+}).listen(80);
+
+proxy.on('error', function (error, req, res) {
+    var json;
+    console.log('proxy error', error);
+    
+    if (!res.headersSent) {
+        res.writeHead(500, { 'content-type': 'application/json' });
+    }
+
+    json = { error: 'proxy_error', reason: error.message };
+    res.end(JSON.stringify(json));
+});
 
 //connects to database
 mongoose.connect("mongodb://" + host + "/" + dbName);
